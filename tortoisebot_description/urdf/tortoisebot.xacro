@@ -1,0 +1,248 @@
+<?xml version="1.0" ?>
+<robot name="tortoisebot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find tortoisebot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find tortoisebot_description)/gazebo/tortoisebot_materials.gazebo" />
+<xacro:include filename="$(find tortoisebot_description)/gazebo/tortoisebot_physics.gazebo" />
+<xacro:include filename="$(find tortoisebot_description)/gazebo/tortoisebot_plugins.gazebo" />
+
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.002760040106013823 -0.001188341092731165 0.0718803300182357"/>
+    <mass value="0.5998126574179536"/>
+    <inertia ixx="0.001977" ixy="-1.9e-05" ixz="1.6e-05" iyy="0.001845" iyz="3.1e-05" izz="0.001587"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="wheel_right">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-1.3588436534317516e-07 -0.01588997385974819 2.4327475205837557e-07"/>
+    <mass value="0.23341302374485867"/>
+    <inertia ixx="9.6e-05" ixy="-0.0" ixz="0.0" iyy="0.00016" iyz="0.0" izz="9.6e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0325 0.07073 -0.03245"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/wheel_right.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0325 0.07073 -0.03245"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/wheel_right.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="wheel_left">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-1.3200802984753013e-07 0.015889975585968247 2.563618809944823e-07"/>
+    <mass value="0.2334125809795772"/>
+    <inertia ixx="9.6e-05" ixy="0.0" ixz="0.0" iyy="0.00016" iyz="-0.0" izz="9.6e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0325 -0.07073 -0.03245"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/wheel_left.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0325 -0.07073 -0.03245"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/wheel_left.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="caster">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.01100000059604822 -1.4270326137978878e-17 -0.006845279720279717"/>
+    <mass value="0.02931481955170001"/>
+    <inertia ixx="2e-06" ixy="-0.0" ixz="0.0" iyy="2e-06" iyz="-0.0" izz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.032 -0.0 -0.01915"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/caster.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.032 -0.0 -0.01915"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/caster.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_body">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.04189252309401799 -0.030999999999999896 0.02544713291508699"/>
+    <mass value="0.07136843474102665"/>
+    <inertia ixx="2.3e-05" ixy="0.0" ixz="5e-06" iyy="6.1e-05" iyz="0.0" izz="7.7e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.022 -0.031 -0.14715"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/lidar_body.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.022 -0.031 -0.14715"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/lidar_body.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_motorend">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-1.3877787807814457e-17 7.710435591426653e-18 0.002750000000000058"/>
+    <mass value="0.0005131791599638964"/>
+    <inertia ixx="0.0" ixy="-0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.05 -0.0 -0.18065"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/lidar_motorend.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.05 -0.0 -0.18065"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/lidar_motorend.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_bottom">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-1.0850529511452296e-17 5.425264755726148e-18 0.007750000000000035"/>
+    <mass value="0.062236577058626265"/>
+    <inertia ixx="1.8e-05" ixy="-0.0" ixz="-0.0" iyy="1.8e-05" iyz="0.0" izz="3.3e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.0 -0.0 -0.18065"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/lidar_bottom.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.0 -0.0 -0.18065"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/lidar_bottom.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_top">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-1.2613740557063325e-17 4.204580185687775e-18 0.00500000000000006"/>
+    <mass value="0.040152630360403944"/>
+    <inertia ixx="1.1e-05" ixy="0.0" ixz="0.0" iyy="1.1e-05" iyz="-0.0" izz="2.2e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.0 -0.0 -0.19615"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/lidar_top.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.0 -0.0 -0.19615"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/lidar_top.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="imu">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.005006317892412869 0.010331821776814253 0.0005641458401822869"/>
+    <mass value="0.0005786974233911084"/>
+    <inertia ixx="0.0" ixy="0.0" ixz="-0.0" iyy="0.0" iyz="-0.0" izz="0.0"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.04 0.01025 -0.10543"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/imu.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.04 0.01025 -0.10543"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/imu.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="motor_right" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0325 -0.07073 0.03245"/>
+  <parent link="base_link"/>
+  <child link="wheel_right"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="motor_left" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0325 0.07073 0.03245"/>
+  <parent link="base_link"/>
+  <child link="wheel_left"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Rigid3" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.032 0.0 0.01915"/>
+  <parent link="base_link"/>
+  <child link="caster"/>
+</joint>
+
+<joint name="Rigid4" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.022 0.031 0.14715"/>
+  <parent link="base_link"/>
+  <child link="lidar_body"/>
+</joint>
+
+<joint name="Rigid5" type="fixed">
+  <origin rpy="0 0 0" xyz="0.072 -0.031 0.0335"/>
+  <parent link="lidar_body"/>
+  <child link="lidar_motorend"/>
+</joint>
+
+<joint name="Rigid6" type="fixed">
+  <origin rpy="0 0 0" xyz="0.022 -0.031 0.0335"/>
+  <parent link="lidar_body"/>
+  <child link="lidar_bottom"/>
+</joint>
+
+<joint name="Rigid7" type="fixed">
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.0155"/>
+  <parent link="lidar_bottom"/>
+  <child link="lidar_top"/>
+</joint>
+
+<joint name="Rigid8" type="fixed">
+  <origin rpy="0 0 0" xyz="0.04 -0.01025 0.10543"/>
+  <parent link="base_link"/>
+  <child link="imu"/>
+</joint>
+
+</robot>
