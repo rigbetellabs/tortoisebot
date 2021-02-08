@@ -19,7 +19,7 @@
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <odometrySource>1</odometrySource>
-      <publishWheelTF>true</publishWheelTF>
+      <publishWheelTF>false</publishWheelTF>
       <publishOdomTF>true</publishOdomTF>
       <publishOdom>true</publishOdom>
       <publishWheelJointState>true</publishWheelJointState>
