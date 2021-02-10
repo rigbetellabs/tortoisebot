@@ -4,7 +4,7 @@
 
 	<param command="$(find xacro)/xacro $(find tortoisebot_description)/urdf/tortoisebot.xacro" name="robot_description"/>
 
-	<node args="-param robot_description -urdf -model tortoisebot" name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
+	<node args="-param robot_description -urdf -model tortoisebot -x -0.2 -y 0 -z 0.05 " name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
 
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
 

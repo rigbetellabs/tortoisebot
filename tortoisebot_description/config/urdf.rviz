@@ -149,7 +149,7 @@ Visualization Manager:
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.029999999329447746
+      Size (m): 0.009999999776482582
       Style: Flat Squares
       Topic: /scan
       Unreliable: false
@@ -196,7 +196,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.830751419067383
+      Distance: 2.3849897384643555
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -204,17 +204,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.04610531032085419
-        Y: 0.1152341291308403
-        Z: 0.1804637908935547
+        X: 0.1558479368686676
+        Y: -0.052322614938020706
+        Z: -0.054300323128700256
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5103971362113953
+      Pitch: 0.8103969097137451
       Target Frame: <Fixed Frame>
-      Yaw: 5.526764392852783
+      Yaw: 5.496764183044434
     Saved: ~
 Window Geometry:
   Displays:
