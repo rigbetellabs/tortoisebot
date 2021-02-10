@@ -60,4 +60,10 @@
   <selfCollide>true</selfCollide>
 </gazebo>
 
+<gazebo reference="camera">
+  <mu1>${standard_friction}</mu1>
+  <mu2>${standard_friction}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
 </robot>

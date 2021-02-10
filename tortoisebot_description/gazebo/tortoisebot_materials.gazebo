@@ -43,4 +43,8 @@
   <material>${body_color}</material>
 </gazebo>
 
+<gazebo reference="camera">
+  <material>${body_color}</material>
+</gazebo>
+
 </robot>

@@ -195,6 +195,27 @@
   </collision>
 </link>
 
+<link name="camera">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.000736316919000779 9.521361965188852e-15 0.01215919671545948"/>
+    <mass value="0.011070080401829364"/>
+    <inertia ixx="1e-06" ixy="-0.0" ixz="0.0" iyy="1e-06" iyz="0.0" izz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.061 -0.0 -0.11515"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/camera.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.061 -0.0 -0.11515"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/meshes/camera.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
 <joint name="motor_right" type="continuous">
   <origin rpy="0 0 0" xyz="0.0325 -0.07073 0.03245"/>
   <parent link="base_link"/>
@@ -243,6 +264,12 @@
   <origin rpy="0 0 0" xyz="0.04 -0.01025 0.10543"/>
   <parent link="base_link"/>
   <child link="imu"/>
+</joint>
+
+<joint name="Rigid9" type="fixed">
+  <origin rpy="0 0 0" xyz="0.061 0.0 0.11515"/>
+  <parent link="base_link"/>
+  <child link="camera"/>
 </joint>
 
 </robot>
