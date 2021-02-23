@@ -58,6 +58,7 @@
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+  <exec_depend>tortoisebot_navigation</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
