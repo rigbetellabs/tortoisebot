@@ -23,7 +23,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+            <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
             <scale>1 1 1</scale>
           </mesh>
         </geometry>
@@ -36,7 +36,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+            <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
             <scale>1 1 1</scale>
           </mesh>
         </geometry>

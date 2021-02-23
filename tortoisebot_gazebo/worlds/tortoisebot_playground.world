@@ -113,7 +113,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/areana.dae</uri>
+              <uri>model://playground/meshes/areana.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -126,15 +126,15 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/areana.dae</uri>
+              <uri>model://playground/meshes/areana.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
           <surface>
             <friction>
               <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
+                <mu>100</mu>
+                <mu2>100</mu2>
                 <fdir1>0 0 0</fdir1>
                 <slip1>0</slip1>
                 <slip2>0</slip2>
@@ -204,7 +204,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/home_obstacle.dae</uri>
+              <uri>model://home_obstacle/meshes/home_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -217,7 +217,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/home_obstacle.dae</uri>
+              <uri>model://home_obstacle/meshes/home_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -295,7 +295,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/signal_obstacle.dae</uri>
+              <uri>model://signal_obstacle/meshes/signal_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -308,7 +308,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/signal_obstacle.dae</uri>
+              <uri>model://signal_obstacle/meshes/signal_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -386,7 +386,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/crossing_obstacle.dae</uri>
+              <uri>model://crossing_obstacle/meshes/crossing_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -399,7 +399,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/crossing_obstacle.dae</uri>
+              <uri>model://crossing_obstacle/meshes/crossing_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -477,7 +477,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -490,7 +490,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -568,7 +568,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/parking_obstacle.dae</uri>
+              <uri>model://parking_obstacle/meshes/parking_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -581,7 +581,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/parking_obstacle.dae</uri>
+              <uri>model://parking_obstacle/meshes/parking_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -659,7 +659,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -672,7 +672,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -750,7 +750,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/stop_obstacle.dae</uri>
+              <uri>model://stop_obstacle/meshes/stop_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -763,7 +763,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/stop_obstacle.dae</uri>
+              <uri>model://stop_obstacle/meshes/stop_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -841,7 +841,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -854,7 +854,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -932,7 +932,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -945,7 +945,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1023,7 +1023,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1036,7 +1036,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1114,7 +1114,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1127,7 +1127,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1205,7 +1205,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
@@ -1218,7 +1218,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>/opt/ros/noetic/share/tortoisebot/tortoisebot_gazebo/meshes/turn_obstacle.dae</uri>
+              <uri>model://turn_obstacle/meshes/turn_obstacle.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>

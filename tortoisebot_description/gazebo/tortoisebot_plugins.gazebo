@@ -59,15 +59,15 @@
       </plugin>
     </sensor>
   </gazebo>
-
+<!--
   <gazebo reference="camera">
     <sensor type="camera" name="camera">
       <update_rate>60.0</update_rate>
       <camera name="camera">
         <horizontal_fov>0.9337511</horizontal_fov>
         <image>
-          <width>960</width> <!--2592 × 1944 pixels-->
-          <height>720</height>
+          <width>960</width> --><!--2592 × 1944 pixels-->
+          <!--<height>720</height>
           <format>R8G8B8</format>
         </image>
         <clip>
@@ -95,7 +95,7 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
-  </gazebo>
+  </gazebo>-->
 
 
 </robot>
