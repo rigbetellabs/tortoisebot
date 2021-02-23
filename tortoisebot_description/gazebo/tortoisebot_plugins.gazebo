@@ -1,101 +1,77 @@
 <?xml version="1.0" ?>
 <robot name="tortoisebot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-  <gazebo>
-    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control"/>
-  </gazebo>
+	<!--  ##########  GAZEBO ROS CONTROLLER  ##########  -->
 
-  <gazebo>
-    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-      <updateRate>20</updateRate>
-      <robotBaseFrame>base_link</robotBaseFrame>
-      <leftJoint>motor_left</leftJoint>
-      <rightJoint>motor_right</rightJoint>
-      <wheelSeparation>0.17186</wheelSeparation>
-      <wheelDiameter>0.065</wheelDiameter>
-      <wheelAcceleration>1.0</wheelAcceleration>
-      <wheelTorque>20</wheelTorque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <odometrySource>1</odometrySource>
-      <publishWheelTF>false</publishWheelTF>
-      <publishOdomTF>true</publishOdomTF>
-      <publishOdom>true</publishOdom>
-      <publishWheelJointState>true</publishWheelJointState>
-      <legacyMode>false</legacyMode>
-      <alwaysOn>true</alwaysOn>
-    </plugin>
-  </gazebo>
+	<gazebo>
+		<plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+			<robotNamespace>/tortoisebot</robotNamespace>
+			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+			<legacyModeNS>true</legacyModeNS>
+		</plugin>
+	</gazebo>
 
-  <gazebo reference="lidar_top">
-    <sensor type="ray" name="ydlidar">
-      <pose>0 0 0 0 0 0</pose>
-      <visualize>false</visualize>
-      <update_rate>10</update_rate>
-      <ray>
-        <scan>
-          <horizontal>
-            <samples>720</samples>
-            <resolution>1</resolution>
-            <min_angle>-3.14159</min_angle>
-            <max_angle>3.14159</max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.05</min>
-          <max>20.0</max>
-          <resolution>0.01</resolution>
-        </range>
-        <noise>
-          <type>gaussian</type>
-          <mean>0.0</mean>
-          <stddev>0.01</stddev>
-        </noise>
-      </ray>
-      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/scan</topicName>
-        <frameName>lidar_top</frameName>
-      </plugin>
-    </sensor>
-  </gazebo>
-<!--
-  <gazebo reference="camera">
-    <sensor type="camera" name="camera">
-      <update_rate>60.0</update_rate>
-      <camera name="camera">
-        <horizontal_fov>0.9337511</horizontal_fov>
-        <image>
-          <width>960</width> --><!--2592 × 1944 pixels-->
-          <!--<height>720</height>
-          <format>R8G8B8</format>
-        </image>
-        <clip>
-          <near>0.02</near>
-          <far>300</far>
-        </clip>
-        <noise>
-          <type>gaussian</type>
-          <mean>0.0</mean>
-          <stddev>0.007</stddev>
-        </noise>
-      </camera>
-      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-        <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
-        <cameraName>/camera</cameraName>
-        <imageTopicName>image_raw</imageTopicName>
-        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>camera</frameName>
-        <hackBaseline>0.07</hackBaseline>
-        <distortionK1>0.0</distortionK1>
-        <distortionK2>0.0</distortionK2>
-        <distortionK3>0.0</distortionK3>
-        <distortionT1>0.0</distortionT1>
-        <distortionT2>0.0</distortionT2>
-      </plugin>
-    </sensor>
-  </gazebo>-->
+	<!--  ##########  DIFFERENTIAL DRIVE CONTROLLER  ##########  -->
 
+	<gazebo>
+		<plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+			<updateRate>20</updateRate>
+			<robotBaseFrame>base_link</robotBaseFrame>
+			<leftJoint>motor_left</leftJoint>
+			<rightJoint>motor_right</rightJoint>
+			<wheelSeparation>0.17186</wheelSeparation>
+			<wheelDiameter>0.065</wheelDiameter>
+			<wheelAcceleration>1.0</wheelAcceleration>
+			<wheelTorque>20</wheelTorque>
+			<commandTopic>cmd_vel</commandTopic>
+			<odometryTopic>odom</odometryTopic>
+			<odometryFrame>odom</odometryFrame>
+			<odometrySource>1</odometrySource>
+			<publishWheelTF>false</publishWheelTF>
+			<publishOdomTF>true</publishOdomTF>
+			<publishOdom>true</publishOdom>
+			<publishWheelJointState>true</publishWheelJointState>
+			<legacyMode>false</legacyMode>
+			<alwaysOn>true</alwaysOn>
+		</plugin>
+	</gazebo>
+
+	<!--  ##########  LIDAR PLUGIN  ##########  -->
+
+	<gazebo reference="lidar">
+		<sensor type="ray" name="ydlidar">
+			<pose>0 0 0 0 0 0</pose>
+			<visualize>false</visualize>
+			<update_rate>10</update_rate>
+			<ray>
+				<scan>
+					<horizontal>
+						<samples>720</samples>
+						<resolution>1</resolution>
+						<min_angle>-3.14159</min_angle>
+						<max_angle>3.14159</max_angle>
+					</horizontal>
+				</scan>
+				<range>
+					<min>0.05</min>
+					<max>20.0</max>
+					<resolution>0.01</resolution>
+				</range>
+				<noise>
+					<type>gaussian</type>
+					<mean>0.0</mean>
+					<stddev>0.01</stddev>
+				</noise>
+			</ray>
+			<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+				<topicName>/scan</topicName>
+				<frameName>lidar</frameName>
+			</plugin>
+		</sensor>
+	</gazebo>
+
+	<!--  ##########  CAMERA PLUGIN  ##########  -->
+
+	
 
 </robot>

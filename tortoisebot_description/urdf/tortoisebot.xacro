@@ -17,7 +17,7 @@
     <geometry>
       <mesh filename="package://tortoisebot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="grey"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -80,7 +80,7 @@
     <geometry>
       <mesh filename="package://tortoisebot_description/meshes/caster.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="black"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="0.032 -0.0 -0.01915"/>
@@ -153,7 +153,7 @@
   </collision>
 </link>
 
-<link name="lidar_top">
+<link name="lidar">
   <inertial>
     <origin rpy="0 0 0" xyz="-1.2613740557063325e-17 4.204580185687775e-18 0.00500000000000006"/>
     <mass value="0.040152630360403944"/>
@@ -185,7 +185,7 @@
     <geometry>
       <mesh filename="package://tortoisebot_description/meshes/imu.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="grey"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="-0.04 0.01025 -0.10543"/>
@@ -206,7 +206,7 @@
     <geometry>
       <mesh filename="package://tortoisebot_description/meshes/camera.stl" scale="0.001 0.001 0.001"/>
     </geometry>
-    <material name="silver"/>
+    <material name="grey"/>
   </visual>
   <collision>
     <origin rpy="0 0 0" xyz="-0.061 -0.0 -0.11515"/>
@@ -257,7 +257,7 @@
 <joint name="Rigid7" type="fixed">
   <origin rpy="0 0 0" xyz="0.0 0.0 0.0155"/>
   <parent link="lidar_bottom"/>
-  <child link="lidar_top"/>
+  <child link="lidar"/>
 </joint>
 
 <joint name="Rigid8" type="fixed">

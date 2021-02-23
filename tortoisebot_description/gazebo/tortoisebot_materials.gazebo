@@ -7,9 +7,22 @@
 <xacro:property name="lidar_top_color" value="Gazebo/Blue" />
 <xacro:property name="caster_color" value="Gazebo/Grey" />
 
+
+<!--  ##########  BODY COLOR  ##########  -->
+
 <gazebo reference="base_link">
   <material>${body_color}</material>
 </gazebo>
+
+<gazebo reference="imu">
+  <material>${body_color}</material>
+</gazebo>
+
+<gazebo reference="camera">
+  <material>${body_color}</material>
+</gazebo>
+
+<!--  ##########  WHEEL COLOR  ##########  -->
 
 <gazebo reference="wheel_right">
   <material>${wheel_color}</material>
@@ -19,9 +32,13 @@
   <material>${wheel_color}</material>
 </gazebo>
 
+<!--  ##########  CASTER COLOR  ##########  -->
+
 <gazebo reference="caster">
   <material>${caster_color}</material>
 </gazebo>
+
+<!--  ##########  LIDAR COLOR  ##########  -->
 
 <gazebo reference="lidar_body">
   <material>${lidar_base_color}</material>
@@ -35,16 +52,9 @@
   <material>${lidar_top_color}</material>
 </gazebo>
 
-<gazebo reference="lidar_top">
+<gazebo reference="lidar">
   <material>${lidar_top_color}</material>
 </gazebo>
 
-<gazebo reference="imu">
-  <material>${body_color}</material>
-</gazebo>
-
-<gazebo reference="camera">
-  <material>${body_color}</material>
-</gazebo>
 
 </robot>

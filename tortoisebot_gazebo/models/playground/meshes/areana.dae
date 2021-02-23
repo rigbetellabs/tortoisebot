@@ -16,7 +16,7 @@
         <technique_common>
           <perspective>
             <xfov sid="xfov">39.59775</xfov>
-            <aspect_ratio>1.777778</aspect_ratio>
+            <aspect_ratio>1.677778</aspect_ratio>
             <znear sid="znear">0.1</znear>
             <zfar sid="zfar">100</zfar>
           </perspective>

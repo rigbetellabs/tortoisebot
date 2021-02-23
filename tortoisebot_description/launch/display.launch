@@ -3,8 +3,8 @@
 <launch>
 
 	<arg default="$(find tortoisebot_description)/urdf/tortoisebot.xacro" name="model"/>
-	<arg default="true" name="gui"/>
-	<arg default="$(find tortoisebot_description)/config/display.rviz" name="rvizconfig"/>
+	<arg default="false" name="gui"/>
+	<arg default="$(find tortoisebot_description)/rviz/display.rviz" name="rvizconfig"/>
 
 	<param command="$(find xacro)/xacro $(arg model)" name="robot_description"/>
 	<param name="use_gui" value="$(arg gui)"/>
