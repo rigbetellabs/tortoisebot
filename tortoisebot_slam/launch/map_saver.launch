@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+	<!-- roslaunch tortoisebot_slam map_saver.launch map_name:=yourmapname -->
+
+	<arg name="map_name" default="mymap"/>
+
+	<node pkg="map_server" type="map_saver" name="map_saver" args="-f $(find tortoisebot_navigation)/maps/$(arg map_name)"/>
+
+</launch>
