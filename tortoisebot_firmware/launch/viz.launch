@@ -1,0 +1,4 @@
+<launch>
+  <!-- Start RViz with custom view -->
+  <node pkg="rviz" type="rviz" name="show_rviz" args="-d $(find tortoisebot_firmware)/config/demo.rviz"/>    
+</launch>
