@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<launch>
+	
+    <param command="$(find xacro)/xacro $(find tortoisebot_description)/urdf/tortoisebot.xacro" name="robot_description"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+    <include file="$(find tortoisebot_firmware)/launch/tortoiselidar.launch" />
+    
+    <node name="differential" pkg="tortoisebot_firmware" type="differential.py" />
+
+    <include file="$(find tortoisebot_firmware)/launch/joy_control.launch" />
+ 
+</launch>
