@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+	<arg default="$(find tortoisebot_slam)/rviz/sensors.rviz" name="rvizconfig"/>
+
+	<node args="-d $(arg rvizconfig)" name="rviz" pkg="rviz" required="true" type="rviz"/>
+
+</launch>

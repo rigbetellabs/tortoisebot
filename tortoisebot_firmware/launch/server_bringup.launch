@@ -26,8 +26,8 @@
           -configuration_basename lidar.lua" output="screen">
     </node>
 
-	<!-- Additional node which converts Cartographer map into ROS occupancy grid map. Not used and can be skipped in this case -->
-	<node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node" args="-resolution 0.01" />
+	<!-- Additional node which converts Cartographer map into ROS occupancy grid map. Not used and can be skipped in this case 
+	<node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node" args="-resolution 0.01" />-->
     
 
 </launch>
