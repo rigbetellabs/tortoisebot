@@ -28,7 +28,7 @@ pwmR = GPIO.PWM(rightEn, 100)
 pwmR.start(0)
 
 def stop():
-    #print('stopping')
+    print('stopping')
     pwmL.ChangeDutyCycle(0)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.HIGH)
@@ -36,41 +36,37 @@ def stop():
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
 
-def forward(speed):
-    #print('going forward')
-    linspeed = (speed/0.2)*100
-    pwmL.ChangeDutyCycle(linspeed)
-    pwmR.ChangeDutyCycle(linspeed)
+def forward():
+    print('going forward')
+    pwmL.ChangeDutyCycle(100)
+    pwmR.ChangeDutyCycle(100)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.LOW)
     GPIO.output(rightBackward, GPIO.LOW)
 
-def backward(speed):
-    #print('going backward')
-    linspeed = (-speed/0.2)*100
-    pwmL.ChangeDutyCycle(linspeed)
-    pwmR.ChangeDutyCycle(linspeed)
+def backward():
+    print('going backward')
+    pwmL.ChangeDutyCycle(100)
+    pwmR.ChangeDutyCycle(100)
     GPIO.output(leftForward, GPIO.LOW)
     GPIO.output(rightForward, GPIO.LOW)
     GPIO.output(leftBackward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
 
 def left(turn):
-    #print('turning left')
-    angspeed = (turn/0.2)*100
-    pwmL.ChangeDutyCycle(angspeed)
-    pwmR.ChangeDutyCycle(angspeed)
+    print('turning left')
+    pwmL.ChangeDutyCycle(100)
+    pwmR.ChangeDutyCycle(100)
     GPIO.output(leftForward, GPIO.LOW)
     GPIO.output(leftBackward, GPIO.HIGH)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.LOW)
 
 def right(turn):
-    #print('turning right')
-    angspeed = (-turn/0.2)*100
-    pwmL.ChangeDutyCycle(angspeed)
-    pwmR.ChangeDutyCycle(angspeed)
+    print('turning right')
+    pwmL.ChangeDutyCycle(100)
+    pwmR.ChangeDutyCycle(100)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.LOW)
     GPIO.output(rightForward, GPIO.LOW)
@@ -83,13 +79,13 @@ def callback(data):
     if (linear == 0.0 and angular == 0.0):
         stop()
     elif (linear > 0.0 and angular == 0.0):
-        forward(linear)
+        forward()
     elif (linear < 0.0 and angular == 0.0):
-        backward(linear)
+        backward()
     elif (linear == 0.0 and angular > 0.0):
-        left(angular)
+        left()
     elif (linear == 0.0 and angular < 0.0):
-        right(angular)
+        right()
     else:
         stop()
         
