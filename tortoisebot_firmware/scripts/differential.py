@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 import time
 from math import pi
 
-leftEn = 12         #   Purple
-rightEn = 13        #   Red
+leftEn = 13         #   Purple
+rightEn = 12        #   Red
 
 leftBackward = 5    #   Blue
 leftForward = 6     #   Green
@@ -47,8 +47,8 @@ def forward(left_speed, right_speed):
     lspeed = min(((left_speed/0.2)*100),100)
     rspeed = min(((right_speed/0.2)*100),100)
     #print(str(left_speed)+" "+str(right_speed))
-    pwmL.ChangeDutyCycle(rspeed)
-    pwmR.ChangeDutyCycle(lspeed)
+    pwmL.ChangeDutyCycle(lspeed)
+    pwmR.ChangeDutyCycle(rspeed)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.LOW)
