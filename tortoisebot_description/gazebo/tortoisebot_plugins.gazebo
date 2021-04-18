@@ -28,8 +28,8 @@
 			<odometryFrame>odom</odometryFrame>
 			<odometrySource>1</odometrySource>
 			<publishWheelTF>false</publishWheelTF>
-			<publishOdomTF>true</publishOdomTF>
-			<publishOdom>true</publishOdom>
+			<publishOdomTF>0</publishOdomTF>
+			<publishOdom>0</publishOdom>
 			<publishWheelJointState>true</publishWheelJointState>
 			<legacyMode>false</legacyMode>
 			<alwaysOn>true</alwaysOn>
@@ -69,9 +69,6 @@
 			</plugin>
 		</sensor>
 	</gazebo>
-
-	<!--  ##########  CAMERA PLUGIN  ##########  -->
-
 	
 
 </robot>
