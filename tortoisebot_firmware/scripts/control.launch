@@ -1,0 +1,4 @@
+<launch>
+	<node name="differential" pkg="aisc" type="diff.py" output="screen"/>
+	<node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+</launch>
