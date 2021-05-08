@@ -266,9 +266,9 @@
 		<parent link="base_link"/>
 		<child link="imu"/>
 	</joint>
-
+	<!-- modified <origin rpy="0 0 0" xyz="0.061 0.0 0.11515"/> -->
 	<joint name="Rigid9" type="fixed">
-		<origin rpy="0 0 0" xyz="0.061 0.0 0.11515"/>
+		<origin rpy="0 0.6 0" xyz="0.061 0.0 0.11515"/>
 		<parent link="base_link"/>
 		<child link="camera"/>
 	</joint>
