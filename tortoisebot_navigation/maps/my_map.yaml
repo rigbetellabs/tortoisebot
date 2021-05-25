@@ -1,4 +1,4 @@
-image: /home/shubhu/catkin_ws/src/tortoisebot/tortoisebot_navigation/maps/my_map.pgm
+image: ./my_map.pgm
 resolution: 0.010000
 origin: [-6.105577, -3.005866, 0.000000]
 negate: 0
