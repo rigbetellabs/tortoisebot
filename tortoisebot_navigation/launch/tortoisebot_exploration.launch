@@ -2,7 +2,6 @@
 
 <launch>
   <!-- Arguments -->
-  <arg name="map_file" default="$(find tortoisebot_navigation)/maps/my_map.yaml"/>
   <!--<arg name="x_pos" default="-0.2"/>
   <arg name="y_pos" default="0.0"/>
   <arg name="z_pos" default="0.005"/>-->
@@ -12,14 +11,14 @@
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="true"/>
 
+  <!-- Map Publishing Node -->
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node" args="-resolution 0.01" />
+
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find tortoisebot_navigation)/rviz/tortoisebot_navigation.rviz"/>
   </group>
-  
-  <!-- Map server -->
-  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
   <!-- AMCL -->
   <include file="$(find tortoisebot_navigation)/launch/amcl.launch">
