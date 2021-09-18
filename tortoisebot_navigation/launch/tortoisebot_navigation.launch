@@ -2,10 +2,7 @@
 
 <launch>
   <!-- Arguments -->
-  <arg name="map_file" default="$(find tortoisebot_navigation)/maps/my_map.yaml"/>
-  <!--<arg name="x_pos" default="-0.2"/>
-  <arg name="y_pos" default="0.0"/>
-  <arg name="z_pos" default="0.005"/>-->
+  <arg name="map_file" default="$(find tortoisebot_navigation)/maps/sim_map.yaml"/>
   <arg name="x_pos" default="0.0"/>
   <arg name="y_pos" default="0.0"/>
   <arg name="z_pos" default="0.0"/>
