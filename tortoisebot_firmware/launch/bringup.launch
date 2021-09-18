@@ -1,6 +1,8 @@
 <?xml version="1.0" ?>
 
 <launch>
+
+    <arg name="joy" default="false" />
 	
     <param command="$(find xacro)/xacro $(find tortoisebot_description)/urdf/tortoisebot.xacro" name="robot_description"/>
 
@@ -16,6 +18,8 @@
     
     <!--   <node name="camera" pkg="tortoisebot_camera" type="camera_node.py" /> -->
 
-    <include file="$(find tortoisebot_firmware)/launch/joy_control.launch" />
+    <group if="$(arg joy)">
+        <include file="$(find tortoisebot_firmware)/launch/joy_control.launch" />
+    </group>
  
 </launch>
