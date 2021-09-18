@@ -58,8 +58,8 @@
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
-  <!--<depend>gazebo_ros</depend>
-  <exec_depend>gazebo</exec_depend>-->
+  <depend>gazebo_ros</depend>
+  <exec_depend>gazebo</exec_depend>
   <exec_depend>tortoisebot_description</exec_depend>
 
 

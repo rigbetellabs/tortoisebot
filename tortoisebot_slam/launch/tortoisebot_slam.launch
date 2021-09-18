@@ -2,15 +2,10 @@
 
 <launch>
 
-  <!-- Arguments -->
-  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
+	<!-- Map Publishing Node -->
+    <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node" args="-resolution 0.01" />
 
-  <!-- SPAWN - Make sure you have simulation already running or your Physical Robot setuped properly -->
-  
-  <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
-  <include file="$(find tortoisebot_slam)/launch/tortoisebot_$(arg slam_methods).launch" />
-
-  <!-- rviz -->
-  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find tortoisebot_slam)/rviz/tortoisebot_$(arg slam_methods).rviz"/>
+    <!-- Start RViz with custom view -->
+    <node pkg="rviz" type="rviz" name="show_rviz" args="-d $(find tortoisebot_slam)/rviz/mapping.rviz"/>'
 
 </launch>

@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<launch>
+	<!--
+    <param command="$(find xacro)/xacro $(find tortoisebot_description)/urdf/tortoisebot.xacro" name="robot_description"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+-->
+		
+	<!-- Start RPLIDAR sensor node which provides LaserScan data  -->
+    <!--<node name="rplidarNode" pkg="rplidar_ros" type="rplidarNode" output="screen">
+        <param name="serial_port" type="string" value="/dev/ttyUSB0"/>
+        <param name="serial_baudrate" type="int" value="115200"/>
+        <param name="frame_id" type="string" value="laser"/>
+        <param name="inverted" type="bool" value="false"/>
+        <param name="angle_compensate" type="bool" value="true"/>
+    </node>-->
+		
+	<!-- Start Google Cartographer node with custom configuration file-->
+    <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" args="
+          -configuration_directory
+              $(find tortoisebot_firmware)/config
+          -configuration_basename lidar.lua" output="screen">
+    </node>
+
+	<!--  Additional node which converts Cartographer map into ROS occupancy grid map. Not used and can be skipped in this case 
+	 -->
+    
+
+</launch>
