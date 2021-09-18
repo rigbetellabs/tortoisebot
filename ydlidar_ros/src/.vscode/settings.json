@@ -1,0 +1,7 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/apollo/cyber/py_wrapper",
+        "/apollo/cyber/python",
+        "/opt/ros/kinetic/lib/python2.7/dist-packages"
+    ]
+}

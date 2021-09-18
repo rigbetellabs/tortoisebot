@@ -8,9 +8,13 @@
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
 
-    <include file="$(find tortoisebot_firmware)/launch/tortoiselidar.launch" />
+    <include file="$(find ydlidar_ros)/launch/newS2.launch" />
+
+    <include file="$(find raspicam_node)/launch/camera_module_v2_640x480_30fps_autocapture.launch" />   
     
     <node name="differential" pkg="tortoisebot_firmware" type="differential.py" />
+    
+    <!--   <node name="camera" pkg="tortoisebot_camera" type="camera_node.py" /> -->
 
     <include file="$(find tortoisebot_firmware)/launch/joy_control.launch" />
  
