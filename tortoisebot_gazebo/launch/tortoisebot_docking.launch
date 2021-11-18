@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+	<arg name="x_pos" default="0.15"/>
+	<arg name="y_pos" default="-0.48"/>
+	<arg name="z_pos" default="0.005"/>
+
+	<arg name="task" default="left"/>
+
+	<param command="$(find xacro)/xacro $(find tortoisebot_description)/urdf/tortoisebot.xacro" name="robot_description"/>
+
+	<node args="-param robot_description -urdf -model tortoisebot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) " name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find tortoisebot_gazebo)/worlds/docking_playground_$(arg task).world"/>
+		<arg name="paused" value="false"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="gui" value="true"/>
+		<arg name="headless" value="false"/>
+		<arg name="debug" value="false"/>
+	</include>
+
+</launch>
