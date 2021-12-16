@@ -10,7 +10,7 @@
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
     
-    <node name="differential" pkg="tortoisebot_firmware" type="differential.py" />
+    <node name="differential" pkg="tortoisebot_firmware" type="differential.py" output="screen"/>
 
     <include file="$(find tortoisebot_firmware)/launch/tortoiselidarS2.launch" />
 

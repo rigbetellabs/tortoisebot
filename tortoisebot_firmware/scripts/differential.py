@@ -13,10 +13,13 @@ leftForward = 6     #   Green
 rightForward = 16   #   Yellow
 rightBackward = 20  #   Orange
 
-wheel_separation = 0.17
-wheel_diameter = 0.065
+motor_rpm = 60              #   max rpm of motor on full voltage 
+wheel_diameter = 0.065      #   in meters
+wheel_separation = 0.17     #   in meters
+
 wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
+max_speed = (circumference_of_wheel*motor_rpm)/60   #   m/sec
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -44,11 +47,11 @@ def stop():
 
 def forward(left_speed, right_speed):
     #print('going forward')
-    lspeed = min(((left_speed/0.2)*100),100)
-    rspeed = min(((right_speed/0.2)*100),100)
+    lspeedPWM = min(((left_speed/max_speed)*100),100)
+    rspeedPWM = min(((right_speed/max_speed)*100),100)
     #print(str(left_speed)+" "+str(right_speed))
-    pwmL.ChangeDutyCycle(lspeed)
-    pwmR.ChangeDutyCycle(rspeed)
+    pwmL.ChangeDutyCycle(lspeedPWM)
+    pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.LOW)
@@ -56,11 +59,11 @@ def forward(left_speed, right_speed):
 
 def backward(left_speed, right_speed):
     #print('going backward')
-    lspeed = min(((left_speed/0.2)*100),100)
-    rspeed = min(((right_speed/0.2)*100),100)
+    lspeedPWM = min(((left_speed/max_speed)*100),100)
+    rspeedPWM = min(((right_speed/max_speed)*100),100)
     #print(str(left_speed)+" "+str(right_speed))
-    pwmL.ChangeDutyCycle(lspeed)
-    pwmR.ChangeDutyCycle(rspeed)
+    pwmL.ChangeDutyCycle(lspeedPWM)
+    pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.LOW)
     GPIO.output(rightForward, GPIO.LOW)
     GPIO.output(leftBackward, GPIO.HIGH)
@@ -68,10 +71,10 @@ def backward(left_speed, right_speed):
 
 def left(left_speed, right_speed):
     #print('turning left')
-    lspeed = min(((left_speed/0.2)*100),100)
-    rspeed = min(((right_speed/0.2)*100),100)
-    pwmL.ChangeDutyCycle(lspeed)
-    pwmR.ChangeDutyCycle(rspeed)
+    lspeedPWM = min(((left_speed/max_speed)*100),100)
+    rspeedPWM = min(((right_speed/max_speed)*100),100)
+    pwmL.ChangeDutyCycle(lspeedPWM)
+    pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.LOW)
     GPIO.output(leftBackward, GPIO.HIGH)
     GPIO.output(rightForward, GPIO.HIGH)
@@ -79,10 +82,10 @@ def left(left_speed, right_speed):
 
 def right(left_speed, right_speed):
     #print('turning right')
-    lspeed = min(((left_speed/0.2)*100),100)
-    rspeed = min(((right_speed/0.2)*100),100)
-    pwmL.ChangeDutyCycle(lspeed)
-    pwmR.ChangeDutyCycle(rspeed)
+    lspeedPWM = min(((left_speed/max_speed)*100),100)
+    rspeedPWM = min(((right_speed/max_speed)*100),100)
+    pwmL.ChangeDutyCycle(lspeedPWM)
+    pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.LOW)
     GPIO.output(rightForward, GPIO.LOW)
@@ -131,5 +134,9 @@ def listener():
     rospy.spin()
 
 if __name__== '__main__':
-    print('Tortoisebot Differential Drive Initialized')
+    print('Tortoisebot Differential Drive Initialized with following Params-')
+    print('Motor Max RPM:\t'+str(motor_rpm)+' RPM')
+    print('Wheel Diameter:\t'+str(wheel_diameter)+' m')
+    print('Wheel Separation:\t'+str(wheel_separation)+' m')
+    print('Robot Max Speed:\t'+str(max_speed)+' m/sec')
     listener()
