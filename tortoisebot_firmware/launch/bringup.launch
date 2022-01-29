@@ -14,7 +14,7 @@
 
     <include file="$(find tortoisebot_firmware)/launch/tortoiselidarS2.launch" />
 
-    <include file="$(find raspicam_node)/launch/camera_module_v2_640x480_30fps_autocapture.launch" />   
+    <!-- <include file="$(find raspicam_node)/launch/camera_module_v2_640x480_30fps_autocapture.launch" />    -->
     
     <!--   <node name="camera" pkg="tortoisebot_camera" type="camera_node.py" /> -->
 
