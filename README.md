@@ -1,4 +1,4 @@
-# tortoisebot
+# tortoisebot - ROS NOETIC
 
 Clone this repo in your src folder with the following command so as to also clone all the required submodules:
 ```
