@@ -16,6 +16,8 @@ rightBackward = 20  #   Orange
 motor_rpm = 60              #   max rpm of motor on full voltage 
 wheel_diameter = 0.065      #   in meters
 wheel_separation = 0.17     #   in meters
+max_pwm_val = 100           #   100 for Raspberry Pi , 255 for Arduino
+min_pwm_val = 30            #   Minimum PWM value that is needed for the robot to move
 
 wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
@@ -46,10 +48,11 @@ def stop():
     GPIO.output(rightBackward, GPIO.HIGH)
 
 def forward(left_speed, right_speed):
+    global max_pwm_val
+    global min_pwm_val
     #print('going forward')
-    lspeedPWM = min(((left_speed/max_speed)*100),100)
-    rspeedPWM = min(((right_speed/max_speed)*100),100)
-    #print(str(left_speed)+" "+str(right_speed))
+    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.HIGH)
@@ -58,10 +61,11 @@ def forward(left_speed, right_speed):
     GPIO.output(rightBackward, GPIO.LOW)
 
 def backward(left_speed, right_speed):
+    global max_pwm_val
+    global min_pwm_val
     #print('going backward')
-    lspeedPWM = min(((left_speed/max_speed)*100),100)
-    rspeedPWM = min(((right_speed/max_speed)*100),100)
-    #print(str(left_speed)+" "+str(right_speed))
+    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.LOW)
@@ -70,9 +74,11 @@ def backward(left_speed, right_speed):
     GPIO.output(rightBackward, GPIO.HIGH)
 
 def left(left_speed, right_speed):
+    global max_pwm_val
+    global min_pwm_val
     #print('turning left')
-    lspeedPWM = min(((left_speed/max_speed)*100),100)
-    rspeedPWM = min(((right_speed/max_speed)*100),100)
+    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.LOW)
@@ -81,9 +87,11 @@ def left(left_speed, right_speed):
     GPIO.output(rightBackward, GPIO.LOW)
 
 def right(left_speed, right_speed):
+    global max_pwm_val
+    global min_pwm_val
     #print('turning right')
-    lspeedPWM = min(((left_speed/max_speed)*100),100)
-    rspeedPWM = min(((right_speed/max_speed)*100),100)
+    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.HIGH)
@@ -92,28 +100,27 @@ def right(left_speed, right_speed):
     GPIO.output(rightBackward, GPIO.HIGH)
     
 def callback(data):
+
+    # refer this for understanding the formula 
+    # http://www.cs.columbia.edu/~allen/F17/NOTES/icckinematics.pdf
     
     global wheel_radius
     global wheel_separation
     
-    linear_vel = data.linear.x
-    angular_vel = data.angular.z
+    linear_vel = data.linear.x                  # Linear Velocity of Robot
+    angular_vel = data.angular.z                # Angular Velocity of Robot
     #print(str(linear)+"\t"+str(angular))
     
     rplusl  = ( 2 * linear_vel ) / wheel_radius
     rminusl = ( angular_vel * wheel_separation ) / wheel_radius
     
-    right_omega = ( rplusl + rminusl ) / 2
-    left_omega  = rplusl - right_omega 
+    right_omega = ( rplusl + rminusl ) / 2      # Angular velocity of Right Wheel
+    left_omega  = rplusl - right_omega          # Angular velocity of Left Wheel
     
-    right_vel = right_omega * wheel_radius
-    left_vel  = left_omega  * wheel_radius
+    right_vel = right_omega * wheel_radius      # Directional Velocity of Right Wheel
+    left_vel  = left_omega  * wheel_radius      # Directional Velocity of Left Wheel
     
     #print (str(left_vel)+"\t"+str(right_vel))
-    '''
-    left_speed  = abs ( linear - ( (wheel_separation/2) * (angular) ) )
-    right_speed = abs ( linear - ( (wheel_separation/2) * (angular) ) )
-    '''
     
     if (left_vel == 0.0 and right_vel == 0.0):
         stop()
