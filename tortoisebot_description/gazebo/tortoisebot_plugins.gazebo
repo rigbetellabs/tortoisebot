@@ -26,10 +26,10 @@
 			<commandTopic>cmd_vel</commandTopic>
 			<odometryTopic>odom</odometryTopic>
 			<odometryFrame>odom</odometryFrame>
-			<odometrySource>1</odometrySource>
+			<odometrySource>0</odometrySource>
 			<publishWheelTF>false</publishWheelTF>
-			<publishOdomTF>0</publishOdomTF>
-			<publishOdom>0</publishOdom>
+			<publishOdomTF>false</publishOdomTF>
+			<publishOdom>false</publishOdom>
 			<publishWheelJointState>true</publishWheelJointState>
 			<legacyMode>false</legacyMode>
 			<alwaysOn>true</alwaysOn>
