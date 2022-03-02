@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! /usr/bin/python
 
 import rospy
 from nav_msgs.msg import Odometry
@@ -15,7 +15,7 @@ class odometry_publisher():
 		self.listener = tf.TransformListener()
 
 		# Odometry publisher
-		self.odom_publisher = rospy.Publisher('new_odom',Odometry,queue_size=1)
+		self.odom_publisher = rospy.Publisher('odom',Odometry,queue_size=1)
 
 		#Sleep rate
 		self.sleep_freq = 10.0
