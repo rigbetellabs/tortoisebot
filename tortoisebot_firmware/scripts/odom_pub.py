@@ -1,4 +1,6 @@
-#! /usr/bin/python
+#!/usr/bin/ python
+
+# This scripts takes the odom from TF published by Cartographer and publishes it as an individual topic. Only required when used with real robot.
 
 import rospy
 from nav_msgs.msg import Odometry
@@ -9,7 +11,7 @@ import tf
 class odometry_publisher():
 	def __init__(self):
 		#initialize the node
-		rospy.init_node('odom_pub')
+		rospy.init_node('odom_publisher')
 
 		# Transform listener
 		self.listener = tf.TransformListener()
