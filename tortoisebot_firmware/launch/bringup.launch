@@ -12,6 +12,8 @@
     
     <node name="differential" pkg="tortoisebot_firmware" type="differential.py" output="screen"/>
 
+    <node name="odom_publisher" pkg="tortoisebot_firmware" type="odom_pub.py" output="screen"/>
+
     <include file="$(find tortoisebot_firmware)/launch/tortoiselidarS2.launch" />
 
     <include file="$(find raspicam_node)/launch/camera_module_v2_640x480_30fps_autocapture.launch" />   
