@@ -5,9 +5,7 @@
   <description>The tortoisebot_navigation package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
-  <!-- Example:  -->
-  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="pranshutople@todo.todo">pranshutople</maintainer>
+  <maintainer email="pranshutople@rigbetellabs.com">PranshuTople</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
