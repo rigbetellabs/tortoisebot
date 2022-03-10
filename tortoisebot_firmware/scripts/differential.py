@@ -111,14 +111,11 @@ def callback(data):
     angular_vel = data.angular.z                # Angular Velocity of Robot
     #print(str(linear)+"\t"+str(angular))
     
-    rplusl  = ( 2 * linear_vel ) / wheel_radius
-    rminusl = ( angular_vel * wheel_separation ) / wheel_radius
+    VrplusVl  = 2 * linear_vel
+    VrminusVl = angular_vel * wheel_separation
     
-    right_omega = ( rplusl + rminusl ) / 2      # Angular velocity of Right Wheel
-    left_omega  = rplusl - right_omega          # Angular velocity of Left Wheel
-    
-    right_vel = right_omega * wheel_radius      # Directional Velocity of Right Wheel
-    left_vel  = left_omega  * wheel_radius      # Directional Velocity of Left Wheel
+    right_vel = ( VrplusVl + VrminusVl ) / 2      # right wheel velocity along the ground
+    left_vel  = VrplusVl - right_vel              # left wheel velocity along the ground
     
     #print (str(left_vel)+"\t"+str(right_vel))
     
