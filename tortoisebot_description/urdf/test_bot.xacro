@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<robot name="test_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<link name="base_footprint"/>
+
+	<link name="base_link"/>
+
+	<link name="lidar"/>
+		
+
+	<joint name="base_joint" type="fixed">
+		<origin rpy="0 0 0" xyz="0 0 0"/>
+		<parent link="base_footprint"/>
+		<child link="base_link"/>
+	</joint>
+
+	<joint name="lidar_joint" type="fixed">
+		<origin rpy="0 0 0" xyz="-0.02 0.0 0.4"/>
+		<parent link="base_link"/>
+		<child link="lidar"/>
+	</joint>
+
+
+</robot>
