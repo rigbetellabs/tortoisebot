@@ -24,11 +24,6 @@ wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
 max_speed = (circumference_of_wheel*motor_rpm)/60   #   m/sec
 
-lpwm_pub
-rpwm_pub
-ldir_pub
-rdir_pub
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
