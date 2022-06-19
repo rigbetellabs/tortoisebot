@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import rospy
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Int32, Bool
 import RPi.GPIO as GPIO
 import time
 from math import pi
@@ -47,6 +48,11 @@ def stop():
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
     
+    lpwm_pub.publish(0)
+    rpwm_pub.publish(0)
+    ldir_pub.publish(1)
+    rdir_pub.publish(1)
+    
 def wheel_vel_executer(left_speed, right_speed):
     global max_pwm_val
     global min_pwm_val
@@ -56,19 +62,26 @@ def wheel_vel_executer(left_speed, right_speed):
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     
+    lpwm_pub.publish(int(lspeedPWM))
+    rpwm_pub.publish(int(rspeedPWM))
+    
     if left_speed >= 0 :
         GPIO.output(leftForward, GPIO.HIGH)
         GPIO.output(leftBackward, GPIO.LOW)
+        ldir_pub.publish(1)
     else :
         GPIO.output(leftForward, GPIO.LOW)
         GPIO.output(leftBackward, GPIO.HIGH)
+        ldir_pub.publish(0)
         
     if right_speed >= 0 :
         GPIO.output(rightForward, GPIO.HIGH)
         GPIO.output(rightBackward, GPIO.LOW)
+        rdir_pub.publish(1)
     else :
         GPIO.output(rightForward, GPIO.LOW)
         GPIO.output(rightBackward, GPIO.HIGH)
+        rdir_pub.publish(0)
     
 def callback(data):
 
@@ -98,6 +111,10 @@ def callback(data):
 def listener():
     rospy.init_node('cmdvel_listener', anonymous=False)
     rospy.Subscriber("/cmd_vel", Twist, callback)
+    lpwm_pub = rospy.Publisher('lpwm', Int32, queue_size = 10)
+    rpwm_pub = rospy.Publisher('rpwm', Int32, queue_size = 10)
+    ldir_pub = rospy.Publisher('ldir', Bool, queue_size = 10)
+    rdir_pub = rospy.Publisher('rdir', Bool, queue_size = 10)
     rospy.spin()
 
 if __name__== '__main__':
