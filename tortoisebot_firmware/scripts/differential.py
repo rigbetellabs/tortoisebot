@@ -24,6 +24,11 @@ wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
 max_speed = (circumference_of_wheel*motor_rpm)/60   #   m/sec
 
+lpwm_pub
+rpwm_pub
+ldir_pub
+rdir_pub
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -40,6 +45,11 @@ pwmR = GPIO.PWM(rightEn, 100)
 pwmR.start(0)
 
 def stop():
+    global lpwm_pub
+    global rpwm_pub
+    global ldir_pub
+    global rdir_pub
+    
     #print('stopping')
     pwmL.ChangeDutyCycle(0)
     GPIO.output(leftForward, GPIO.HIGH)
@@ -56,6 +66,11 @@ def stop():
 def wheel_vel_executer(left_speed, right_speed):
     global max_pwm_val
     global min_pwm_val
+    
+    global lpwm_pub
+    global rpwm_pub
+    global ldir_pub
+    global rdir_pub
     
     lspeedPWM = max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     rspeedPWM = max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
@@ -109,6 +124,12 @@ def callback(data):
         wheel_vel_executer(left_vel, right_vel)
         
 def listener():
+    
+    global lpwm_pub
+    global rpwm_pub
+    global ldir_pub
+    global rdir_pub
+    
     rospy.init_node('cmdvel_listener', anonymous=False)
     rospy.Subscriber("/cmd_vel", Twist, callback)
     lpwm_pub = rospy.Publisher('lpwm', Int32, queue_size = 10)
