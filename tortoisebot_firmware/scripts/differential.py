@@ -17,7 +17,7 @@ motor_rpm = 60              #   max rpm of motor on full voltage
 wheel_diameter = 0.065      #   in meters
 wheel_separation = 0.17     #   in meters
 max_pwm_val = 100           #   100 for Raspberry Pi , 255 for Arduino
-min_pwm_val = 30            #   Minimum PWM value that is needed for the robot to move
+min_pwm_val = 0            #   Minimum PWM value that is needed for the robot to move
 
 wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
@@ -46,58 +46,29 @@ def stop():
     pwmR.ChangeDutyCycle(0)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
-
-def forward(left_speed, right_speed):
+    
+def wheel_vel_executer(left_speed, right_speed):
     global max_pwm_val
     global min_pwm_val
-    #print('going forward')
-    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
-    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    
+    lspeedPWM = max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    rspeedPWM = max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
-    GPIO.output(leftForward, GPIO.HIGH)
-    GPIO.output(rightForward, GPIO.HIGH)
-    GPIO.output(leftBackward, GPIO.LOW)
-    GPIO.output(rightBackward, GPIO.LOW)
-
-def backward(left_speed, right_speed):
-    global max_pwm_val
-    global min_pwm_val
-    #print('going backward')
-    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
-    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
-    pwmL.ChangeDutyCycle(lspeedPWM)
-    pwmR.ChangeDutyCycle(rspeedPWM)
-    GPIO.output(leftForward, GPIO.LOW)
-    GPIO.output(rightForward, GPIO.LOW)
-    GPIO.output(leftBackward, GPIO.HIGH)
-    GPIO.output(rightBackward, GPIO.HIGH)
-
-def left(left_speed, right_speed):
-    global max_pwm_val
-    global min_pwm_val
-    #print('turning left')
-    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
-    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
-    pwmL.ChangeDutyCycle(lspeedPWM)
-    pwmR.ChangeDutyCycle(rspeedPWM)
-    GPIO.output(leftForward, GPIO.LOW)
-    GPIO.output(leftBackward, GPIO.HIGH)
-    GPIO.output(rightForward, GPIO.HIGH)
-    GPIO.output(rightBackward, GPIO.LOW)
-
-def right(left_speed, right_speed):
-    global max_pwm_val
-    global min_pwm_val
-    #print('turning right')
-    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
-    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
-    pwmL.ChangeDutyCycle(lspeedPWM)
-    pwmR.ChangeDutyCycle(rspeedPWM)
-    GPIO.output(leftForward, GPIO.HIGH)
-    GPIO.output(leftBackward, GPIO.LOW)
-    GPIO.output(rightForward, GPIO.LOW)
-    GPIO.output(rightBackward, GPIO.HIGH)
+    
+    if left_speed >= 0 :
+        GPIO.output(leftForward, GPIO.HIGH)
+        GPIO.output(leftBackward, GPIO.LOW)
+    else :
+        GPIO.output(leftForward, GPIO.LOW)
+        GPIO.output(leftBackward, GPIO.HIGH)
+        
+    if right_speed >= 0 :
+        GPIO.output(rightForward, GPIO.HIGH)
+        GPIO.output(rightBackward, GPIO.LOW)
+    else :
+        GPIO.output(rightForward, GPIO.LOW)
+        GPIO.output(rightBackward, GPIO.HIGH)
     
 def callback(data):
 
@@ -121,16 +92,8 @@ def callback(data):
     
     if (left_vel == 0.0 and right_vel == 0.0):
         stop()
-    elif (left_vel >= 0.0 and right_vel >= 0.0):
-        forward(abs(left_vel), abs(right_vel))
-    elif (left_vel <= 0.0 and right_vel <= 0.0):
-        backward(abs(left_vel), abs(right_vel))
-    elif (left_vel < 0.0 and right_vel > 0.0):
-        left(abs(left_vel), abs(right_vel))
-    elif (left_vel > 0.0 and right_vel < 0.0):
-        right(abs(left_vel), abs(right_vel))
     else:
-        stop()
+        wheel_vel_executer(left_vel, right_vel)
         
 def listener():
     rospy.init_node('cmdvel_listener', anonymous=False)
