@@ -58,6 +58,7 @@ class odometry_publisher():
 		o.pose.pose.orientation.x = new_pose[1][0]
 		o.pose.pose.orientation.y = new_pose[1][1]
 		o.pose.pose.orientation.z = new_pose[1][2]
+		o.pose.pose.orientation.w = new_pose[1][3]
 		"""
 		===============================================
 		"""
