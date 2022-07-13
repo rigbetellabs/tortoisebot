@@ -26,8 +26,7 @@ sudo apt-get install ros-melodic-joy ros-melodic-teleop-twist-joy ros-melodic-te
 cd ~/your workscpace
 catkin_make
 ```
-# 2. Setup
-## 2.1 Clone this repo 
+## 1.2 Clone this repo 
 Make sure you clone the repo in your robot and your remote PC 
 ```
 git clone --recursive https://github.com/rigbetellabs/tortoisebot.git
@@ -36,6 +35,24 @@ git clone --recursive https://github.com/rigbetellabs/tortoisebot.git
 cd ~/your workscpace
 catkin_make
 ```
+# 2. Setup
+### 2.1 Running on Simulation
+- Run bringup.launch
+- Run server_bringup.launch
+### SLAM
+- slam.launch
+### Navigation
+- navigation.launch
+### 2.2 Running on Real Robot
+### Running on ROBOT
+- Run bringup.launch
+### Running on REMOTE PC
+- Run server_bringup.launch
+for SLAM
+- slam.launch
+for Nav
+- navigation.launch
+
 # 3. Demos
 
 Simulation | Vizualisation of Sensors (Lidar,Odometery,Camera) 
