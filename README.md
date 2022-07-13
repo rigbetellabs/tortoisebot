@@ -1,4 +1,12 @@
-# tortoisebot
+# ![TortoiseBot Banner](https://github.com/rigbetellabs/tortoisebot_docs/raw/master/imgs/packaging/pack_front.png)
+
+![stars](https://img.shields.io/github/stars/rigbetellabs/tortoisebot_mini?style=for-the-badge)
+![forks](https://img.shields.io/github/forks/rigbetellabs/tortoisebot_mini?style=for-the-badge)
+![watchers](https://img.shields.io/github/watchers/rigbetellabs/tortoisebot_mini?style=for-the-badge)
+![repo-size](https://img.shields.io/github/repo-size/rigbetellabs/tortoisebot_mini?style=for-the-badge)
+![contributors](https://img.shields.io/github/contributors/rigbetellabs/tortoisebot_mini?style=for-the-badge)
+
+---
 
 Clone this repo in your src folder with the following command so as to also clone all the required submodules:
 ```
