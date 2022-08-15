@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 from geometry_msgs.msg import Twist
 import RPi.GPIO as GPIO
-import time
+from  math import pi
 
 leftEn = 13			#	Purple
 rightEn = 12		#	Red
@@ -11,6 +11,20 @@ leftBackward = 5	#	Blue
 leftForward = 6		#	Green
 rightForward = 20	#	Yellow
 rightBackward = 16	#	Orange
+
+motor_rpm = 60000              #   max rpm of motor on full voltage 
+wheel_diameter = 0.045      #   in meters
+wheel_separation = 0.106     #   in meters
+
+max_pwm_val = 100           #   100 for Raspberry Pi , 255 for Arduino
+min_pwm_val = 0 
+
+
+wheel_radius = wheel_diameter/2
+circumference_of_wheel = 2 * pi * wheel_radius
+max_speed = (circumference_of_wheel*motor_rpm)/60   #   m/sec
+
+
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -36,56 +50,106 @@ def stop():
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
 
-def forward():
+def forward(left_speed, right_speed):
+    global max_pwm_val
+    global min_pwm_val
     print('going forward')
-    pwmL.ChangeDutyCycle(50)
-    pwmR.ChangeDutyCycle(0)
+    #lspeedPWM = min(((left_speed/max_speed)*100),100)
+    #rspeedPWM = min(((right_speed/max_speed)*100),100)
+    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    #print(str(left_speed)+" "+str(right_speed))
+    pwmL.ChangeDutyCycle(lspeedPWM)
+    pwmR.ChangeDutyCycle(rspeedPWM)
+    #pwmL.ChangeDutyCycle(50)
+    #pwmR.ChangeDutyCycle(0)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.LOW)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
 
-def backward():
+def backward(left_speed, right_speed):
+    global max_pwm_val
+    global min_pwm_val
     print('going backward')
-    pwmL.ChangeDutyCycle(50)
-    pwmR.ChangeDutyCycle(0)
+    #pwmL.ChangeDutyCycle(50)
+    #pwmR.ChangeDutyCycle(0)
+    lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    #lspeedPWM = min(((left_speed/max_speed)*100),100)
+    #rspeedPWM = min(((right_speed/max_speed)*100),100)
+    #print(str(left_speed)+" "+str(right_speed))
+    pwmL.ChangeDutyCycle(lspeedPWM)
+    pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.LOW)
     GPIO.output(leftBackward, GPIO.HIGH)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
 
-def left():
+def left(left_speed, right_speed):
+    global max_pwm_val
+    global min_pwm_val
     print('turning left')
     pwmL.ChangeDutyCycle(50)
     pwmR.ChangeDutyCycle(100)
+    #lspeedPWM = min(((left_speed/max_speed)*100),100)
+    #rspeedPWM = min(((right_speed/max_speed)*100),100)
+    #print(str(left_speed)+" "+str(right_speed))
+    #lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    #rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    #pwmL.ChangeDutyCycle(lspeedPWM)
+    #pwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.LOW)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.LOW)
 
-def right():
+def right(left_speed, right_speed):
+    global max_pwm_val
+    global min_pwm_val
     print('turning right')
     pwmL.ChangeDutyCycle(50)
     pwmR.ChangeDutyCycle(100)
+    #lspeedPWM = min(((left_speed/max_speed)*100),100)
+    #rspeedPWM = min(((right_speed/max_speed)*100),100)
+    #print(str(left_speed)+" "+str(right_speed))
+    #lspeedPWM = max(min(((left_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    #rspeedPWM = max(min(((right_speed/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    #pwmL.ChangeDutyCycle(lspeedPWM)
+    #sspwmR.ChangeDutyCycle(rspeedPWM)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.LOW)
     GPIO.output(rightForward, GPIO.LOW)
     GPIO.output(rightBackward, GPIO.HIGH)
 
 def callback(data):
-    linear = data.linear.x
-    angular = data.angular.z
+
+    
+    global wheel_radius
+    global wheel_separation
+    
+    linear_vel = data.linear.x                  # Linear Velocity of Robot
+    angular_vel = data.angular.z                # Angular Velocity of Robot
     #print(str(linear)+"\t"+str(angular))
-    if (linear == 0.0 and angular == 0.0):
+    
+    VrplusVl  = 2 * linear_vel
+    VrminusVl = angular_vel * wheel_separation
+    
+    right_vel = ( VrplusVl + VrminusVl ) / 2      # right wheel velocity along the ground
+    left_vel  = VrplusVl - right_vel              # left wheel velocity along the ground
+    
+    #print (str(left_vel)+"\t"+str(right_vel))
+    
+    if (left_vel == 0.0 and right_vel == 0.0):
         stop()
-    elif (linear > 0.0 and angular == 0.0):
-        forward()
-    elif (linear < 0.0 and angular == 0.0):
-        backward()
-    elif (linear == 0.0 and angular > 0.0):
-        left()
-    elif (linear == 0.0 and angular < 0.0):
-        right()
+    elif (left_vel >= 0.0 and right_vel >= 0.0):
+        forward(abs(left_vel), abs(right_vel))
+    elif (left_vel <= 0.0 and right_vel <= 0.0):
+        backward(abs(left_vel), abs(right_vel))
+    elif (left_vel < 0.0 and right_vel > 0.0):
+        left(abs(left_vel), abs(right_vel))
+    elif (left_vel > 0.0 and right_vel < 0.0):
+        right(abs(left_vel), abs(right_vel))
     else:
         stop()
         
@@ -96,4 +160,9 @@ def listener():
 
 if __name__== '__main__':
     print('Tortoisebot Differential Drive Initialized')
+    print('Tortoisebot Differential Drive Initialized with following Params-')
+    print('Motor Max RPM:\t'+str(motor_rpm)+' RPM')
+    print('Wheel Diameter:\t'+str(wheel_diameter)+' m')
+    print('Wheel Separation:\t'+str(wheel_separation)+' m')
+    print('Robot Max Speed:\t'+str(max_speed)+' m/sec')
     listener()
