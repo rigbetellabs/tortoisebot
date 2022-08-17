@@ -9,6 +9,6 @@ sudo apt-get update && sudo apt-get upgrade -y
 * Setting up Wi-Fi
 * Setting Wallpaper
 * Changing Menu Bar colour and position
-* Chaninf Menu Bar time format to %I:%M %p instead of %R or %r
+* Changing Menu Bar time format to %I:%M %p instead of %R or %r
 
 ## Step 3: Installing & Configuring TightVNC Server
