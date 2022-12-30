@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from __future__ import print_function
 import threading
@@ -175,9 +175,10 @@ if __name__=="__main__":
                 tempspeed = speed + speedBindings[key][0]
                 tempturn = turn + speedBindings[key][1]
                 
-                if 0.0 < tempspeed < 0.21 and 0.0 < tempturn < 2.35 :
+                if 0.0 < tempspeed < 2.5 and 0.0 < tempturn < 2.5 :
                     speed = speed + speedBindings[key][0]
                     turn = turn + speedBindings[key][1]
+                    # turn = turn + speedBindings[key][1]
                     
                     print(vels(speed,turn))
                     if (status == 14):
