@@ -1,0 +1,26 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/shubhu/catkin_ws/carto_ws/install_isolated/lib/python3/dist-packages",
+        "/home/shubhu/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/home/shubhu/ros2_ws/install/xarm_msgs/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/ticks/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/teb_msgs/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/eic_bot_firmware/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/costmap_converter_msgs/lib/python3.8/site-packages",
+        "/opt/ros/galactic/lib/python3.8/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/shubhu/catkin_ws/carto_ws/install_isolated/lib/python3/dist-packages",
+        "/home/shubhu/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/home/shubhu/ros2_ws/install/xarm_msgs/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/ticks/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/teb_msgs/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/eic_bot_firmware/lib/python3.8/site-packages",
+        "/home/shubhu/ros2_ws/install/costmap_converter_msgs/lib/python3.8/site-packages",
+        "/opt/ros/galactic/lib/python3.8/site-packages"
+    ]
+}

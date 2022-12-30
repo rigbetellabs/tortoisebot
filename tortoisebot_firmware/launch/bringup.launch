@@ -9,7 +9,9 @@
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
 	
-	<node name="differential" pkg="tortoisebot_firmware" type="differential.py" output="screen"/>
+	<!-- <node name="differential" pkg="tortoisebot_firmware" type="differential.py" output="screen"/> -->
+	<node name="differential" pkg="tortoisebot_firmware" type="differential_brainypi.py" output="screen"/>
+	
 	
 	<include file="$(find tortoisebot_firmware)/launch/tortoiselidarS2.launch" />
 	
@@ -19,5 +21,11 @@
 	<group if="$(arg joy)">
 		<include file="$(find tortoisebot_firmware)/launch/joy_control.launch" />
 	</group>
+
+	<node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen">
+		<param name="port" value="tcp"/>
+		<!-- <param name="port" value="/dev/ttyACM1"/>
+		<param name="baud" value="115200"/> -->
+	</node>
 
 </launch>

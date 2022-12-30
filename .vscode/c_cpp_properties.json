@@ -1,0 +1,36 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/shubhu/catkin_ws/carto_ws/install_isolated/include/**",
+        "/home/shubhu/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/shubhu/ros2_ws/install/xarm_planner/include/**",
+        "/home/shubhu/ros2_ws/install/xarm_gazebo/include/**",
+        "/home/shubhu/ros2_ws/install/xarm_api/include/**",
+        "/home/shubhu/ros2_ws/install/xarm_msgs/include/**",
+        "/home/shubhu/ros2_ws/install/ticks/include/**",
+        "/home/shubhu/ros2_ws/install/teb_local_planner/include/**",
+        "/home/shubhu/ros2_ws/install/teb_msgs/include/**",
+        "/home/shubhu/ros2_ws/install/xarm_controller/include/**",
+        "/home/shubhu/ros2_ws/install/costmap_converter/include/**",
+        "/home/shubhu/ros2_ws/install/costmap_converter_msgs/include/**",
+        "/home/shubhu/catkin_ws/src/velodyne/velodyne_driver/include/**",
+        "/home/shubhu/catkin_ws/src/velodyne/velodyne_laserscan/include/**",
+        "/home/shubhu/catkin_ws/src/velodyne/velodyne_pcl/include/**",
+        "/home/shubhu/catkin_ws/src/velodyne/velodyne_pointcloud/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
