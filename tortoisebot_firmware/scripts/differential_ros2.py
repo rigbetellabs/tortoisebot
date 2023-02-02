@@ -39,11 +39,8 @@ pwmL.start(0)
 pwmR = GPIO.PWM(rightEn, 100)
 pwmR.start(0)
 
-def stop():
-    global lpwm_pub
-    global rpwm_pub
-    global ldir_pub
-    global rdir_pub
+def stop(self):
+
     
     #print('stopping')
     pwmL.ChangeDutyCycle(0)
@@ -53,53 +50,45 @@ def stop():
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
     
-    lpwm_pub.publish(0)
-    rpwm_pub.publish(0)
-    ldir_pub.publish(1)
-    rdir_pub.publish(1)
+    self.lpwm_pub.publish(0)
+    self.rpwm_pub.publish(0)
+    self.ldir_pub.publish(1)
+    self.rdir_pub.publish(1)
     
-def wheel_vel_executer(left_speed, right_speed):
+def wheel_vel_executer(self, left_speed, right_speed):
     global max_pwm_val
     global min_pwm_val
     
-    global lpwm_pub
-    global rpwm_pub
-    global ldir_pub
-    global rdir_pub
     
     lspeedPWM = max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     rspeedPWM = max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     
-    lpwm_pub.publish(int(lspeedPWM))
-    rpwm_pub.publish(int(rspeedPWM))
+    self.lpwm_pub.publish(int(lspeedPWM))
+    self.rpwm_pub.publish(int(rspeedPWM))
     
     if left_speed >= 0 :
         GPIO.output(leftForward, GPIO.HIGH)
         GPIO.output(leftBackward, GPIO.LOW)
-        ldir_pub.publish(1)
+        self.ldir_pub.publish(1)
     else :
         GPIO.output(leftForward, GPIO.LOW)
         GPIO.output(leftBackward, GPIO.HIGH)
-        ldir_pub.publish(0)
+        self.ldir_pub.publish(0)
         
     if right_speed >= 0 :
         GPIO.output(rightForward, GPIO.HIGH)
         GPIO.output(rightBackward, GPIO.LOW)
-        rdir_pub.publish(1)
+        self.rdir_pub.publish(1)
     else :
         GPIO.output(rightForward, GPIO.LOW)
         GPIO.output(rightBackward, GPIO.HIGH)
-        rdir_pub.publish(0)
+        self.rdir_pub.publish(0)
 
 class Differential(Node):
     def __init__(self):
         super().__init__('differential')
-        global lpwm_pub
-        global rpwm_pub
-        global ldir_pub
-        global rdir_pub
 
         self.vel_subscription= self.create_subscription(Twist,"cmd_vel",self.callback,10)
         self.vel_subscription
@@ -126,9 +115,9 @@ class Differential(Node):
         #print (str(left_vel)+"\t"+str(right_vel))
         
         if (left_vel == 0.0 and right_vel == 0.0):
-            stop()
+            stop(self)
         else:
-            wheel_vel_executer(left_vel, right_vel)
+            wheel_vel_executer(self, left_vel, right_vel)
 
 def main(args=None):
     
