@@ -11,13 +11,14 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 def generate_launch_description():
   nav2_launch_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
   display_launch_dir=os.path.join(get_package_share_directory('tortoisebot_description'), 'launch')
-  prefix_address = get_package_share_directory('tortoisebot_slam') 
+  prefix_address = get_package_share_directory('tortoisebot_cartographer') 
   params_file= os.path.join(prefix_address, 'config', 'nav2_params.yaml')
   config_directory = LaunchConfiguration('configuration_directory', default=os.path.join(prefix_address, 'config'))
   config_basename = LaunchConfiguration('configuration_basename', default='2d_localization.lua')
   res = LaunchConfiguration('resolution', default='0.05')
   publish_period = LaunchConfiguration('publish_period_sec', default='1.0')
   use_sim_time=LaunchConfiguration('use_sim_time')
+  
   display_launch_cmd=IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(display_launch_dir, 'display.launch.py')),
@@ -27,7 +28,6 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(nav2_launch_dir, 'navigation_launch.py')),
             launch_arguments={'params_file': params_file,}.items())
-
 
   return LaunchDescription([
 
@@ -40,6 +40,7 @@ def generate_launch_description():
       default_value=res,
       description='configure the resolution'
     ),
+
     DeclareLaunchArgument(
       'publish_period_sec',
       default_value=publish_period,
