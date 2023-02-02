@@ -8,7 +8,7 @@ ydlidar_node:
     resolution_fixed: true
     singleChannel: true
     auto_reconnect: true
-    reversion: true
+    reversion: false
     isToFLidar: false
     angle_max: 180.0
     angle_min: -180.0
