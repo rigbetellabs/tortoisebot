@@ -67,10 +67,10 @@ def wheel_vel_executer(self, left_speed, right_speed):
     global min_pwm_val
     global lPWM, rPWM, lDIR, rDIR
 
-    lspeedPWM = int(max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
-    rspeedPWM = int(max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
-    lPWM.data=lspeedPWM
-    rPWM.data=rspeedPWM
+    lspeedPWM = max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
+    rspeedPWM = max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
+    lPWM.data=int(lspeedPWM)
+    rPWM.data=int(rspeedPWM)
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     
@@ -125,7 +125,7 @@ class Differential(Node):
         right_vel = ( VrplusVl + VrminusVl ) / 2      # right wheel velocity along the ground
         left_vel  = VrplusVl - right_vel              # left wheel velocity along the ground
         
-        #print (str(left_vel)+"\t"+str(right_vel))
+        print (str(left_vel)+"\t"+str(right_vel))
         
         if (left_vel == 0.0 and right_vel == 0.0):
             stop(self)
