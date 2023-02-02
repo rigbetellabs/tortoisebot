@@ -125,7 +125,7 @@ class Differential(Node):
         right_vel = ( VrplusVl + VrminusVl ) / 2      # right wheel velocity along the ground
         left_vel  = VrplusVl - right_vel              # left wheel velocity along the ground
         
-        print (str(left_vel)+"\t"+str(right_vel))
+        # print (str(left_vel)+"\t"+str(right_vel))
         
         if (left_vel == 0.0 and right_vel == 0.0):
             stop(self)
