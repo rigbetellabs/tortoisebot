@@ -7,6 +7,9 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
+        - /TF1
+        - /Image1
+        - /Image1/Topic1
       Splitter Ratio: 0.5
     Tree Height: 787
 Visualization Manager:
@@ -53,47 +56,27 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        camera:
+        left_back_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        caster:
+        left_front_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        imu:
+        lidar_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        lidar:
+        right_back_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        lidar_body:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lidar_bottom:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lidar_motorend:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel_left:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel_right:
+        right_front_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -110,23 +93,21 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
-        camera:
+        laser_frame:
           Value: true
-        caster:
+        left_back_1:
           Value: true
-        imu:
+        left_front_1:
           Value: true
-        lidar:
+        lidar_1:
           Value: true
-        lidar_body:
+        map:
           Value: true
-        lidar_bottom:
+        odom:
           Value: true
-        lidar_motorend:
+        right_back_1:
           Value: true
-        wheel_left:
-          Value: true
-        wheel_right:
+        right_front_1:
           Value: true
       Marker Scale: 0.30000001192092896
       Name: TF
@@ -135,21 +116,19 @@ Visualization Manager:
       Show Names: true
       Tree:
         base_link:
-          camera:
+          left_back_1:
             {}
-          caster:
+          left_front_1:
             {}
-          imu:
-            {}
-          lidar_body:
-            lidar_bottom:
-              lidar:
-                {}
-            lidar_motorend:
+          lidar_1:
+            laser_frame:
               {}
-          wheel_left:
+          right_back_1:
             {}
-          wheel_right:
+          right_front_1:
+            {}
+        map:
+          odom:
             {}
       Update Interval: 0
       Value: true
@@ -187,10 +166,149 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz_default_plugins/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/costmap
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/costmap_updates
+      Use Timestamp: false
+      Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz_default_plugins/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        Filter size: 10
+        History Policy: System Default
+        Reliability Policy: Reliable
+        Value: /map
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map_updates
+      Use Timestamp: false
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /plan
+      Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz_default_plugins/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /local_costmap/costmap
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /local_costmap/costmap_updates
+      Use Timestamp: false
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: RGB8
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /camera/points
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: false
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /camera/image_raw
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: base_link
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -225,25 +343,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 0.45611515641212463
+      Distance: 7.817258834838867
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.1144791692495346
-        Y: 0.4719548225402832
-        Z: 0.31889578700065613
+        X: 0.09337656944990158
+        Y: 0.8099436163902283
+        Z: 1.3612388372421265
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.11979810148477554
+      Pitch: 0.814797580242157
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.173574447631836
+      Yaw: 3.353579044342041
     Saved: ~
 Window Geometry:
   Displays:
@@ -251,7 +369,9 @@ Window Geometry:
   Height: 1016
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002170000039efc0200000005fb000000100044006900730070006c006100790073010000003d0000039e000000c900fffffffb0000000a0049006d0061006700650000000301000000da0000000000000000fb0000000a0049006d0061006700650100000194000001760000000000000000fb0000000a0049006d00610067006501000002d00000010b0000000000000000fb0000000c00430061006d00650072006100000002ba000001210000000000000000000005270000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Image:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd0000000100000000000002170000039efc0200000005fb000000100044006900730070006c006100790073010000003d0000039e000000c900fffffffb0000000a0049006d0061006700650000000301000000da0000002800fffffffb0000000a0049006d0061006700650100000194000001760000000000000000fb0000000a0049006d00610067006501000002d00000010b0000000000000000fb0000000c00430061006d00650072006100000002ba000001210000000000000000000005270000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1860
   X: 60
   Y: 27
