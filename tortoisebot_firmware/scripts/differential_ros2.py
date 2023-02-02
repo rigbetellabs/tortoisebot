@@ -23,6 +23,10 @@ min_pwm_val = 0            #   Minimum PWM value that is needed for the robot to
 wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
 max_speed = (circumference_of_wheel*motor_rpm)/60   #   m/sec
+lPWM=Int32()
+rPWM=Int32()
+lDIR=Bool()
+rDIR=Bool()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -40,7 +44,7 @@ pwmR = GPIO.PWM(rightEn, 100)
 pwmR.start(0)
 
 def stop(self):
-
+    global lPWM, rPWM, lDIR, rDIR
     
     #print('stopping')
     pwmL.ChangeDutyCycle(0)
@@ -49,17 +53,19 @@ def stop(self):
     pwmR.ChangeDutyCycle(0)
     GPIO.output(rightForward, GPIO.HIGH)
     GPIO.output(rightBackward, GPIO.HIGH)
-    
-    self.lpwm_pub.publish(0)
-    self.rpwm_pub.publish(0)
-    self.ldir_pub.publish(1)
-    self.rdir_pub.publish(1)
+    lPWM.data=0
+    rPWM.data=0
+    lDIR.data=1
+    rDIR.data=1
+    self.lpwm_pub.publish(lPWM)
+    self.rpwm_pub.publish(rPWM)
+    self.ldir_pub.publish(lDIR)
+    self.rdir_pub.publish(rDIR)
     
 def wheel_vel_executer(self, left_speed, right_speed):
     global max_pwm_val
     global min_pwm_val
-    lPWM=Int32()
-    rPWM=Int32()
+    global lPWM, rPWM, lDIR, rDIR
 
     lspeedPWM = int(max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
     rspeedPWM = int(max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
@@ -74,20 +80,24 @@ def wheel_vel_executer(self, left_speed, right_speed):
     if left_speed >= 0 :
         GPIO.output(leftForward, GPIO.HIGH)
         GPIO.output(leftBackward, GPIO.LOW)
-        self.ldir_pub.publish(1)
+        lDIR.data=1
+        self.ldir_pub.publish(lDIR)
     else :
         GPIO.output(leftForward, GPIO.LOW)
         GPIO.output(leftBackward, GPIO.HIGH)
-        self.ldir_pub.publish(0)
+        lDIR.data=0
+        self.ldir_pub.publish(lDIR)
         
     if right_speed >= 0 :
         GPIO.output(rightForward, GPIO.HIGH)
         GPIO.output(rightBackward, GPIO.LOW)
-        self.rdir_pub.publish(1)
+        rDIR.data=1
+        self.rdir_pub.publish(rDIR)
     else :
         GPIO.output(rightForward, GPIO.LOW)
         GPIO.output(rightBackward, GPIO.HIGH)
-        self.rdir_pub.publish(0)
+        rDIR.data=0
+        self.rdir_pub.publish(rDIR)
 
 class Differential(Node):
     def __init__(self):
