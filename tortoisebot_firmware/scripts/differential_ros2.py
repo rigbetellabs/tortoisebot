@@ -68,8 +68,8 @@ def wheel_vel_executer(self, left_speed, right_speed):
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     
-    self.lpwm_pub.publish(lspeedPWM)
-    self.rpwm_pub.publish(rspeedPWM)
+    self.lpwm_pub.publish(lPWM)
+    self.rpwm_pub.publish(rPWM)
     
     if left_speed >= 0 :
         GPIO.output(leftForward, GPIO.HIGH)
