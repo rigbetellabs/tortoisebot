@@ -58,15 +58,17 @@ def stop(self):
 def wheel_vel_executer(self, left_speed, right_speed):
     global max_pwm_val
     global min_pwm_val
+    lspeedPWM=Int32()
+    rspeedPWM=Int32()
+
     
-    
-    lspeedPWM = max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
-    rspeedPWM = max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    lspeedPWM.data = int(max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
+    rspeedPWM.data = int(max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
     pwmL.ChangeDutyCycle(lspeedPWM)
     pwmR.ChangeDutyCycle(rspeedPWM)
     
-    self.lpwm_pub.publish(int(lspeedPWM))
-    self.rpwm_pub.publish(int(rspeedPWM))
+    self.lpwm_pub.publish(lspeedPWM)
+    self.rpwm_pub.publish(rspeedPWM)
     
     if left_speed >= 0 :
         GPIO.output(leftForward, GPIO.HIGH)
