@@ -55,8 +55,8 @@ def stop(self):
     GPIO.output(rightBackward, GPIO.HIGH)
     lPWM.data=0
     rPWM.data=0
-    lDIR.data=1
-    rDIR.data=1
+    lDIR.data=True
+    rDIR.data=True
     self.lpwm_pub.publish(lPWM)
     self.rpwm_pub.publish(rPWM)
     self.ldir_pub.publish(lDIR)
@@ -80,23 +80,23 @@ def wheel_vel_executer(self, left_speed, right_speed):
     if left_speed >= 0 :
         GPIO.output(leftForward, GPIO.HIGH)
         GPIO.output(leftBackward, GPIO.LOW)
-        lDIR.data=1
+        lDIR.data=True
         self.ldir_pub.publish(lDIR)
     else :
         GPIO.output(leftForward, GPIO.LOW)
         GPIO.output(leftBackward, GPIO.HIGH)
-        lDIR.data=0
+        lDIR.data=False
         self.ldir_pub.publish(lDIR)
         
     if right_speed >= 0 :
         GPIO.output(rightForward, GPIO.HIGH)
         GPIO.output(rightBackward, GPIO.LOW)
-        rDIR.data=1
+        rDIR.data=True
         self.rdir_pub.publish(rDIR)
     else :
         GPIO.output(rightForward, GPIO.LOW)
         GPIO.output(rightBackward, GPIO.HIGH)
-        rDIR.data=0
+        rDIR.data=False
         self.rdir_pub.publish(rDIR)
 
 class Differential(Node):
