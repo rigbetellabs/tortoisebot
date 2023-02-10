@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import rclpy 
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
@@ -67,8 +68,8 @@ def wheel_vel_executer(self, left_speed, right_speed):
     global min_pwm_val
     global lPWM, rPWM, lDIR, rDIR
 
-    lspeedPWM = max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
-    rspeedPWM = max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val))
+    lspeedPWM = max(min(((abs(left_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
+    rspeedPWM = max(min(((abs(right_speed)/max_speed)*max_pwm_val),max_pwm_val),min_pwm_val)
     lPWM.data=int(lspeedPWM)
     rPWM.data=int(rspeedPWM)
     pwmL.ChangeDutyCycle(lspeedPWM)

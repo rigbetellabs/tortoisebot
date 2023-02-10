@@ -5,12 +5,17 @@
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="kartiksoni010@gmail.com">kartik</maintainer>
+  <maintainer email="shubhamnandi@rigbetellabs.com">Shubham</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+  
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
