@@ -22,7 +22,7 @@ def generate_launch_description():
 
   ydlidar_launch_cmd=IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(ydlidar_launch_dir, 'x4_ydlidar_launch.py')),
+            os.path.join(ydlidar_launch_dir, 'x2_ydlidar_launch.py')),
             condition=IfCondition(PythonExpression(['not ', use_sim_time])),
             launch_arguments={'use_sim_time':use_sim_time}.items())
 
