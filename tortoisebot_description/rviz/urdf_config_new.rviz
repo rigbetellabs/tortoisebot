@@ -3,15 +3,9 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /Global Options1
-        - /Status1
-        - /RobotModel1
-        - /TF1
-        - /Image1
-        - /Image1/Topic1
+      Expanded: ~
       Splitter Ratio: 0.5
-    Tree Height: 787
+    Tree Height: 541
 Visualization Manager:
   Class: ""
   Displays:
@@ -46,7 +40,8 @@ Visualization Manager:
         Value: /robot_description
       Enabled: true
       Links:
-        All Links Enabled: true
+        All Links Enabled:
+          {}
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -55,32 +50,42 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        left_back_1:
+        camera:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        left_front_1:
+        caster:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        lidar_1:
+        imu:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        right_back_1:
+        lidar:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        right_front_1:
+        lidar_body:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
+        lidar_bottom:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        lidar_motorend:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wheel_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wheel_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: RobotModel
       TF Prefix: ""
       Update Interval: 0
@@ -93,21 +98,29 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
+        camera:
+          Value: true
+        caster:
+          Value: true
+        imu:
+          Value: true
         laser_frame:
           Value: true
-        left_back_1:
+        lidar:
           Value: true
-        left_front_1:
+        lidar_body:
           Value: true
-        lidar_1:
+        lidar_bottom:
+          Value: true
+        lidar_motorend:
           Value: true
         map:
           Value: true
         odom:
           Value: true
-        right_back_1:
+        wheel_left:
           Value: true
-        right_front_1:
+        wheel_right:
           Value: true
       Marker Scale: 0.30000001192092896
       Name: TF
@@ -115,21 +128,8 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        base_link:
-          left_back_1:
-            {}
-          left_front_1:
-            {}
-          lidar_1:
-            laser_frame:
-              {}
-          right_back_1:
-            {}
-          right_front_1:
-            {}
         map:
-          odom:
-            {}
+          {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -168,27 +168,6 @@ Visualization Manager:
       Value: true
     - Alpha: 0.699999988079071
       Class: rviz_default_plugins/Map
-      Color Scheme: costmap
-      Draw Behind: false
-      Enabled: true
-      Name: Map
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /global_costmap/costmap
-      Update Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /global_costmap/costmap_updates
-      Use Timestamp: false
-      Value: true
-    - Alpha: 0.699999988079071
-      Class: rviz_default_plugins/Map
       Color Scheme: map
       Draw Behind: false
       Enabled: true
@@ -206,6 +185,48 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /map_updates
+      Use Timestamp: false
+      Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz_default_plugins/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: GlobalCost Map
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/costmap
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /global_costmap/costmap_updates
+      Use Timestamp: false
+      Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz_default_plugins/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: LocalCost Map
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /local_costmap/costmap
+      Update Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /local_costmap/costmap_updates
       Use Timestamp: false
       Value: true
     - Alpha: 1
@@ -236,63 +257,21 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /plan
       Value: true
-    - Alpha: 0.699999988079071
-      Class: rviz_default_plugins/Map
-      Color Scheme: costmap
-      Draw Behind: false
-      Enabled: true
-      Name: Map
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /local_costmap/costmap
-      Update Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /local_costmap/costmap_updates
-      Use Timestamp: false
-      Value: true
     - Alpha: 1
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
-        Value: true
-      Axis: Z
-      Channel Name: intensity
-      Class: rviz_default_plugins/PointCloud2
-      Color: 255; 255; 255
-      Color Transformer: RGB8
-      Decay Time: 0
+      Class: rviz_default_plugins/Polygon
+      Color: 0; 0; 0
       Enabled: true
-      Invert Rainbow: false
-      Max Color: 255; 255; 255
-      Max Intensity: 4096
-      Min Color: 0; 0; 0
-      Min Intensity: 0
-      Name: PointCloud2
-      Position Transformer: XYZ
-      Selectable: true
-      Size (Pixels): 3
-      Size (m): 0.009999999776482582
-      Style: Flat Squares
+      Name: BaseFootPrint
       Topic:
         Depth: 5
         Durability Policy: Volatile
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /camera/points
-      Use Fixed Frame: true
-      Use rainbow: true
+        Value: /local_costmap/published_footprint
       Value: true
     - Class: rviz_default_plugins/Image
-      Enabled: false
+      Enabled: true
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -302,9 +281,9 @@ Visualization Manager:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
-        Reliability Policy: Best Effort
-        Value: /camera/image_raw
-      Value: false
+        Reliability Policy: Reliable
+        Value: /camera/image
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -343,25 +322,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 7.817258834838867
+      Distance: 6.054063320159912
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.09337656944990158
-        Y: 0.8099436163902283
-        Z: 1.3612388372421265
+        X: -0.5965061187744141
+        Y: -0.10617119073867798
+        Z: 0.5435945391654968
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.814797580242157
+      Pitch: 0.7447977066040039
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.353579044342041
+      Yaw: 2.6035847663879395
     Saved: ~
 Window Geometry:
   Displays:
@@ -371,7 +350,7 @@ Window Geometry:
   Hide Right Dock: false
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002170000039efc0200000005fb000000100044006900730070006c006100790073010000003d0000039e000000c900fffffffb0000000a0049006d0061006700650000000301000000da0000002800fffffffb0000000a0049006d0061006700650100000194000001760000000000000000fb0000000a0049006d00610067006501000002d00000010b0000000000000000fb0000000c00430061006d00650072006100000002ba000001210000000000000000000005270000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  Width: 1860
-  X: 60
+  QMainWindow State: 000000ff00000000fd0000000100000000000002170000039efc0200000006fb000000100044006900730070006c006100790073010000003d000002a8000000c900fffffffb0000000a0049006d0061006700650000000283000000870000000000000000fb0000000a0049006d0061006700650100000194000001760000000000000000fb0000000a0049006d00610067006501000002d00000010b0000000000000000fb0000000c00430061006d00650072006100000002ba000001210000000000000000fb0000000a0049006d00610067006501000002eb000000f00000002800ffffff0000051b0000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1848
+  X: 72
   Y: 27
