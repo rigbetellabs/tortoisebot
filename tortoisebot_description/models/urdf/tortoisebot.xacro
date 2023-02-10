@@ -3,9 +3,9 @@
 
 	<xacro:include filename="$(find tortoisebot_description)/models/urdf/materials.xacro" />
 	
-	<xacro:include filename="$(find tortoisebot_description)/gazebo/tortoisebot_materials.gazebo" />
-	<xacro:include filename="$(find tortoisebot_description)/gazebo/tortoisebot_physics.gazebo" />
-	<xacro:include filename="$(find tortoisebot_description)/gazebo/tortoisebot_plugins.gazebo" />
+	<xacro:include filename="$(find tortoisebot_gazebo)/gazebo/tortoisebot_materials.gazebo" />
+	<xacro:include filename="$(find tortoisebot_gazebo)/gazebo/tortoisebot_physics.gazebo" />
+	<xacro:include filename="$(find tortoisebot_gazebo)/gazebo/tortoisebot_plugins.gazebo" />
 
 	<link name="base_link">
 		<inertial>
