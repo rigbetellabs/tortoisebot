@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="tortoisebot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:include filename="$(find tortoisebot_description)/models/urdf/models/urdf/tortoisebot.xacro" />
+	<xacro:include filename="$(find tortoisebot_description)/models/urdf/materials.xacro" />
 	
 	<xacro:include filename="$(find tortoisebot_description)/gazebo/tortoisebot_materials.gazebo" />
 	<xacro:include filename="$(find tortoisebot_description)/gazebo/tortoisebot_physics.gazebo" />
