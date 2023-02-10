@@ -44,9 +44,20 @@ def generate_launch_description():
                             'use_sim_time':use_sim_time}.items())
   ydlidar_launch_cmd=IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(ydlidar_launch_dir, 'x4_ydlidar_launch.py')),
+            os.path.join(ydlidar_launch_dir, 'x2_ydlidar_launch.py')),
             condition=IfCondition(PythonExpression(['not ', use_sim_time])),
             launch_arguments={'use_sim_time':use_sim_time}.items())
+  
+  differential_drive_node = Node(
+        package='tortoisebot_firmware',
+        executable='differential.py',
+        name ='differential_drive_publisher',
+    )
+  camera_node = Node(
+      package='raspicam2',
+      executable='raspicam2_node',
+      name ='pi_camera',
+    )
 
   return LaunchDescription([
 
@@ -79,6 +90,8 @@ def generate_launch_description():
     navigation_launch_cmd, 
     cartographer_launch_cmd,  
     ydlidar_launch_cmd,
+    differential_drive_node,
+    camera_node
 
   ]
 )
