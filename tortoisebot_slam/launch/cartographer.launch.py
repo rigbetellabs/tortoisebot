@@ -9,8 +9,8 @@ from launch.conditions import IfCondition
 
 def generate_launch_description():
   prefix_address = get_package_share_directory('tortoisebot_slam') 
-  config_directory = LaunchConfiguration('configuration_directory', default=os.path.join(prefix_address, 'config'))
-  config_basename = LaunchConfiguration('configuration_basename', default='2d_localization.lua')
+  config_directory = os.path.join(prefix_address, 'config')
+  config_basename = '2d_slam.lua'
   res = LaunchConfiguration('resolution', default='0.05')
   publish_period = LaunchConfiguration('publish_period_sec', default='1.0')
   use_sim_time=LaunchConfiguration('use_sim_time')
