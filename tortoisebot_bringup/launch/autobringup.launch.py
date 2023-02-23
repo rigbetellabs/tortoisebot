@@ -113,7 +113,7 @@ def generate_launch_description():
     cartographer_launch_cmd,  
     ydlidar_launch_cmd,
     differential_drive_node,
-    camera_node
+    # camera_node
 
   ]
 )
