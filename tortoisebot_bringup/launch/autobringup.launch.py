@@ -113,8 +113,7 @@ def generate_launch_description():
     gazebo_launch_cmd,
     navigation_launch_cmd, 
     cartographer_launch_cmd,  
-
-    # camera_node
+    camera_node
 
   ]
 )
