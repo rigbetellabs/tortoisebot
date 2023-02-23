@@ -12,7 +12,6 @@ from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
   pkg_share = launch_ros.substitutions.FindPackageShare(package='tortoisebot_description').find('tortoisebot_description')
-  bringup_dir = os.path.join(get_package_share_directory('tortoisebot_bringup'), 'launch')
   navigation_dir = os.path.join(get_package_share_directory('tortoisebot_navigation'), 'launch')
   rviz_launch_dir=os.path.join(get_package_share_directory('tortoisebot_description'), 'launch')
   gazebo_launch_dir=os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'launch')
@@ -120,7 +119,7 @@ def generate_launch_description():
     gazebo_launch_cmd,
     navigation_launch_cmd, 
     cartographer_launch_cmd,  
-    # camera_node
+    camera_node
 
   ]
 )
