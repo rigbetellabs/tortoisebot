@@ -28,6 +28,12 @@ def generate_launch_description():
   rviz_launch_cmd=IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(rviz_launch_dir, 'rviz.launch.py')),
+            condition=IfCondition(use_sim_time),
+            launch_arguments={'use_sim_time':use_sim_time}.items())
+
+  state_publisher_launch_cmd=IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(rviz_launch_dir, 'state_publisher.launch.py')),
             launch_arguments={'use_sim_time':use_sim_time}.items())
 
   gazebo_launch_cmd=IncludeLaunchDescription(
@@ -106,6 +112,7 @@ def generate_launch_description():
                     {'node_names': ['map_server']}]),
 
     rviz_launch_cmd,
+    state_publisher_launch_cmd,
     robot_state_publisher_node,
     joint_state_publisher_node,
     ydlidar_launch_cmd,
@@ -113,7 +120,7 @@ def generate_launch_description():
     gazebo_launch_cmd,
     navigation_launch_cmd, 
     cartographer_launch_cmd,  
-    camera_node
+    # camera_node
 
   ]
 )

@@ -2,7 +2,7 @@ import os
 import launch
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration,PythonExpression
 from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
 from launch_ros.actions import Node
 from launch.conditions import IfCondition
@@ -10,15 +10,13 @@ from launch.conditions import IfCondition
 def generate_launch_description():
   prefix_address = get_package_share_directory('tortoisebot_slam') 
   config_directory = os.path.join(prefix_address, 'config')
-  
+  slam_config_basename = '2d_slam.lua'
+  localization_config_basename = '2d_localization.lua'
   res = LaunchConfiguration('resolution', default='0.05')
   publish_period = LaunchConfiguration('publish_period_sec', default='1.0')
   use_sim_time=LaunchConfiguration('use_sim_time')
   slam=LaunchConfiguration('slam')  
-  if slam == True:
-        config_basename = '2d_slam.lua'
-  else:
-        config_basename = '2d_localization.lua'
+
 
   return LaunchDescription([
 
@@ -46,17 +44,35 @@ def generate_launch_description():
       description='path to the .lua files'
     ),
     DeclareLaunchArgument(
-      'configuration_basename',
-      default_value=config_basename,
+      'slam_configuration_basename',
+      default_value=slam_config_basename,
+      description='name of .lua file to be used'
+    ),
+    DeclareLaunchArgument(
+      'localization_configuration_basename',
+      default_value=localization_config_basename,
       description='name of .lua file to be used'
     ),
     Node(
       package='cartographer_ros',
+      condition= IfCondition(slam),
       executable='cartographer_node',
       name='as21_cartographer_node',
       arguments=[
         '-configuration_directory', config_directory,
-        '-configuration_basename', config_basename
+        '-configuration_basename', slam_config_basename
+      ],
+      parameters= [{'use_sim_time':use_sim_time}],
+      output='screen'
+    ),
+    Node(
+      package='cartographer_ros',
+      condition=IfCondition(PythonExpression(['not ', slam])),
+      executable='cartographer_node',
+      name='as21_cartographer_node',
+      arguments=[
+        '-configuration_directory', config_directory,
+        '-configuration_basename', localization_config_basename
       ],
       parameters= [{'use_sim_time':use_sim_time}],
       output='screen'
