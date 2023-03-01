@@ -1,41 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="tortoisebot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-	<!--  ##########  GAZEBO ROS CONTROLLER  ##########  -->
-
-	<!-- <gazebo>
-		<plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-			<robotNamespace>/tortoisebot</robotNamespace>
-			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-			<legacyModeNS>true</legacyModeNS>
-		</plugin>
-	</gazebo> -->
-
-	<!--  ##########  DIFFERENTIAL DRIVE CONTROLLER  ##########  -->
-
-	<!-- <gazebo>
-		<plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-			<updateRate>20</updateRate>
-			<robotBaseFrame>base_link</robotBaseFrame>
-			<leftJoint>motor_left</leftJoint>
-			<rightJoint>motor_right</rightJoint>
-			<wheelSeparation>0.17186</wheelSeparation>
-			<wheelDiameter>0.065</wheelDiameter>
-			<wheelAcceleration>1.0</wheelAcceleration>
-			<wheelTorque>20</wheelTorque>
-			<commandTopic>cmd_vel</commandTopic>
-			<odometryTopic>odom</odometryTopic>
-			<odometryFrame>odom</odometryFrame>
-			<odometrySource>0</odometrySource>
-			<publishWheelTF>false</publishWheelTF>
-			<publishOdomTF>false</publishOdomTF>
-			<publishOdom>false</publishOdom>
-			<publishWheelJointState>true</publishWheelJointState>
-			<legacyMode>false</legacyMode>
-			<alwaysOn>true</alwaysOn>
-		</plugin>
-	</gazebo> -->
-
 	<!-- Differential drive plugin for gazebo -->
 	<gazebo>
 	<plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
@@ -104,14 +69,14 @@
 
 	<!--  ##########  CAMERA PLUGIN  ##########  -->
 
-	<!-- <gazebo reference="camera">
-    <sensor type="camera" name="camera">
+  <gazebo reference="camera">
+    <sensor type="camera" name="camera1">
       <update_rate>30.0</update_rate>
       <camera name="head">
-        <horizontal_fov>0.9337511</horizontal_fov>
+        <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>640</width>
-          <height>480</height>
+          <width>800</width>
+          <height>800</height>
           <format>R8G8B8</format>
         </image>
         <clip>
@@ -120,6 +85,9 @@
         </clip>
         <noise>
           <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+               That pixel's noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
           <stddev>0.007</stddev>
         </noise>
@@ -127,7 +95,7 @@
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>/camera</cameraName>
+        <cameraName>camera</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera</frameName>
@@ -139,7 +107,6 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
-  </gazebo> -->
-	
+  </gazebo>
 
 </robot>
