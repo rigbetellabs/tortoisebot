@@ -23,7 +23,7 @@ def generate_launch_description():
   map_file = os.path.join(get_package_share_directory(
         'tortoisebot_bringup'), 'maps', 'room2.yaml')
   use_sim_time=LaunchConfiguration('use_sim_time')
-  slam=LaunchConfiguration('slam')   
+  exploration=LaunchConfiguration('exploration')   
   rviz_launch_cmd=IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(rviz_launch_dir, 'rviz.launch.py')),
@@ -50,7 +50,7 @@ def generate_launch_description():
       PythonLaunchDescriptionSource(
           os.path.join(cartographer_launch_dir, 'cartographer.launch.py')),
           launch_arguments={'params_file': params_file,
-                            'slam':slam,
+                            'slam':exploration,
                             'use_sim_time':use_sim_time}.items())
   ydlidar_launch_cmd=IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -85,15 +85,15 @@ def generate_launch_description():
   return LaunchDescription([
 
     SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM', '1'),
-    launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
+    launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
                                             description='Flag to enable use_sim_time'),
-    launch.actions.DeclareLaunchArgument(name='slam', default_value='True',
+    launch.actions.DeclareLaunchArgument(name='exploration', default_value='False',
                                             description='Flag to enable use_sim_time'),
     launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
                                           description='Absolute path to robot urdf file'),
     Node(
         package='nav2_map_server',
-        condition=IfCondition(PythonExpression(['not ', slam])),
+        condition=IfCondition(PythonExpression(['not ', exploration])),
         executable='map_server',
         name='map_server',
         output='screen',
@@ -102,7 +102,7 @@ def generate_launch_description():
                     ]),
     Node(
         package='nav2_lifecycle_manager',
-        condition=IfCondition(PythonExpression(['not ', slam])),
+        condition=IfCondition(PythonExpression(['not ', exploration])),
         executable='lifecycle_manager',
         name='lifecycle_manager_mapper',
         output='screen',
