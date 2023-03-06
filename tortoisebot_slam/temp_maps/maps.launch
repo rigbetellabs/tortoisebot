@@ -1,0 +1,11 @@
+ <launch>
+
+        <node pkg="tortoisebot_slam" type="convert.py" name="map_convert" respawn="true"/>
+        <!-- <node pkg="image_publisher" type="image_publisher" name="image_publisher_map"
+        args="$(find tortoisebot_slam)/temp_maps/rbl_map.png" /> -->
+
+        <arg name="map_name" default="rbl_map"/>
+
+	<node pkg="map_server" type="map_saver" name="map_saver_temp" output = "screen" respawn="true" args="-f $(find tortoisebot_slam)/temp_maps/$(arg map_name)"/>
+
+</launch> 

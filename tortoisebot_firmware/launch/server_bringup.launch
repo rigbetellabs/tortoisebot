@@ -25,6 +25,7 @@
               $(find tortoisebot_firmware)/config
           -configuration_basename lidar.lua" output="screen">
     </node>
+    <node name="robot_pose" pkg="riotu_robot_pose_publisher" type="riotu_robot_pose_publisher" />
 
 	<!--  Additional node which converts Cartographer map into ROS occupancy grid map. Not used and can be skipped in this case 
 	 -->
