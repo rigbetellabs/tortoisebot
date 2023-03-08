@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package>
+  <name>riotu_robot_pose_publisher</name>
+  <version>0.2.4</version>
+  <description>A Simple Node to Publish the Robot's Position Relative to the Map using TFs</description>
+
+  <maintainer email="rctoris@wpi.edu">Russell Toris</maintainer>
+  <author email="rctoris@wpi.edu">Russell Toris</author>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/robot_pose_publisher</url>
+  <url type="bugtracker">https://github.com/GT-RAIL/robot_pose_publisher/issues</url>
+  <url type="repository">https://github.com/GT-RAIL/robot_pose_publisher</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>tf</build_depend>
+
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>tf</run_depend>
+</package>

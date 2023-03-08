@@ -1,0 +1,4 @@
+<launch>
+  <include file="$(find ydlidar_ros)/launch/S2.launch" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ydlidar_ros)/launch/lidar.rviz" />
+</launch>

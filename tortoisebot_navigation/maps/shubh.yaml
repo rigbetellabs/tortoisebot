@@ -1,0 +1,7 @@
+image: /home/shubhu/catkin_ws/src/tortoisebot/tortoisebot_navigation/maps/shubh.pgm
+resolution: 0.010000
+origin: [-0.750000, -0.950000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

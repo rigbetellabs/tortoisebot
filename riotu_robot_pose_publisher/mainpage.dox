@@ -1,0 +1,6 @@
+/**
+\mainpage
+
+\b robot_pose_publisher contains a simple node to publish the robot's position relative to the map using TFs.
+The node publishes the robot's position in a geometry_msgs/Pose message based on the TF difference between /map and /base_link.
+*/

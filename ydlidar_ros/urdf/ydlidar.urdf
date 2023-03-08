@@ -1,0 +1,96 @@
+<robot
+  name="ydlidar_ros">
+  <link
+    name="base_laser">
+    <inertial>
+      <origin
+        xyz="-0.00029774 0.0066667 0.00013047"
+        rpy="0 0 0" />
+      <mass
+        value="0.15717" />
+      <inertia
+        ixx="6.7885E-05"
+        ixy="-1.3987E-07"
+        ixz="-8.1554E-07"
+        iyy="0.00013173"
+        iyz="-9.0932E-08"
+        izz="7.1972E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ydlidar_ros/meshes/ydlidar.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ydlidar_ros/meshes/ydlidar.dae" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="laser_frame">
+    <inertial>
+      <origin
+        xyz="-0.00036659 0.00064155 -0.00027052"
+        rpy="0 0 0" />
+      <mass
+        value="0.25482" />
+      <inertia
+        ixx="8.9194E-05"
+        ixy="1.8116E-07"
+        ixz="3.6435E-08"
+        iyy="0.00018279"
+        iyz="2.423E-07"
+        izz="0.00011103" />
+    </inertial>
+    <!--visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ydlidar_ros/meshes/ydlidar.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual-->
+    <!--collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ydlidar_ros/meshes/ydlidar.dae" />
+      </geometry>
+    </collision-->
+  </link>
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.03172"
+      rpy="0 0 0" />
+    <parent
+      link="base_laser" />
+    <child
+      link="laser_frame" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
