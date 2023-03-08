@@ -2,15 +2,11 @@
 
 import os
 import signal
-#import rospy
 import threading
 import json 
 import subprocess
 
 from flask import Flask, request, make_response
-
-from std_msgs.msg import UInt32, String
-
 
 app = Flask(__name__)
 
@@ -37,12 +33,6 @@ def startSlam():
         "server_bringup.launch"
         ])
     
-    poseNodeSubprocess = subprocess.Popen([
-        "rosrun", 
-        "riotu_robot_pose_publisher", 
-        "riotu_robot_pose_publisher"
-        ])
-    
     slamLaunchSubprocess = subprocess.Popen([
         "roslaunch", 
         "tortoisebot_slam", 
@@ -51,8 +41,6 @@ def startSlam():
     
     response = make_response("Success in launching SERVER, POSE, and SLAM")
     response.status_code = 200
-    api_status.publish(str(response.data))
-
     return response
 
 #logs
@@ -76,12 +64,12 @@ def killslam():
         
         response = make_response("Success in killing SERVER, POSE, and SLAM")
         response.status_code = 200
-        api_status.publish(str(response.data))
+        
         
     else:
         response = make_response("Executed but the process does not exists for SERVER, POSE and SLAM")
         response.status_code = 300
-        api_status.publish(str(response.data))
+       
         
 
     return response 
@@ -95,12 +83,12 @@ def killpose():
         kill(poseNodeSubprocess.pid)
         response = make_response("Success in killing SERVER, POSE, and SLAM")
         response.status_code = 200
-        api_status.publish(str(response.data))
+        
     else:
         
         response = make_response("Executed but the process does not exists")
         response.status_code = 300
-        api_status.publish(str(response.data))
+      
 
     return response
 
@@ -113,12 +101,12 @@ def killserver():
         kill(server_bringupLaunchSubprocess.pid)
         response = make_response("Success in killing SERVER, POSE, and SLAM")
         response.status_code = 200
-        api_status.publish(str(response.data))
+     
     else:
         
         response = make_response("Executed but the process does not exists")
         response.status_code = 300
-        api_status.publish(str(response.data))
+     
 
 
 # map saving
@@ -137,17 +125,14 @@ def mapSaver():
             "{}{}".format(path,map_name)
         ])
         msg = map_name
-        pub_status.publish("MapName is  :" + msg)
-        
 
         response = make_response(" Result of map saving with map name" + map_name)
         response.status_code = 200
-        api_status.publish(str(response.data))
+       
     else:
         response = make_response("Please check map, Somethings went wrong the passed name is : " + map_name)
         response.status_code = 300
-        api_status.publish(str(response.data))
-
+        
     return response
 # loading Nav
 
@@ -163,13 +148,6 @@ def navload():
         "tortoisebot_firmware", 
         "server_bringup.launch"
         ])
-        # print(path)
-        # print(map_name) 
-        poseNodeSubprocess = subprocess.Popen([
-        "rosrun", 
-        "riotu_robot_pose_publisher", 
-        "riotu_robot_pose_publisher"
-        ])
         
         map_name = request.form['map_name']
         navloadSubprocess = subprocess.Popen([
@@ -182,12 +160,12 @@ def navload():
 
         response = make_response(" Result of nav loading with map name" + map_name)
         response.status_code = 200
-        api_status.publish(str(response.data))
+        
 
     else:
         response = make_response("Please check map and nav, Somethings went wrong the passed name is : " + map_name)
         response.status_code = 300
-        api_status.publish(str(response.data))
+       
     
     return response
 
@@ -204,11 +182,11 @@ def killnav():
 
         response = make_response("Success in killing NAV and POSE")
         response.status_code = 200
-        api_status.publish(str(response.data))
+        
     else:
         response = make_response("Executed but the process does not exists")
         response.status_code = 300
-        api_status.publish(str(response.data))
+       
 
     return response 
 
@@ -225,8 +203,8 @@ def robotstartup():
     print(stdout=subprocess.PIPE)
     response = make_response("Success in robot startup ")
     response.status_code = 200
-    api_status.publish(str(response.data))
+
     
 
 if __name__ == '__main__':
-    app.run(debug=True, host="192.168.0.160", port=3001)
+    app.run(debug=True, host="192.168.0.242", port=3003)
