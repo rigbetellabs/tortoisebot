@@ -31,5 +31,7 @@
     <!-- Unity -->
 
     <include file="$(find ros_tcp_endpoint)/launch/endpoint.launch" />
+    <node name="robot_pose" pkg="riotu_robot_pose_publisher" type="riotu_robot_pose_publisher" />
+
 
 </launch>
