@@ -5,8 +5,8 @@
 	<!-- Map Publishing Node -->
     <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node" args="-resolution 0.01" />
 
-    <!-- Start RViz with custom view -->
-    <node pkg="rviz" type="rviz" name="show_rviz" args="-d $(find tortoisebot_slam)/rviz/mapping.rviz"/>
+    <!-- Start RViz with custom view 
+    <node pkg="rviz" type="rviz" name="show_rviz" args="-d $(find tortoisebot_slam)/rviz/mapping.rviz"/> -->
 
     <node pkg="tortoisebot_slam" type="map_unity.py" name="map_unity" />
 
