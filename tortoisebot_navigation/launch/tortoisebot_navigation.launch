@@ -16,8 +16,8 @@
     <node pkg="map_server" name="map_server" type="map_server" args="$(find tortoisebot_navigation)/maps/$(arg map_file).yaml"/>
   </group>
 
-  <!-- rviz -->
-  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find tortoisebot_navigation)/rviz/tortoisebot_navigation.rviz"/>
+  <!-- rviz 
+  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find tortoisebot_navigation)/rviz/tortoisebot_navigation.rviz"/> -->
 
   <!-- move_base -->
   <include file="$(find tortoisebot_navigation)/launch/move_base.launch">
