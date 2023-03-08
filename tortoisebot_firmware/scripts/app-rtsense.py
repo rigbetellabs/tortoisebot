@@ -1,8 +1,8 @@
-#! /usr/bin/env python3
+#! /usr/bin/env python
 
 import os
 import signal
-import rospy
+#import rospy
 import threading
 import json 
 import subprocess
@@ -11,13 +11,6 @@ from flask import Flask, request, make_response
 
 from std_msgs.msg import UInt32, String
 
-# def ros_callback(msg):
-#     print(msg)
-
-threading.Thread(target=lambda: rospy.init_node('rtsense_api', disable_signals=True, anonymous=True)).start()
-api_status = rospy.Publisher("/api_status", String, queue_size=12)
-# rospy.Subscriber('/talker', UInt32, ros_callback)
-pub_status = rospy.Publisher('/pub_status', String, queue_size=10)
 
 app = Flask(__name__)
 
@@ -234,23 +227,6 @@ def robotstartup():
     response.status_code = 200
     api_status.publish(str(response.data))
     
-# TestApi
-@app.route('/pub1', methods = ['GET'])
-def hello_world():
-    data = request.form
-    print(request.form['mobile'])
-
-    
-    # print(data[0])
-    
-    
-    # msg = UInt32()
-    # if(slamLaunchSubprocess):
-    #     msg.data = slamLaunchSubprocess.pid
-    #     kill(slamLaunchSubprocess.pid)
-    #     pub.publish(msg)
-
-    # return pub.publish(msg)
 
 if __name__ == '__main__':
     app.run(debug=True, host="192.168.0.160", port=3001)
