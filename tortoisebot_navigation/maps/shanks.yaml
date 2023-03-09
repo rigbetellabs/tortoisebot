@@ -1,0 +1,7 @@
+image: /home/shubhu/catkin_ws/src/tortoisebot/tortoisebot_navigation/maps/shanks.pgm
+resolution: 0.010000
+origin: [-2.450000, -3.300000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

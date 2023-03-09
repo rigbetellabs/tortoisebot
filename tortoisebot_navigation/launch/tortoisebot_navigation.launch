@@ -2,7 +2,7 @@
 
 <launch>
   <!-- Arguments -->
-  <arg name="map_file" default="my_map"/>
+  <arg name="map_file" default="(find tortoisebot_navigation)/launch/my_map.yaml"/>
   <arg name="move_forward_only" default="true"/>
   <arg name="exploration" default="false"/>
 
@@ -13,7 +13,7 @@
 
   <!-- Map server for Map-based Navigation-->
   <group unless="$(arg exploration)">
-    <node pkg="map_server" name="map_server" type="map_server" args="$(find tortoisebot_navigation)/maps/$(arg map_file).yaml"/>
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
   </group>
 
   <!-- rviz 
