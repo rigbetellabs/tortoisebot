@@ -20,8 +20,9 @@ def generate_launch_description():
   prefix_address = get_package_share_directory('tortoisebot_slam') 
   default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot.xacro')
   params_file= os.path.join(prefix_address, 'config', 'nav2_params.yaml')
-  map_file = os.path.join(get_package_share_directory(
-        'tortoisebot_bringup'), 'maps', 'room2.yaml')
+  map_file=LaunchConfiguration('map')
+  map_directory = os.path.join(get_package_share_directory(
+        'tortoisebot_bringup'), 'maps','room2.yaml')
   use_sim_time=LaunchConfiguration('use_sim_time')
   exploration=LaunchConfiguration('exploration')   
   rviz_launch_cmd=IncludeLaunchDescription(
@@ -85,13 +86,15 @@ def generate_launch_description():
   return LaunchDescription([
 
     SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM', '1'),
-    launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
+    launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
                                             description='Flag to enable use_sim_time'),
-    launch.actions.DeclareLaunchArgument(name='exploration', default_value='False',
+    launch.actions.DeclareLaunchArgument(name='exploration', default_value='True',
                                             description='Flag to enable use_sim_time'),
     launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
                                           description='Absolute path to robot urdf file'),
-    Node(
+    launch.actions.DeclareLaunchArgument(name='map',default_value=map_directory,
+                                          description='Map to be used'),
+ Node(
         package='nav2_map_server',
         condition=IfCondition(PythonExpression(['not ', exploration])),
         executable='map_server',
@@ -123,3 +126,4 @@ def generate_launch_description():
 
   ]
 )
+
