@@ -12,7 +12,7 @@ def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(package='tortoisebot_description').find('tortoisebot_description')
     gazebo_pkg_share = launch_ros.substitutions.FindPackageShare(package='tortoisebot_gazebo').find('tortoisebot_gazebo')
     default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot.xacro')
-    default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config_new.rviz')
+    default_rviz_config_path = os.path.join(pkg_share, 'rviz/tortoisebot_navigation.rviz')
     world_path=os.path.join(gazebo_pkg_share, 'worlds/room2.sdf'),
     sdf_path=os.path.join(pkg_share, 'models/urdf/tortoisebot', 'model.sdf'),
     use_sim_time = LaunchConfiguration('use_sim_time')

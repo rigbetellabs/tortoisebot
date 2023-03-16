@@ -16,7 +16,7 @@ def generate_launch_description():
   gazebo_launch_dir=os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'launch')
   ydlidar_launch_dir=os.path.join(get_package_share_directory('ydlidar'), 'launch')
   default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot.xacro')
-  default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config_basic.rviz')
+  default_rviz_config_path = os.path.join(pkg_share, 'rviz/sensors.rviz')
   use_sim_time=LaunchConfiguration('use_sim_time')
   
   rviz_launch_cmd=launch_ros.actions.Node(
