@@ -17,20 +17,33 @@ def camera():
     pitch = rospy.get_param('~pitch', default= 100)
     yaw = rospy.get_param('~yaw', default= 100)
 
-    #create a new publisher. we specify the topic name, then type of message then the queue size
+    #create a new publisher. 
     pub = rospy.Publisher('PtzCamera_topic', PtzCamera, queue_size=10)
 
     #we need to initialize the node
     rospy.init_node('PtzCamera_publisher_node', anonymous=True)
 
     #set the loop rate
-    rate = rospy.Rate(5) # 1hz
+    rate = rospy.Rate(2) # 1hz
     #keep publishing until a Ctrl-C is pressed
-    i = 0
+
     while not rospy.is_shutdown():
         PtzCam = PtzCamera()
-        PtzCam.zoom   = zoom     # zoom max = 18000 ,  zoom min = 0
-        PtzCam.focous = focous   # focous max = 18000  focous min = 0
+
+        if (zoom >= 17000 ):
+             PtzCam.zoom   = 17000 # zoom max = 18000 ,  zoom min = 0
+        elif (zoom <= 0):
+            PtzCam.zoom   = 100
+        else :
+            PtzCam.zoom   = zoom
+
+        if (focous >= 17000 ):
+             PtzCam.focous   = 17000 # zoom max = 18000 ,  zoom min = 0
+        elif (focous <= 0):
+            PtzCam.focous   = 0
+        else :
+            PtzCam.focous   = focous # focous max = 18000  focous min = 0
+            
         PtzCam.roll = roll
         PtzCam.pitch  = pitch
         PtzCam.yaw    = yaw
@@ -38,7 +51,7 @@ def camera():
         rospy.loginfo(PtzCam)
         pub.publish(PtzCam)
         rate.sleep()
-        i=i+1
+
 
 
 if __name__ == '__main__':
