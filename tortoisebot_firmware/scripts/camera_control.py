@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-# python camera_control.py _zoom:=100 _focous:=100 _roll:=100 _pitch:=100 _yaw:=100
-# rosrun tortoisebot_firmware camera_control.py _zoom:=100 _focous:=100 _roll:=100 _pitch:=100 _yaw:=100
+# python camera_control.py _zoom:=100 _focus:=100 _roll:=100 _pitch:=100 _yaw:=100
+# rosrun tortoisebot_firmware camera_control.py _zoom:=100 _focus:=100 _roll:=100 _pitch:=100 _yaw:=100
 
 import rospy
 from tortoisebot_firmware.msg import PtzCamera
@@ -9,19 +9,16 @@ import sys
 
 def camera():
 
-    rospy.init_node('PtzCamera_publisher_node', anonymous=True)
+    rospy.init_node('ptzcamera_publisher_node', anonymous=True)
 
     zoom = rospy.get_param('~zoom', default= 100)  # 
-    focous = rospy.get_param('~focous', default= 100)
+    focus = rospy.get_param('~focus', default= 100)
     roll =  rospy.get_param('~roll', default= 100)
     pitch = rospy.get_param('~pitch', default= 100)
     yaw = rospy.get_param('~yaw', default= 100)
 
     #create a new publisher. 
-    pub = rospy.Publisher('PtzCamera_topic', PtzCamera, queue_size=10)
-
-    #we need to initialize the node
-    rospy.init_node('PtzCamera_publisher_node', anonymous=True)
+    pub = rospy.Publisher('ptzcamera_topic', PtzCamera, queue_size=10)
 
     #set the loop rate
     rate = rospy.Rate(2) # 1hz
@@ -37,12 +34,12 @@ def camera():
         else :
             PtzCam.zoom   = zoom
 
-        if (focous >= 17000 ):
-             PtzCam.focous   = 17000 # zoom max = 18000 ,  zoom min = 0
-        elif (focous <= 0):
-            PtzCam.focous   = 0
+        if (focus >= 17000 ):
+             PtzCam.focus   = 17000 # zoom max = 18000 ,  zoom min = 0
+        elif (focus <= 0):
+            PtzCam.focus   = 0
         else :
-            PtzCam.focous   = focous # focous max = 18000  focous min = 0
+            PtzCam.focus   = focus # focus max = 18000  focus min = 0
             
         PtzCam.roll = roll
         PtzCam.pitch  = pitch

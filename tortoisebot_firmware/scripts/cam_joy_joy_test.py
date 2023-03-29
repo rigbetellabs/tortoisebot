@@ -32,11 +32,11 @@ def joy_callback(data):
         PtzCam.zoom   = remapped_msg.axes[0]
 
     if (remapped_msg.axes[1] >= 17000 ):
-            PtzCam.focous   = 17000 # zoom max = 18000 ,  zoom min = 0
+            PtzCam.focus   = 17000 # zoom max = 18000 ,  zoom min = 0
     elif (remapped_msg.axes[1] <= 0):
-        PtzCam.focous   = 0
+        PtzCam.focus   = 0
     else :
-        PtzCam.focous   = remapped_msg.axes[1] # focous max = 18000  focous min = 0
+        PtzCam.focus   = remapped_msg.axes[1] # focus max = 18000  focus min = 0
             
     # PtzCam.roll = roll
     # PtzCam.pitch  = pitch

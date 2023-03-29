@@ -81,3 +81,29 @@ The ReadMe is divided into several sections as per different topics and is const
 RigBetel Labs LLP®, Charholi Bk., via. Loheagaon, Pune - 412105, MH, India 🇮🇳<br>
 🌐 [RigBetelLabs.com](https://rigbetellabs.com) 📞 [+91-8432152998](https://wa.me/918432152998) 📨 getintouch.rbl@gmail.com , info@rigbetellabs.com <br>
 [LinkedIn](http://linkedin.com/company/rigbetellabs/) | [Instagram](http://instagram.com/rigbetellabs/) | [Facebook](http://facebook.com/rigbetellabs) | [Twitter](http://twitter.com/rigbetellabs) | [YouTube](https://www.youtube.com/channel/UCfIX89y8OvDIbEFZAAciHEA) | [Discord Community](https://discord.gg/qDuCSMTjvN)
+
+
+## To communicate 2 raspberry pi via LAN cable
+
+1. sudo nano /etc/dhcpcd.conf
+
+#### IP address for Raspberry Pi 1
+````
+interface eth0
+static ip_address=192.168.1.10/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+````
+
+#### IP address for Raspberry Pi 2
+````
+interface eth0
+static ip_address=192.168.1.11/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+````
+
+2. Replace the IP addresses with the ones that you want to assign to each Raspberry Pi
+3. Reboot both Raspberry Pi
+4. ping 192.168.1.11 or 192.168.1.10
+5. Now you can do master slave communication with these IP's for ROS
