@@ -108,48 +108,48 @@ image_count = 0
 #     stdscr.addstr(start_y + 9, start_x_device_info, motor_y_val)
 #     stdscr.addstr(start_y + 10, start_x_device_info, ircut_val)
 # parse input key
-def parseKey(k,focuser,auto_focus,camera):
-    global image_count
-    motor_step  = 5
-    focus_step  = 100
-    zoom_step   = 100
-    if k == ord('s'):
-        focuser.set(Focuser.OPT_MOTOR_Y,focuser.get(Focuser.OPT_MOTOR_Y) + motor_step)
-    elif k == ord('w'):
-        focuser.set(Focuser.OPT_MOTOR_Y,focuser.get(Focuser.OPT_MOTOR_Y) - motor_step)
-    elif k == ord('d'):
-        focuser.set(Focuser.OPT_MOTOR_X,focuser.get(Focuser.OPT_MOTOR_X) - motor_step)
-    elif k == ord('a'):
-        focuser.set(Focuser.OPT_MOTOR_X,focuser.get(Focuser.OPT_MOTOR_X) + motor_step)
-    elif k == ord('r'):
-        focuser.reset(Focuser.OPT_FOCUS)
-        focuser.reset(Focuser.OPT_ZOOM)
-    elif k == curses.KEY_DOWN:
-        focuser.set(Focuser.OPT_ZOOM,focuser.get(Focuser.OPT_ZOOM) - zoom_step)
+# def parseKey(k,focuser,auto_focus,camera):
+#     global image_count
+#     motor_step  = 5
+#     focus_step  = 100
+#     zoom_step   = 100
+#     if k == ord('s'):
+#         focuser.set(Focuser.OPT_MOTOR_Y,focuser.get(Focuser.OPT_MOTOR_Y) + motor_step)
+#     elif k == ord('w'):
+#         focuser.set(Focuser.OPT_MOTOR_Y,focuser.get(Focuser.OPT_MOTOR_Y) - motor_step)
+#     elif k == ord('d'):
+#         focuser.set(Focuser.OPT_MOTOR_X,focuser.get(Focuser.OPT_MOTOR_X) - motor_step)
+#     elif k == ord('a'):
+#         focuser.set(Focuser.OPT_MOTOR_X,focuser.get(Focuser.OPT_MOTOR_X) + motor_step)
+#     elif k == ord('r'):
+#         focuser.reset(Focuser.OPT_FOCUS)
+#         focuser.reset(Focuser.OPT_ZOOM)
+#     elif k == curses.KEY_DOWN:
+#         focuser.set(Focuser.OPT_ZOOM,focuser.get(Focuser.OPT_ZOOM) - zoom_step)
    
-    elif k == curses.KEY_UP:
-        focuser.set(Focuser.OPT_ZOOM,focuser.get(Focuser.OPT_ZOOM) + zoom_step)
+#     elif k == curses.KEY_UP:
+#         focuser.set(Focuser.OPT_ZOOM,focuser.get(Focuser.OPT_ZOOM) + zoom_step)
 
-    elif k == curses.KEY_RIGHT:
-        focuser.set(Focuser.OPT_FOCUS,focuser.get(Focuser.OPT_FOCUS) + focus_step)
-    elif k == curses.KEY_LEFT:
-        focuser.set(Focuser.OPT_FOCUS,focuser.get(Focuser.OPT_FOCUS) - focus_step)
-    elif k == 10:
-        # auto_focus.startFocus()
-        auto_focus.startFocus2()
-        # auto_focus.auxiliaryFocusing()
-        pass
-    elif k == 32:
-        focuser.set(Focuser.OPT_IRCUT,focuser.get(Focuser.OPT_IRCUT)^0x0001)
-        pass
-    elif k == ord('c'):
-        #set camera resolution to 2500x1900
-        camera.resolution = (2500,1900)
-        #save image to file.
-        camera.capture("image{}.jpg".format(image_count))
-        image_count += 1
-        #set camera resolution to 640x480
-        camera.resolution = (640,480)
+#     elif k == curses.KEY_RIGHT:
+#         focuser.set(Focuser.OPT_FOCUS,focuser.get(Focuser.OPT_FOCUS) + focus_step)
+#     elif k == curses.KEY_LEFT:
+#         focuser.set(Focuser.OPT_FOCUS,focuser.get(Focuser.OPT_FOCUS) - focus_step)
+#     elif k == 10:
+#         # auto_focus.startFocus()
+#         auto_focus.startFocus2()
+#         # auto_focus.auxiliaryFocusing()
+#         pass
+#     elif k == 32:
+#         focuser.set(Focuser.OPT_IRCUT,focuser.get(Focuser.OPT_IRCUT)^0x0001)
+#         pass
+#     elif k == ord('c'):
+#         #set camera resolution to 2500x1900
+#         camera.resolution = (2500,1900)
+#         #save image to file.
+#         camera.capture("image{}.jpg".format(image_count))
+#         image_count += 1
+#         #set camera resolution to 640x480
+#         camera.resolution = (640,480)
 
 
 # Python curses example Written by Clay McLeod
@@ -235,54 +235,20 @@ def  PtzCamera_callback(message):
 
     rospy.loginfo("zoom = %d,focus = %d,roll= %d ,pitch = %d,yaw = %d",message.zoom,message.focus,message.roll,message.pitch,message.yaw)
 
- 
-    # if k == ord('s'): + Y
+
     focuser.set(Focuser.OPT_MOTOR_Y, message.pitch)
     print("y pitch value",focuser.get(Focuser.OPT_MOTOR_Y))
-
-    # elif k == ord('w'): -Y
-    #     focuser.set(Focuser.OPT_MOTOR_Y,focuser.get(Focuser.OPT_MOTOR_Y) - motor_step)
-    # elif k == ord('d'): -x
 
     focuser.set(Focuser.OPT_MOTOR_X, message.roll)
     print("x roll value",focuser.get(Focuser.OPT_MOTOR_X))
 
-    # elif k == ord('a'): +x
-    #     focuser.set(Focuser.OPT_MOTOR_X,focuser.get(Focuser.OPT_MOTOR_X) + motor_step)
-    # elif k == ord('r'):
-    #     focuser.reset(Focuser.OPT_FOCUS)
-    #     focuser.reset(Focuser.OPT_ZOOM)
-
-
     focuser.set(Focuser.OPT_ZOOM, message.zoom)
     print("zoom value",focuser.get(Focuser.OPT_ZOOM))
  
-    # focuser.set(Focuser.OPT_ZOOM,focuser.get(zoom_step_plus)
-
     focuser.set(Focuser.OPT_FOCUS, message.focus)
     print("focus value",focuser.get(Focuser.OPT_FOCUS))
    
-    # focuser.set(Focuser.OPT_FOCUS,focuser.get(Ffocus_step_minus)
-
-
-    # elif k == 10:
-    #     # auto_focus.startFocus()
-    #     auto_focus.startFocus2()
-    #     # auto_focus.auxiliaryFocusing()
-    #     pass
-    # elif k == 32:
-    #     focuser.set(Focuser.OPT_IRCUT,focuser.get(Focuser.OPT_IRCUT)^0x0001)
-    #     pass
-    # elif k == ord('c'):
-    #     #set camera resolution to 2500x1900
-    #     camera.resolution = (2500,1900)
-    #     #save image to file.
-    #     camera.capture("image{}.jpg".format(image_count))
-    #     image_count += 1
-    #     #set camera resolution to 640x480
-    #     camera.resolution = (640,480)
-
-
+ 
 def camera_command_sub():
     #rospy.init_node('PtzCamera_subscriber_node', anonymous=True)
     rospy.Subscriber("ptzcamera_topic", PtzCamera, PtzCamera_callback)
