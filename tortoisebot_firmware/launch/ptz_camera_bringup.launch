@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<launch>
+	
+	<arg name="joy" default="false"/>
+		
+	<!--<node name="differential" pkg="tortoisebot_firmware" type="differential.py" output="screen"/> -->
+
+	<node name="ptzcamera" pkg="tortoisebot_firmware" type="ptz_cam_pub.py" output="screen"/>
+	<node name="ptzcamera_uxv" pkg="uxv" type="servo_sub.py" output="screen"/> 
+			
+	<group if="$(arg joy)">
+		<include file="$(find tortoisebot_firmware)/launch/joy_control.launch" />
+	</group>
+
+</launch>

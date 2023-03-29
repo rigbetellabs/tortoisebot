@@ -238,19 +238,20 @@ def  PtzCamera_callback(message):
  
     # if k == ord('s'): + Y
     focuser.set(Focuser.OPT_MOTOR_Y, message.pitch)
-    print("y value",focuser.get(Focuser.OPT_MOTOR_Y))
+    print("y pitch value",focuser.get(Focuser.OPT_MOTOR_Y))
 
     # elif k == ord('w'): -Y
     #     focuser.set(Focuser.OPT_MOTOR_Y,focuser.get(Focuser.OPT_MOTOR_Y) - motor_step)
     # elif k == ord('d'): -x
+
     focuser.set(Focuser.OPT_MOTOR_X, message.roll)
-    print("x value",focuser.get(Focuser.OPT_MOTOR_X))
+    print("x roll value",focuser.get(Focuser.OPT_MOTOR_X))
+
     # elif k == ord('a'): +x
     #     focuser.set(Focuser.OPT_MOTOR_X,focuser.get(Focuser.OPT_MOTOR_X) + motor_step)
     # elif k == ord('r'):
     #     focuser.reset(Focuser.OPT_FOCUS)
     #     focuser.reset(Focuser.OPT_ZOOM)
-
 
 
     focuser.set(Focuser.OPT_ZOOM, message.zoom)

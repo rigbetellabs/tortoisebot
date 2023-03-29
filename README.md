@@ -107,3 +107,7 @@ static domain_name_servers=192.168.1.1
 3. Reboot both Raspberry Pi
 4. ping 192.168.1.11 or 192.168.1.10
 5. Now you can do master slave communication with these IP's for ROS
+
+
+#### Adafruit_Python_PCA9685 for servo control
+https://github.com/adafruit/Adafruit_Python_PCA9685

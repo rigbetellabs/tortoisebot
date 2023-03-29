@@ -1,0 +1,13 @@
+<launch>
+
+	<node name="digital_output_sub" pkg="uxv" type="do_sub.py" output="screen"/>
+	
+	<node name="servo_sub" pkg="uxv" type="servo_sub.py" output="screen"/>
+
+	<include file="$(find ros_tcp_endpoint)/launch/endpoint.launch"/>
+
+	<include file="$(find mavros)/launch/px4.launch"/>
+
+	<include file="$(find pixhawk_imu_to_eular)/launch/imu_to_eular.launch"/>
+
+</launch>
