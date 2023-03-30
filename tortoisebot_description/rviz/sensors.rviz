@@ -7,8 +7,9 @@ Panels:
         - /Global Options1
         - /Status1
         - /Image1
+        - /Image1/Topic1
       Splitter Ratio: 0.5
-    Tree Height: 791
+    Tree Height: 464
 Visualization Manager:
   Class: ""
   Displays:
@@ -136,24 +137,25 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        odom:
-          base_link:
-            camera:
-              {}
-            caster:
-              {}
-            imu:
-              {}
-            lidar_body:
-              lidar_bottom:
-                lidar:
-                  {}
-              lidar_motorend:
+        base_link:
+          camera:
+            {}
+          caster:
+            {}
+          imu:
+            {}
+          lidar_body:
+            lidar_bottom:
+              lidar:
                 {}
-            wheel_left:
+            lidar_motorend:
               {}
-            wheel_right:
-              {}
+          wheel_left:
+            {}
+          wheel_right:
+            {}
+        odom:
+          {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -201,8 +203,8 @@ Visualization Manager:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /camera/image
+        Reliability Policy: Best Effort
+        Value: /camera/image_raw
       Value: true
   Enabled: true
   Global Options:
@@ -257,10 +259,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7447977066040039
+      Pitch: 0.11979828774929047
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.6035847663879395
+      Yaw: 2.9135854244232178
     Saved: ~
 Window Geometry:
   Displays:
@@ -270,7 +272,7 @@ Window Geometry:
   Hide Right Dock: false
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd000000010000000000000217000003a2fc0200000006fb000000100044006900730070006c006100790073010000003d000003a2000000c900fffffffb0000000a0049006d0061006700650000000283000000870000002800fffffffb0000000a0049006d0061006700650100000194000001760000000000000000fb0000000a0049006d00610067006501000002d00000010b0000000000000000fb0000000c00430061006d00650072006100000002ba000001210000000000000000fb0000000a0049006d00610067006501000002eb000000f0000000000000000000000525000003a200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd000000010000000000000217000003a2fc0200000007fb000000100044006900730070006c006100790073010000003d0000025b000000c900fffffffb0000000a0049006d0061006700650000000283000000870000000000000000fb0000000a0049006d0061006700650100000194000001760000000000000000fb0000000a0049006d00610067006501000002d00000010b0000000000000000fb0000000c00430061006d00650072006100000002ba000001210000000000000000fb0000000a0049006d00610067006501000002eb000000f00000000000000000fb0000000a0049006d006100670065010000029e000001410000002800ffffff00000525000003a200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1858
   X: 62
   Y: 28

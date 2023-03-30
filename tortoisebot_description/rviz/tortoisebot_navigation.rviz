@@ -3,9 +3,10 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Image1/Topic1
       Splitter Ratio: 0.5
-    Tree Height: 541
+    Tree Height: 446
 Visualization Manager:
   Class: ""
   Displays:
@@ -40,8 +41,7 @@ Visualization Manager:
         Value: /robot_description
       Enabled: true
       Links:
-        All Links Enabled:
-          {}
+        All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -50,42 +50,52 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         camera:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         caster:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         imu:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         lidar:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         lidar_body:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         lidar_bottom:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         lidar_motorend:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         wheel_left:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         wheel_right:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
       Name: RobotModel
       TF Prefix: ""
       Update Interval: 0
@@ -103,8 +113,6 @@ Visualization Manager:
         caster:
           Value: true
         imu:
-          Value: true
-        laser_frame:
           Value: true
         lidar:
           Value: true
@@ -129,7 +137,24 @@ Visualization Manager:
       Show Names: true
       Tree:
         map:
-          {}
+          odom:
+            base_link:
+              camera:
+                {}
+              caster:
+                {}
+              imu:
+                {}
+              lidar_body:
+                lidar_bottom:
+                  lidar:
+                    {}
+                lidar_motorend:
+                  {}
+              wheel_left:
+                {}
+              wheel_right:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -147,9 +172,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 1016
+      Max Intensity: 0
       Min Color: 0; 0; 0
-      Min Intensity: 1008
+      Min Intensity: 0
       Name: LaserScan
       Position Transformer: XYZ
       Selectable: true
@@ -281,8 +306,8 @@ Visualization Manager:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /camera/image
+        Reliability Policy: Best Effort
+        Value: /camera/image_raw
       Value: true
   Enabled: true
   Global Options:
@@ -322,35 +347,35 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 6.054063320159912
+      Distance: 3.578312873840332
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.5965061187744141
-        Y: -0.10617119073867798
-        Z: 0.5435945391654968
+        X: 0.7649866342544556
+        Y: 0.6311523914337158
+        Z: 0.33014610409736633
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7447977066040039
+      Pitch: 0.25979799032211304
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.6035847663879395
+      Yaw: 2.6835875511169434
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1016
+  Height: 1020
   Hide Left Dock: false
   Hide Right Dock: false
   Image:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002170000039efc0200000006fb000000100044006900730070006c006100790073010000003d000002a8000000c900fffffffb0000000a0049006d0061006700650000000283000000870000000000000000fb0000000a0049006d0061006700650100000194000001760000000000000000fb0000000a0049006d00610067006501000002d00000010b0000000000000000fb0000000c00430061006d00650072006100000002ba000001210000000000000000fb0000000a0049006d00610067006501000002eb000000f00000002800ffffff0000051b0000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  Width: 1848
-  X: 72
-  Y: 27
+  QMainWindow State: 000000ff00000000fd000000010000000000000217000003a2fc0200000007fb000000100044006900730070006c006100790073010000003d00000249000000c900fffffffb0000000a0049006d0061006700650000000283000000870000000000000000fb0000000a0049006d0061006700650100000194000001760000000000000000fb0000000a0049006d00610067006501000002d00000010b0000000000000000fb0000000c00430061006d00650072006100000002ba000001210000000000000000fb0000000a0049006d00610067006501000002eb000000f00000000000000000fb0000000a0049006d006100670065010000028c000001530000002800ffffff00000525000003a200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1858
+  X: 62
+  Y: 28
