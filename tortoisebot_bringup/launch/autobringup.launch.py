@@ -15,7 +15,7 @@ def generate_launch_description():
   navigation_dir = os.path.join(get_package_share_directory('tortoisebot_navigation'), 'launch')
   rviz_launch_dir=os.path.join(get_package_share_directory('tortoisebot_description'), 'launch')
   gazebo_launch_dir=os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'launch')
-  ydlidar_launch_dir=os.path.join(get_package_share_directory('ydlidar'), 'launch')
+  ydlidar_launch_dir=os.path.join(get_package_share_directory('ydlidar_ros2_driver'), 'launch')
   cartographer_launch_dir=os.path.join(get_package_share_directory('tortoisebot_slam'), 'launch')
   prefix_address = get_package_share_directory('tortoisebot_slam') 
   default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot.xacro')
@@ -55,7 +55,7 @@ def generate_launch_description():
                             'use_sim_time':use_sim_time}.items())
   ydlidar_launch_cmd=IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(ydlidar_launch_dir, 'x2_ydlidar_launch.py')),
+            os.path.join(ydlidar_launch_dir, 'ydlidar_launch.py')),
             condition=IfCondition(PythonExpression(['not ', use_sim_time])),
             launch_arguments={'use_sim_time':use_sim_time}.items())
   

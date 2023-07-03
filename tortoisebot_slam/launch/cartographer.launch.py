@@ -81,7 +81,7 @@ def generate_launch_description():
     Node(
       package='cartographer_ros',
       condition= IfCondition(slam),
-      executable='occupancy_grid_node',
+      executable='cartographer_occupancy_grid_node',
       name='cartographer_occupancy_grid_node',
       arguments=[
         '-resolution', res,
