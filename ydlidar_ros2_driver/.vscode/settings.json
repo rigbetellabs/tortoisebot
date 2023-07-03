@@ -1,0 +1,8 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/sub22/ros2_ws/install/eic_pkg/lib/python3.10/site-packages",
+        "/home/sub22/ros2_ws/install/eic_demo/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
