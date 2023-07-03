@@ -66,9 +66,9 @@ def generate_launch_description():
         name ='differential_drive_publisher',
     )
   camera_node = Node(
-      package='raspicam2',
+      package='camera_ros',
       condition=IfCondition(PythonExpression(['not ', use_sim_time])),
-      executable='raspicam2_node',
+      executable='camera_node',
       name ='pi_camera',
     )
   robot_state_publisher_node = launch_ros.actions.Node(
@@ -122,7 +122,7 @@ def generate_launch_description():
     gazebo_launch_cmd,
     navigation_launch_cmd, 
     cartographer_launch_cmd,  
-    #camera_node
+    camera_node
 
   ]
 )
