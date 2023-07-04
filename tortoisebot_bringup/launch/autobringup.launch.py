@@ -70,6 +70,7 @@ def generate_launch_description():
       condition=IfCondition(PythonExpression(['not ', use_sim_time])),
       executable='camera_node',
       name ='pi_camera',
+      parameters= [{'height': 360},{'width': 480}],
     )
   robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
