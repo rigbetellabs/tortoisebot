@@ -30,5 +30,5 @@
 	<!--  Additional node which converts Cartographer map into ROS occupancy grid map. Not used and can be skipped in this case 
 	 -->
     
-
+	<node name="MapstoUnity" pkg="waiterbot_firmware" type="map_unity.py" output="screen"/>
 </launch>
