@@ -33,6 +33,6 @@
     <include file="$(find ros_tcp_endpoint)/launch/endpoint.launch" />
  
     <node name="odom_publisher" pkg="tortoisebot_firmware" type="odom_pub.py" output="screen"/>
-   <!-- <node name="movebase_client_py" pkg="tortoisebot_firmware" type="unity_to_nav.py" output="screen" /> -->
+   <node name="movebase_client_py" pkg="tortoisebot_firmware" type="unity_to_nav.py" output="screen" /> 
 
 </launch>
