@@ -22,7 +22,7 @@
         <include file="$(find tortoisebot_firmware)/launch/joy_control.launch" />
     </group>
     
-        <!-- <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" args="
+<!--    <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" args="
           -configuration_directory
               $(find tortoisebot_firmware)/config
           -configuration_basename lidar.lua" output="screen">

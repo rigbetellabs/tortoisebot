@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # This scripts takes the odom from TF published by Cartographer and publishes it as an individual topic. Only required when used with real robot.
 
