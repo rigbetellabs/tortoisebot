@@ -96,7 +96,7 @@
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
         <cameraName>/camera</cameraName>
-        <imageTopicName>image_raw</imageTopicName>
+        <imageTopicName>/raspicam_node/image</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera</frameName>
         <hackBaseline>0.07</hackBaseline>
