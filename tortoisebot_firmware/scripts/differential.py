@@ -7,13 +7,13 @@ import RPi.GPIO as GPIO
 import time
 from math import pi
 
-leftEn = 13         #   Purple
-rightEn = 12        #   Red
+leftEn = 13         #   Blue
+rightEn = 12        #   Brown
 
-leftBackward = 5    #   Blue
-leftForward = 6     #   Green
-rightForward = 16   #   Yellow
-rightBackward = 20  #   Orange
+leftBackward = 5    #   Green
+leftForward = 6     #   Yellow
+rightForward = 16   #   Orange
+rightBackward = 20  #   Red
 
 motor_rpm = 60              #   max rpm of motor on full voltage 
 wheel_diameter = 0.065      #   in meters
@@ -24,6 +24,8 @@ min_pwm_val = 15           #   Minimum PWM value that is needed for the robot to
 wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
 max_speed = (circumference_of_wheel*motor_rpm)/60   #   m/sec
+max_ang = (max_speed*2)/wheel_separation            #   rad/sec
+
 lPWM=Int32()
 rPWM=Int32()
 lDIR=Bool()
@@ -147,4 +149,5 @@ if __name__ == '__main__':
     print('Wheel Diameter:\t'+str(wheel_diameter)+' m')
     print('Wheel Separation:\t'+str(wheel_separation)+' m')
     print('Robot Max Speed:\t'+str(max_speed)+' m/sec')
+    print('Max Angular Speed:\t'+str(max_ang)+' rad/sec')
     main()
