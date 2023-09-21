@@ -1,0 +1,9 @@
+obstacle_range: 0.3
+raytrace_range: 3.5
+
+footprint: [[-0.105, -0.105], [-0.105, 0.105], [0.041, 0.105], [0.041, -0.105]]
+#robot_radius: 0.105
+
+map_type: costmap
+observation_sources: scan
+scan: {sensor_frame: lidar, data_type: LaserScan, topic: scan, marking: true, clearing: true}
