@@ -54,4 +54,4 @@ struct camera_port
   };
 };
 
-} 
+}

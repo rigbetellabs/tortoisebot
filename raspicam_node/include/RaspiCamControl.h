@@ -181,4 +181,4 @@ MMAL_PARAM_AWBMODE_T raspicamcontrol_get_awb_mode(MMAL_COMPONENT_T& camera);
 MMAL_PARAM_IMAGEFX_T raspicamcontrol_get_imageFX(MMAL_COMPONENT_T& camera);
 MMAL_PARAM_COLOURFX_T raspicamcontrol_get_colourFX(MMAL_COMPONENT_T& camera);
 
-#endif /* RASPICAMCONTROL_H_ */
+#endif  // RASPICAMCONTROL_H_
