@@ -1,0 +1,36 @@
+# syntax=docker/dockerfile:1
+
+FROM ros:noetic
+
+RUN apt-get update && apt-get -y upgrade
+
+RUN mkdir -p /home/catkin_ws/src/
+
+COPY ../packages/ /home/catkin_ws/src/
+
+RUN rosdep update
+
+WORKDIR /home/catkin_ws/
+RUN apt-get install\
+ 				python3-rosdep \
+				python3-rosinstall \
+				python3-rosinstall-generator \
+				python3-wstool \
+				build-essential \
+				python3-catkin-tools \
+				ros-noetic-rviz \
+				ros-noetic-joint-state-publisher \
+				ros-noetic-robot-state-publisher \
+				ros-noetic-xacro \
+# Remove nano later
+				nano \
+				-y
+
+RUN rosdep install --from-paths src --ignore-src -r -y
+
+RUN catkin init && catkin clean
+RUN catkin config --install --extend /opt/ros/noetic/ \
+                  --cmake-args -DCMAKE_INSTALL_PREFIX="/opt/ros/noetic" \
+                               -DCMAKE_PREFIX_PATH="/opt/ros/noetic"
+
+RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
