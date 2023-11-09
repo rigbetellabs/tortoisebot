@@ -10,19 +10,18 @@
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>camera_info_manager</depend>
   <depend>compressed_image_transport</depend>
+  <depend>diagnostic_updater</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>libraspberrypi0</depend>
   <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
   <depend>std_msgs</depend>
   <depend>std_srvs</depend>
-  <depend>sensor_msgs</depend>
-  <depend>camera_info_manager</depend>
-  <depend>dynamic_reconfigure</depend>
-  <depend>diagnostic_updater</depend>
-  <depend>libraspberrypi0</depend>
   <build_depend>libraspberrypi-dev</build_depend>
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
 
-  <export>
-  </export>
+  <export/>
 </package>

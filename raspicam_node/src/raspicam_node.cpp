@@ -1345,7 +1345,7 @@ int main(int argc, char** argv) {
     ROS_INFO("Camera successfully calibrated from device specifc file");
   }
 
-  
+
 
   // diagnostics parameters
   state_srv.updater.setHardwareID("raspicam");
@@ -1366,7 +1366,7 @@ int main(int argc, char** argv) {
   auto cimage_pub = nh_topics.advertise<sensor_msgs::CompressedImage>("image/compressed", 1);
   compressed_image.pub.reset(new DiagnosedPublisher<sensor_msgs::CompressedImage>(
       cimage_pub, state_srv.updater, FrequencyStatusParam(&min_freq, &max_freq, 0.1, 10), TimeStampStatusParam(0, 0.2)));
-  
+
   camera_info_pub = nh_topics.advertise<sensor_msgs::CameraInfo>("camera_info", 1);
 
   dynamic_reconfigure::Server<raspicam_node::CameraConfig> server;

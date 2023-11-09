@@ -21,7 +21,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-if(${CMAKE_SYSTEM_PROCESSOR} MATCHES arm*) 
+if(${CMAKE_SYSTEM_PROCESSOR} MATCHES arm*)
   FIND_LIBRARY(mmal_LIBS NAMES mmal PATHS /opt/vc/lib)
   FIND_LIBRARY(mmalcore_LIBS NAMES mmal_core PATHS /opt/vc/lib)
   FIND_LIBRARY(mmalutil_LIBS NAMES mmal_util PATHS /opt/vc/lib)
@@ -45,14 +45,14 @@ if(${CMAKE_SYSTEM_PROCESSOR} MATCHES arm*)
       MESSAGE(FATAL_ERROR "Could not find vchostif library")
   ENDIF()
 
-  set(RPI_LIBRARIES ${RPI_LIBRARIES} 
+  set(RPI_LIBRARIES ${RPI_LIBRARIES}
   ${bcmhost_LIBS}
-  ${vcos_LIBS} 
-  ${mmal_LIBS} 
-  ${mmalcore_LIBS} 
-  ${mmalutil_LIBS}  
-  ${mmalvcclient_LIBS} 
-  ${vchostif_LIBS} 
+  ${vcos_LIBS}
+  ${mmal_LIBS}
+  ${mmalcore_LIBS}
+  ${mmalutil_LIBS}
+  ${mmalvcclient_LIBS}
+  ${vchostif_LIBS}
   )
 ENDIF()
 
@@ -132,7 +132,7 @@ add_dependencies(raspicam_node raspicam_node_gencfg)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(raspicam_node
   ${catkin_LIBRARIES}
-  ${RPI_LIBRARIES} 
+  ${RPI_LIBRARIES}
 )
 
 #############

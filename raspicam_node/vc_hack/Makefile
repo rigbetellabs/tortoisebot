@@ -51,6 +51,3 @@ libvchostif.a: vchostif.c
 	$(CC) -c vchostif.c
 	$(AR) rcs $@ vchostif.o
 	$(RANLIB) $@
-
-
-
