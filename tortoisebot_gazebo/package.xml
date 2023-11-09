@@ -57,6 +57,8 @@
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>tortoisebot_description</exec_depend>
   <depend>gazebo_ros</depend>
+  <build_depend>system_lib</build_depend>
+  <exec_depend>system_lib</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
