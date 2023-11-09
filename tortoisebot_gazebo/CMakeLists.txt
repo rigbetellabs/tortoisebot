@@ -105,8 +105,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #	INCLUDE_DIRS include
 #	LIBRARIES tortoisebot_gazebo
-	CATKIN_DEPENDS roscpp rospy std_msgs
-	DEPENDS system_lib gazebo
+	CATKIN_DEPENDS roscpp rospy std_msgs system_lib gazebo
 )
 
 ###########
