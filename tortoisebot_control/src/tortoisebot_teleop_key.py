@@ -2,7 +2,9 @@
 
 from __future__ import print_function
 import threading
-import roslib; roslib.load_manifest('teleop_twist_keyboard')
+import roslib
+
+roslib.load_manifest("teleop_twist_keyboard")
 import rospy
 
 from geometry_msgs.msg import Twist
@@ -25,29 +27,30 @@ CTRL-C to quit
 """
 
 moveBindings = {
-        'i':(1,0,0,0),
-        'o':(1,0,0,-1),
-        'j':(0,0,0,1),
-        'l':(0,0,0,-1),
-        'u':(1,0,0,1),
-        ',':(-1,0,0,0),
-        '.':(-1,0,0,1),
-        'm':(-1,0,0,-1),
-    }
+    "i": (1, 0, 0, 0),
+    "o": (1, 0, 0, -1),
+    "j": (0, 0, 0, 1),
+    "l": (0, 0, 0, -1),
+    "u": (1, 0, 0, 1),
+    ",": (-1, 0, 0, 0),
+    ".": (-1, 0, 0, 1),
+    "m": (-1, 0, 0, -1),
+}
 
-speedBindings={
-        'q':(0.01,0.01),
-        'z':(-0.01,-0.01),
-        'w':(0.01,0),
-        'x':(-0.01,0),
-        'e':(0,0.01),
-        'c':(0,-0.01),
-    }
+speedBindings = {
+    "q": (0.01, 0.01),
+    "z": (-0.01, -0.01),
+    "w": (0.01, 0),
+    "x": (-0.01, 0),
+    "e": (0, 0.01),
+    "c": (0, -0.01),
+}
+
 
 class PublishThread(threading.Thread):
     def __init__(self, rate):
         super(PublishThread, self).__init__()
-        self.publisher = rospy.Publisher('cmd_vel', Twist, queue_size = 1)
+        self.publisher = rospy.Publisher("cmd_vel", Twist, queue_size=1)
         self.x = 0.0
         self.y = 0.0
         self.z = 0.0
@@ -70,7 +73,11 @@ class PublishThread(threading.Thread):
         i = 0
         while not rospy.is_shutdown() and self.publisher.get_num_connections() == 0:
             if i == 4:
-                print("Waiting for subscriber to connect to {}".format(self.publisher.name))
+                print(
+                    "Waiting for subscriber to connect to {}".format(
+                        self.publisher.name
+                    )
+                )
             rospy.sleep(0.5)
             i += 1
             i = i % 5
@@ -130,18 +137,19 @@ def getKey(key_timeout):
     if rlist:
         key = sys.stdin.read(1)
     else:
-        key = ''
+        key = ""
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
     return key
 
 
 def vels(speed, turn):
-    return "currently:\tspeed %0.2f\tturn %0.2f " % (speed,turn)
+    return "currently:\tspeed %0.2f\tturn %0.2f " % (speed, turn)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     settings = termios.tcgetattr(sys.stdin)
 
-    rospy.init_node('teleop_twist_keyboard')
+    rospy.init_node("teleop_twist_keyboard")
 
     speed = rospy.get_param("~speed", 0.07)
     turn = rospy.get_param("~turn", 0.70)
@@ -159,12 +167,12 @@ if __name__=="__main__":
     status = 0
 
     try:
-        #pub_thread.wait_for_subscribers()
+        # pub_thread.wait_for_subscribers()
         pub_thread.update(x, y, z, th, speed, turn)
 
         print(msg)
-        print(vels(speed,turn))
-        while(1):
+        print(vels(speed, turn))
+        while 1:
             key = getKey(key_timeout)
             if key in moveBindings.keys():
                 x = moveBindings[key][0]
@@ -174,27 +182,27 @@ if __name__=="__main__":
             elif key in speedBindings.keys():
                 tempspeed = speed + speedBindings[key][0]
                 tempturn = turn + speedBindings[key][1]
-                
-                if 0.0 < tempspeed < 0.21 and 0.0 < tempturn < 2.35 :
+
+                if 0.0 < tempspeed < 0.21 and 0.0 < tempturn < 2.35:
                     speed = speed + speedBindings[key][0]
                     turn = turn + speedBindings[key][1]
-                    
-                    print(vels(speed,turn))
-                    if (status == 14):
+
+                    print(vels(speed, turn))
+                    if status == 14:
                         print(msg)
                     status = (status + 1) % 15
             else:
                 # Skip updating cmd_vel if key timeout and robot already
                 # stopped.
-                if key == '' and x == 0 and y == 0 and z == 0 and th == 0:
+                if key == "" and x == 0 and y == 0 and z == 0 and th == 0:
                     continue
                 x = 0
                 y = 0
                 z = 0
                 th = 0
-                if (key == '\x03'):
+                if key == "\x03":
                     break
- 
+
             pub_thread.update(x, y, z, th, speed, turn)
 
     except Exception as e:
