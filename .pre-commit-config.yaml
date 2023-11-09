@@ -1,4 +1,4 @@
-exclude: ydlidar_ros/
+exclude: ydlidar_ros/|raspicam_node
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
@@ -44,3 +44,4 @@ repos:
         language: system
         always_run: true
         pass_filenames: false
+        args: [--skip-pkg=raspicam_node, --skip-pkg=ydlidar_ros, --severity-leve=0]
