@@ -52,10 +52,10 @@ def generate_launch_description():
         name ='differential_drive_publisher',
     )
   camera_node = Node(
-      package='raspicam2',
+      package='v4l2_camera',
       condition=IfCondition(PythonExpression(['not ', use_sim_time])),
-      executable='raspicam2_node',
-      name ='pi_camera',
+      executable='v4l2_camera_node',
+      name ='camera1',
     )
   robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
