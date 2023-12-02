@@ -1,0 +1,47 @@
+camera:
+    raspicam2:
+        ros__parameters:
+            image_transport: compressed
+            width: 320
+            height: 240
+            fps: 90
+            quality: 80               # Set JPEG quality (0 to 100)
+
+            # https://www.raspberrypi.org/documentation/raspbian/applications/camera.md
+
+            sharpness: 0              # Set image sharpness (-100 - 100)
+            contrast: 0               # Set image contrast (-100 - 100)
+            saturation: 0             # Set image saturation (-100 - 100)
+            ISO: 0                    # Set capture ISO (100 - 800), 0: auto
+            videoStabilisation: 0     # Turn on video stabilisation
+            exposureCompensation: 0   # Set EV compensation (-10 - 10)
+
+            exposureMode: AUTO        # Set exposure mode
+                                      # modes: auto, night, nightpreview, backlight, spotlight, sports, snow, beach, verylong, fixedfps, antishake, fireworks
+            flickerAvoidMode: OFF     # Set flicker avoid mode
+                                      # modes: off, auto, 50HZ, 60HZ, max
+            exposureMeterMode: AVERAGE # Set metering mode
+                                      # modes: average, spot, backlit, matrix
+            awbMode: AUTO             # Set Automatic White Balance (AWB) mode
+                                      # modes: off, auto, sun, cloud, shade, tungsten, fluorescent, incandescent, flash, horizon
+            imageEffect: NONE         # Set image effect
+                                      # modes: none, negative, solarise, posterise, whiteboard, blackboard, sketch, denoise, emboss, oilpaint, hatch, gpen, pastel, watercolour, film, blur, saturation, colourswap, washedout, colourpoint, colourbalance, cartoon
+
+            colourEffects_enable: 0 # Set colour effect <U:V>
+            colourEffects_u: 128    # U parameter (range 0 - 255), applied to the U channel
+            colourEffects_v: 128    # V parameter (range 0 - 255), applied to the V channel
+
+            rotation: 0             # Set image rotation (0 - 359)
+            hflip: 0                # Set horizontal flip
+            vflip: 0                # Set vertical flip
+            roi_x: 0.0              # Set sensor region of interest, x
+            roi_y: 0.0              # Set sensor region of interest, y
+            roi_w: 1.0              # Set sensor region of interest, w
+            roi_h: 1.0              # Set sensor region of interest, h
+            shutter_speed: 0        # Set shutter speed in microseconds, max: 6000000us, 0: auto
+
+            awb_gains_r: 0.0        # Sets red gain (as floating point numbers) to be applied when awbMode OFF
+            awb_gains_b: 0.0        # Sets blue gain (as floating point numbers) to be applied when awbMode OFF
+            analog_gain: 0.0        # Analog gain
+            digital_gain: 0.0       # Digital gain
+

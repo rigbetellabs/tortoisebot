@@ -16,14 +16,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="0 0 0"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="grey"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="0 0 0"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -37,14 +37,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="-0.0325 0.07073 -0.03245"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/wheel_right.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/wheel_right.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="black"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="-0.0325 0.07073 -0.03245"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/wheel_right.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/wheel_right.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -58,14 +58,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="-0.0325 -0.07073 -0.03245"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/wheel_left.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/wheel_left.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="black"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="-0.0325 -0.07073 -0.03245"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/wheel_left.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/wheel_left.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -79,14 +79,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="0.032 -0.0 -0.01915"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/caster.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/caster.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="black"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="0.032 -0.0 -0.01915"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/caster.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/caster.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -100,14 +100,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="0.022 -0.031 -0.14715"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/lidar_body.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/lidar_body.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="black"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="0.022 -0.031 -0.14715"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/lidar_body.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/lidar_body.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -121,14 +121,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="-0.05 -0.0 -0.18065"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/lidar_motorend.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/lidar_motorend.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="blue"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="-0.05 -0.0 -0.18065"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/lidar_motorend.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/lidar_motorend.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -142,14 +142,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="0.0 -0.0 -0.18065"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/lidar_bottom.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/lidar_bottom.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="blue"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="0.0 -0.0 -0.18065"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/lidar_bottom.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/lidar_bottom.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -163,14 +163,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="0.0 -0.0 -0.19615"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/lidar_top.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/lidar_top.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="blue"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="0.0 -0.0 -0.19615"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/lidar_top.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/lidar_top.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -184,14 +184,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="-0.04 0.01025 -0.10543"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/imu.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/imu.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="grey"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="-0.04 0.01025 -0.10543"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/imu.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/imu.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>
@@ -205,14 +205,14 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="-0.061 -0.0 -0.11515"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/camera.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/camera.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			<material name="grey"/>
 		</visual>
 		<collision>
 			<origin rpy="0 0 0" xyz="-0.061 -0.0 -0.11515"/>
 			<geometry>
-				<mesh filename="file://$(find tortoisebot_description)/meshes/camera.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="file://$(find tortoisebot_description)/models/meshes/camera.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 		</collision>
 	</link>

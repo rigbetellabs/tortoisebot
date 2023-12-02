@@ -22,7 +22,12 @@
 # 1. Installation
 ## 1.1 Required Dependences: 
 ```
-sudo apt install ros-galactic-joint-state-publisher ros-galactic-robot-state-publisher ros-galactic-cartographer ros-galactic-cartographer-ros ros-galactic-map ros-galactic-gazebo-plugins ros-galactic-teleop-twist-keyboard  ros-galactic-teleop-twist-joy ros-galactic-xacro ros-galactic-nav2* ros-galactic-urdf ros-galactic-rviz
+sudo apt install ros-galactic-joint-state-publisher ros-galactic-robot-state-publisher ros-galactic-cartographer ros-galactic-cartographer-ros ros-galactic-gazebo-plugins ros-galactic-teleop-twist-keyboard  ros-galactic-teleop-twist-joy ros-galactic-xacro ros-galactic-nav2* ros-galactic-urdf 
+
+```
+```
+sudo apt-get install ros-galactic-v4l2-camera
+
 
 ```
 ```
