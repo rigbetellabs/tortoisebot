@@ -26,6 +26,11 @@ sudo apt install ros-galactic-joint-state-publisher ros-galactic-robot-state-pub
 
 ```
 ```
+sudo apt-get install ros-galactic-v4l2-camera
+
+
+```
+```
 cd ~/your workscpace
 colcon build
 ```
