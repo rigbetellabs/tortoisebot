@@ -10,12 +10,11 @@ from launch.conditions import IfCondition
 def generate_launch_description():
   prefix_address = get_package_share_directory('tortoisebot_slam') 
   config_directory = os.path.join(prefix_address, 'config')
-  slam_config_basename = '2d_slam.lua'
-  localization_config_basename = '2d_localization.lua'
+  slam_config = 'slam.lua'
   res = LaunchConfiguration('resolution', default='0.05')
   publish_period = LaunchConfiguration('publish_period_sec', default='1.0')
   use_sim_time=LaunchConfiguration('use_sim_time')
-  slam=LaunchConfiguration('slam')  
+  exploration=LaunchConfiguration('exploration')  # slam in exploration MODE
 
 
   return LaunchDescription([
@@ -23,7 +22,7 @@ def generate_launch_description():
     SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM', '1'),
     launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
                                             description='Flag to enable use_sim_time'),
-    launch.actions.DeclareLaunchArgument(name='slam', default_value='True',
+    launch.actions.DeclareLaunchArgument(name='exploration', default_value='True',
                                             description='Flag to enable use_sim_time'),
     DeclareLaunchArgument(
       'resolution',
@@ -45,34 +44,34 @@ def generate_launch_description():
     ),
     DeclareLaunchArgument(
       'slam_configuration_basename',
-      default_value=slam_config_basename,
+      default_value=slam_config,
       description='name of .lua file to be used'
     ),
     DeclareLaunchArgument(
       'localization_configuration_basename',
-      default_value=localization_config_basename,
+      default_value=slam_config,
       description='name of .lua file to be used'
     ),
     Node(
       package='cartographer_ros',
-      condition= IfCondition(slam),
+      condition= IfCondition(exploration),
       executable='cartographer_node',
       name='as21_cartographer_node',
       arguments=[
         '-configuration_directory', config_directory,
-        '-configuration_basename', slam_config_basename
+        '-configuration_basename', slam_config
       ],
       parameters= [{'use_sim_time':use_sim_time}],
       output='screen'
     ),
     Node(
       package='cartographer_ros',
-      condition=IfCondition(PythonExpression(['not ', slam])),
+      condition=IfCondition(PythonExpression(['not ', exploration])),
       executable='cartographer_node',
       name='as21_cartographer_node',
       arguments=[
         '-configuration_directory', config_directory,
-        '-configuration_basename', localization_config_basename
+        '-configuration_basename', slam_config
       ],
       parameters= [{'use_sim_time':use_sim_time}],
       output='screen'
@@ -80,7 +79,7 @@ def generate_launch_description():
 
     Node(
       package='cartographer_ros',
-      condition= IfCondition(slam),
+      condition= IfCondition(exploration),
       executable='cartographer_occupancy_grid_node',
       name='cartographer_occupancy_grid_node',
       arguments=[

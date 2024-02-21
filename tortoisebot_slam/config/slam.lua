@@ -18,39 +18,15 @@ include "trajectory_builder.lua"
 options = {
   map_builder = MAP_BUILDER,
   trajectory_builder = TRAJECTORY_BUILDER,
-
---  ************** For using the LiDAR alone  
   map_frame = "map",
-  -- setting tracking_frame and published_frame to base_link gives better results 
   tracking_frame = "base_link",
-  published_frame = "base_link", --Reference: https://github.com/cartographer-project/cartographer_ros/issues/305
+  published_frame = "base_link",
   odom_frame = "odom",
   provide_odom_frame = true,
-  publish_frame_projected_to_2d = false,
+  publish_frame_projected_to_2d = true,
   use_odometry = false,
-
---  ************** For using the IMU
---   map_frame = "map",
---   tracking_frame = "base_link",
---   use_odometry = false,
---   published_frame = "base_link",
---   provide_odom_frame = true,
---   odom_frame = "odom",
---   publish_frame_projected_to_2d = false,
-
---  ************** For using the wheel encoder based odometer
---   map_frame = "map",
---   tracking_frame = "base_footprint", -- either
---   tracking_frame = "base_link", -- or
---   use_odometry = true,
---   published_frame = "odom",
---   provide_odom_frame = false,
---   odom_frame = "odom",
---   publish_frame_projected_to_2d = false,
-  
   use_nav_sat = false,
   use_landmarks = false,
-  
   num_laser_scans = 1,
   num_multi_echo_laser_scans = 0,
   num_subdivisions_per_laser_scan = 1,
@@ -67,15 +43,22 @@ options = {
 }
 
 MAP_BUILDER.use_trajectory_builder_2d = true
-MAP_BUILDER.num_background_threads = 7
 
-TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 1
---   TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = math.rad(0.1)
-TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
+TRAJECTORY_BUILDER_2D.min_range = 0.05
+TRAJECTORY_BUILDER_2D.max_range = 8.
+TRAJECTORY_BUILDER_2D.missing_data_ray_length = 8.5
 TRAJECTORY_BUILDER_2D.use_imu_data = false
+TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.linear_search_window = 0.1
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.translation_delta_cost_weight = 10.
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.rotation_delta_cost_weight = 1e-1
+TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = math.rad(0.2)
+-- for current lidar only 1 is good value
+TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 1
 
-
-POSE_GRAPH.constraint_builder.min_score = 0.85
-POSE_GRAPH.constraint_builder.global_localization_min_score = 0.9
+POSE_GRAPH.constraint_builder.min_score = 0.65
+POSE_GRAPH.constraint_builder.global_localization_min_score = 0.65
+POSE_GRAPH.optimization_problem.huber_scale = 1e2
+POSE_GRAPH.optimize_every_n_nodes = 35
 
 return options
