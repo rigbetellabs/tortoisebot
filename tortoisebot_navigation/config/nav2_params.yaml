@@ -4,15 +4,12 @@ bt_navigator:
     global_frame: map
     robot_base_frame: base_link
     odom_topic: /odom
+    default_bt_xml_filename: "navigate_w_replanning_and_recovery.xml"
     bt_loop_duration: 10
     default_server_timeout: 20
     enable_groot_monitoring: True
     groot_zmq_publisher_port: 1666
     groot_zmq_server_port: 1667
-    # 'default_nav_through_poses_bt_xml' and 'default_nav_to_pose_bt_xml' are use defaults:
-    # nav2_bt_navigator/navigate_to_pose_w_replanning_and_recovery.xml
-    # nav2_bt_navigator/navigate_through_poses_w_replanning_and_recovery.xml
-    # They can be set here or via a RewrittenYaml remap from a parent launch file to Nav2.
     plugin_lib_names:
     - nav2_compute_path_to_pose_action_bt_node
     - nav2_compute_path_through_poses_action_bt_node
@@ -52,43 +49,42 @@ bt_navigator_rclcpp_node:
 
 controller_server:
   ros__parameters:
-    # controller server parameters (see Controller Server for more info)
     use_sim_time: True
-    controller_frequency: 20.0
+    controller_frequency: 10.0
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.5
     min_theta_velocity_threshold: 0.001
+    failure_tolerance: 0.3
     progress_checker_plugin: "progress_checker"
-    goal_checker_plugins: ["goal_checker"]
+    goal_checker_plugins: ["general_goal_checker"] 
     controller_plugins: ["FollowPath"]
+
+    # Progress checker
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
       required_movement_radius: 0.5
       movement_time_allowance: 10.0
-    goal_checker:
-      plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.25
-      yaw_goal_tolerance: 0.25
+    
+    # Goal checker
+    general_goal_checker:
       stateful: True
-    # DWB controller parameters
-    FollowPath:
-      # plugin: "nav2_rotation_shim_controller::RotationShimController"
-      # primary_controller: "dwb_core::DWBLocalPlanner"
-      # angular_dist_threshold: 0.785
-      # forward_sampling_distance: 0.5
-      # rotate_to_heading_angular_vel: 1.8
-      # max_angular_accel: 3.2
-      # simulate_ahead_time: 1.0
+      plugin: "nav2_controller::SimpleGoalChecker"
+      # This should be more that DWA tolerance
+      xy_goal_tolerance: 0.07
+      yaw_goal_tolerance: 0.12
 
+    # DWB parameters
+    FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: True
-      min_vel_x: 0.002
+      # Change min max to suite tortoisebot 
+      min_vel_x: 0.0
       min_vel_y: 0.0
-      max_vel_x: 0.18
+      max_vel_x: 0.22
       max_vel_y: 0.0
-      max_vel_theta: 4.0
+      max_vel_theta: 3.0
       min_speed_xy: 0.0
-      max_speed_xy: 0.18
+      max_speed_xy: 0.22
       min_speed_theta: 0.0
       acc_lim_x: 2.5
       acc_lim_y: 0.0
@@ -97,21 +93,21 @@ controller_server:
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
       vx_samples: 20
-      vy_samples: 5
-      vtheta_samples: 20
-      sim_time: 1.7
+      vy_samples: 0
+      vtheta_samples: 100
+      sim_time: 1.5
       linear_granularity: 0.05
       angular_granularity: 0.025
       transform_tolerance: 0.2
-      xy_goal_tolerance: 0.1
+      xy_goal_tolerance: 0.05
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: True
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       BaseObstacle.scale: 0.02
       PathAlign.scale: 32.0
-      GoalAlign.scale: 24.0
       PathAlign.forward_point_distance: 0.1
+      GoalAlign.scale: 24.0
       GoalAlign.forward_point_distance: 0.1
       PathDist.scale: 32.0
       GoalDist.scale: 24.0
@@ -132,15 +128,29 @@ local_costmap:
       robot_base_frame: base_link
       use_sim_time: True
       rolling_window: true
-      width: 2
-      height: 2
+      # Increased from 2 to 3
+      width: 3
+      height: 3
       resolution: 0.05
       robot_radius: 0.1
-      plugins: ["voxel_layer", "inflation_layer"]
+      # Added obstacle layer as well
+      plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
+        # Increase from 0.5 to 1.0
+        inflation_radius: 1.0
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+      # Obstacle Layer
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: True
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 2.0
+          clearing: True
+          marking: True
+          data_type: "LaserScan"
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -173,7 +183,7 @@ local_costmap:
 
 global_costmap:
   global_costmap:
-    ros__parameters:     
+    ros__parameters:
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
@@ -182,10 +192,32 @@ global_costmap:
       robot_radius: 0.1
       resolution: 0.05
       track_unknown_space: true
-      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+      # Added voxel_layer as well
+      plugins: ["static_layer", "obstacle_layer", "voxel_layer", "inflation_layer"]
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 2.0
+          clearing: True
+          marking: True
+          data_type: "LaserScan"
+          raytrace_max_range: 3.0
+          raytrace_min_range: 0.0
+          obstacle_max_range: 2.5
+          obstacle_min_range: 0.0
+      # voxel layer
+      voxel_layer:
+        plugin: "nav2_costmap_2d::VoxelLayer"
+        enabled: True
+        publish_voxel_map: True
+        origin_z: 0.0
+        z_resolution: 0.05
+        z_voxels: 16
+        max_obstacle_height: 2.0
+        mark_threshold: 0
         observation_sources: scan
         scan:
           topic: /scan
@@ -215,7 +247,7 @@ global_costmap:
 map_server:
   ros__parameters:
     use_sim_time: True
-    yaml_filename: "turtlebot3_world.yaml"
+    yaml_filename: "map.yaml"
 
 map_saver:
   ros__parameters:
@@ -267,7 +299,8 @@ robot_state_publisher:
 
 waypoint_follower:
   ros__parameters:
-    loop_rate: 20
+    # Increased drastically from 20 to 2000
+    loop_rate: 2000
     stop_on_failure: false
     waypoint_task_executor_plugin: "wait_at_waypoint"   
     wait_at_waypoint:
