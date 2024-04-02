@@ -159,7 +159,7 @@ if __name__=="__main__":
     status = 0
 
     try:
-        #pub_thread.wait_for_subscribers()
+        pub_thread.wait_for_subscribers()
         pub_thread.update(x, y, z, th, speed, turn)
 
         print(msg)
