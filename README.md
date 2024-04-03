@@ -1,4 +1,4 @@
-# ![TortoiseBot Banner](https://github.com/rigbetellabs/tortoisebot_docs/raw/master/imgs/packaging/pack_front.png)
+# ![TortoiseBot Banner](https://github.com/rigbetellabs/tortoisebot_docs/blob/master/imgs/packaging/tortoisebot_github_header.png)
 
 ![stars](https://img.shields.io/github/stars/rigbetellabs/tortoisebot?style=for-the-badge)
 ![forks](https://img.shields.io/github/forks/rigbetellabs/tortoisebot?style=for-the-badge)
