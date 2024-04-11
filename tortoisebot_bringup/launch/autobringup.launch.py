@@ -17,7 +17,7 @@ def generate_launch_description():
   gazebo_launch_dir=os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'launch')
   ydlidar_launch_dir=os.path.join(get_package_share_directory('ydlidar_ros2_driver'), 'launch')
   cartographer_launch_dir=os.path.join(get_package_share_directory('tortoisebot_slam'), 'launch')
-  prefix_address = get_package_share_directory('tortoisebot_slam') 
+  prefix_address = get_package_share_directory('tortoisebot_navigation') 
   default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot.xacro')
   params_file= os.path.join(prefix_address, 'config', 'nav2_params.yaml')
   map_file=LaunchConfiguration('map')
