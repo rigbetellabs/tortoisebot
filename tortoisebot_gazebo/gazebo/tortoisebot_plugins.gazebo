@@ -35,15 +35,15 @@
 	<gazebo reference="lidar">
 		<sensor name="ydlidar" type="ray">
 			<always_on>true</always_on>
-			<visualize>true</visualize>
+			<visualize>false</visualize>
 			<update_rate>10</update_rate>
 			<ray>
 			<scan>
 				<horizontal>
 				<samples>720</samples>
 				<resolution>1.000000</resolution>
-				<min_angle>0.000000</min_angle>
-				<max_angle>6.280000</max_angle>
+				<min_angle>-3.14</min_angle>
+				<max_angle>3.14</max_angle>
 				</horizontal>
 			</scan>
 			<range>
