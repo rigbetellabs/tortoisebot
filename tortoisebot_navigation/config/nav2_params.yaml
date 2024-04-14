@@ -348,9 +348,8 @@ robot_state_publisher:
 
 waypoint_follower:
   ros__parameters:
-    # Increased drastically from 20 to 2000
     loop_rate: 2
-    stop_on_failure: false
+    stop_on_failure: true
     waypoint_task_executor_plugin: "wait_at_waypoint"   
     wait_at_waypoint:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
