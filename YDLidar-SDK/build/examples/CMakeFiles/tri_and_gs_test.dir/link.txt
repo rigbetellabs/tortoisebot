@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic CMakeFiles/tri_and_gs_test.dir/tri_and_gs_test.cpp.o -o ../tri_and_gs_test  ../libydlidar_sdk.a -lpthread -lrt 

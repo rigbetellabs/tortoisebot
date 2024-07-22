@@ -6,10 +6,10 @@ ydlidar_ros2_driver_node:
     baudrate: 115200
     lidar_type: 1
     device_type: 0
-    sample_rate: 7
+    sample_rate: 3
     abnormal_check_count: 4
     fixed_resolution: true
-    reversion: true
+    reversion: false
     inverted: true
     auto_reconnect: true
     isSingleChannel: true
@@ -17,7 +17,7 @@ ydlidar_ros2_driver_node:
     support_motor_dtr: true
     angle_max: 180.0
     angle_min: -180.0
-    range_max: 64.0
-    range_min: 0.01
-    frequency: 8.0
+    range_max: 12.0
+    range_min: 0.1
+    frequency: 10.0
     invalid_range_is_inf: false

@@ -1,0 +1,24 @@
+image: osrf/ros:humble-desktop
+
+variables:
+  GIT_CLONE_PATH: $CI_BUILDS_DIR/src/ros2_v4l2_camera
+
+build:
+  stage: build
+  script:
+    - apt update && apt upgrade -y
+    - cd ${CI_BUILDS_DIR}
+    - rosdep update && rosdep install --from-paths src -r -y
+    # Build
+    - colcon build --cmake-args -DCMAKE_BUILD_TYPE=Debug
+    # Test
+    - colcon test --event-handlers console_cohesion+ --packages-select v4l2_camera
+    # Move artifact directories so they can be uploaded
+    - cp -r build src/ros2_v4l2_camera/build
+    - cp -r install src/ros2_v4l2_camera/install
+    # Summarize tests and fail on test failures
+    - colcon test-result
+  artifacts:
+    reports:
+      junit: build/v4l2_camera/test_results/v4l2_camera/*.xunit.xml
+

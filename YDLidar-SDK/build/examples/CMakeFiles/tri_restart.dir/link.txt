@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic CMakeFiles/tri_restart.dir/tri_restart.cpp.o -o ../tri_restart  ../libydlidar_sdk.a -lpthread -lrt 

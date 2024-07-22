@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic CMakeFiles/tof_test.dir/tof_test.cpp.o -o ../tof_test  ../libydlidar_sdk.a -lpthread -lrt 

@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic CMakeFiles/gs_ota.dir/gs_ota.cpp.o -o ../gs_ota  ../libydlidar_sdk.a -lpthread -lrt 

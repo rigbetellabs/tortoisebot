@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic CMakeFiles/lidar_c_api_test.dir/lidar_c_api_test.c.o -o ../lidar_c_api_test  ../libydlidar_sdk.a -lstdc++ -lm -lpthread -lrt 

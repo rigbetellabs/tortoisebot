@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic CMakeFiles/gs_test2.dir/gs_test2.cpp.o -o ../gs_test2  ../libydlidar_sdk.a -lpthread -lrt 

@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic CMakeFiles/sdm_test.dir/sdm_test.cpp.o -o ../sdm_test  ../libydlidar_sdk.a -lpthread -lrt 
