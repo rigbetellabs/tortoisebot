@@ -1,0 +1,195 @@
+<?xml version="1.0" ?>
+<robot name="tortoisebot_simple" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	
+<!-- <xacro:include filename="$(find tortoisebot_gazebo/gazebo/tortoisebot_materials.gazebo" /> -->
+<xacro:include filename="$(find tortoisebot_gazebo)/gazebo/tortoisebot_physics.gazebo" />
+<xacro:include filename="$(find tortoisebot_gazebo)/gazebo/tortoisebot_plugins.gazebo" />
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.030635608127622015 -0.0004221703596385517 0.07737044666769882" rpy="0 0 0"/>
+    <mass value="1.129162264280885"/>
+    <inertia ixx="0.004045" iyy="0.003768" izz="0.002249" ixy="-1.2e-05" iyz="2e-05" ixz="-2.9e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/base_link.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/base_link.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="wheel_left">
+  <inertial>
+    <origin xyz="-5.817360584857412e-08 0.008992666701213833 -2.8524983942262994e-07" rpy="0 0 0"/>
+    <mass value="0.04355937082025941"/>
+    <inertia ixx="1.9e-05" iyy="3.3e-05" izz="1.9e-05" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.000197 -0.0778 -0.032453" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/wheel_left.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0.000197 -0.0778 -0.032453" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/wheel_left.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="wheel_right">
+  <inertial>
+    <origin xyz="1.1651486266691519e-09 -0.008992199795129496 -2.763726826629509e-07" rpy="0 0 0"/>
+    <mass value="0.04355937082025929"/>
+    <inertia ixx="1.9e-05" iyy="3.3e-05" izz="1.9e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0001 0.0778 -0.032453" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/wheel_right.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="-0.0001 0.0778 -0.032453" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/wheel_right.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar">
+  <inertial>
+    <origin xyz="1.6353780135647256e-10 -1.7329123482757136e-13 0.004356361811340997" rpy="0 0 0"/>
+    <mass value="0.02603693115872038"/>
+    <inertia ixx="6e-06" iyy="6e-06" izz="1.2e-05" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.03275 0.0 -0.167" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/lidar.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0.03275 0.0 -0.167" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/lidar.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="camera_link">
+  <inertial>
+    <origin xyz="0.0005000001639132029 -1.7004031399497072e-07 1.1512051351081354e-07" rpy="0 0 0"/>
+    <mass value="3.746349259254909e-05"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.05025 -1e-05 -0.133907" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/camera_link.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="-0.05025 -1e-05 -0.133907" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/camera_link.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="camera_holder">
+  <inertial>
+    <origin xyz="0.012956561190815237 4.623703165912345e-06 0.0017885934065832443" rpy="0 0 0"/>
+    <mass value="0.003607670102548807"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.03125 0.0 -0.131063" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/camera_holder.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="-0.03125 0.0 -0.131063" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/camera_holder.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="castor_wheel">
+  <inertial>
+    <origin xyz="2.5326962749261384e-14 4.504651888394023e-14 -0.0017582044401419582" rpy="0 0 0"/>
+    <mass value="0.0033567272126794434"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0767 0.0 -0.0049" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/castor_wheel.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0.0767 0.0 -0.0049" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://tortoisebot_description/models/meshes/castor_wheel.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="imu_link"/>
+
+<joint name="wheel_left_joint" type="continuous">
+  <origin xyz="-0.000197 0.0778 0.032453" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="wheel_left"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="wheel_right_joint" type="continuous">
+  <origin xyz="0.0001 -0.0778 0.032453" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="wheel_right"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="-0.03275 0.0 0.167" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar"/>
+</joint>
+
+<joint name="camera_sensor_joint" type="fixed">
+  <origin xyz="0.019 1e-05 0.002844" rpy="0 0 0"/>
+  <parent link="camera_holder"/>
+  <child link="camera_link"/>
+</joint>
+
+<joint name="camera_tilt_joint" type="fixed">
+  <origin xyz="0.03125 0.0 0.131063" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="camera_holder"/>
+</joint>
+
+<joint name="castor_joint" type="fixed">
+  <origin xyz="-0.0767 0.0 0.0049" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="castor_wheel"/>
+</joint>
+
+<joint name="imu_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.11" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+</joint>
+
+</robot>
