@@ -28,7 +28,7 @@ def generate_launch_description():
   
   map_file=LaunchConfiguration('map')
   map_directory = os.path.join(get_package_share_directory(
-        'tortoisebot_bringup'), 'maps','room2.yaml')
+        'tortoisebot_bringup'), 'maps','second.yaml')
   use_sim_time=LaunchConfiguration('use_sim_time')
   exploration=LaunchConfiguration('exploration')   
   

@@ -18,7 +18,7 @@ def generate_launch_description():
       default=os.path.join(
           get_package_share_directory('tortoisebot_bringup'),
           'maps',
-          'room.yaml'))
+          'second.yaml'))
 
   param_file_name = 'nav2_params.yaml'
   param_dir = LaunchConfiguration(
