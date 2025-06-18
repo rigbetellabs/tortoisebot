@@ -28,13 +28,16 @@ def generate_launch_description():
           'config',
           param_file_name))
   
-  navigation_launch_cmd=IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([nav2_launch_dir, '/bringup_launch.py']),
-            launch_arguments={
-                'map': map_dir,
-                'use_sim_time': use_sim_time,
-                'params_file': param_dir}.items(),
-        )
+  navigation_launch_cmd = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([nav2_launch_dir, '/bringup_launch.py']),
+      launch_arguments={
+          'use_sim_time': use_sim_time,
+          'params_file': param_dir,
+          # 'slam': 'True',  # Enable Cartographer
+          'use_localization': 'False'  # Prevent AMCL from launching
+      }.items(),
+  )
+
 
   return LaunchDescription([
     navigation_launch_cmd,   

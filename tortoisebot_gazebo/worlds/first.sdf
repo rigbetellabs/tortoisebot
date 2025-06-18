@@ -1,0 +1,851 @@
+<sdf version='1.10'>
+  <world name='empty'>
+    <physics name='default_physics' default='true' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.800000012 0.800000012 1</ambient>
+            <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+            <specular>0.800000012 0.800000012 0.800000012 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='my_bot'>
+      <link name='base_link'>
+        <inertial>
+          <pose>-0.030581076275019051 -0.00041015432534964401 0.07943567900581501 0 0 0</pose>
+          <mass>1.1622010562474261</mass>
+          <inertia>
+            <ixx>0.004305762049356213</ixx>
+            <ixy>-1.2027272739495841e-05</ixy>
+            <ixz>-5.0325237501164497e-05</ixz>
+            <iyy>0.0040564479622592084</iyy>
+            <iyz>1.9014595062307681e-05</iyz>
+            <izz>0.0022886973831091682</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/convex_base_link.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__camera_holder_collision_1'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/convex_camera_holder.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__camera_link_collision_2'>
+          <pose>0 0 2.775557561562891e-17 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/convex_camera_link.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__castor_wheel_collision_3'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/convex_castor_wheel.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>10000</kp>
+                <kd>1</kd>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.0001</mu>
+                <mu2>0.0001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_link_fixed_joint_lump__lidar_collision_4'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/convex_lidar.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.20000000000000001</mu>
+                <mu2>0.20000000000000001</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='base_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/base_link.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__camera_holder_visual_1'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/camera_holder.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__camera_link_visual_2'>
+          <pose>0 0 2.775557561562891e-17 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/camera_link.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__castor_wheel_visual_3'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/castor_wheel.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__lidar_visual_4'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/lidar.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>true</gravity>
+        <sensor name='raspberrypi_camera' type='camera'>
+          <pose>0.050250000000000003 1.0000000000000001e-05 0.133907 0 0 0</pose>
+          <topic>camera/image_raw</topic>
+          <update_rate>10</update_rate>
+          <enable_metrics>false</enable_metrics>
+          <camera name='__default__'>
+            <pose>0 0 0 0 0 0</pose>
+            <horizontal_fov>1.089</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>RGB_INT8</format>
+              <anti_aliasing>4</anti_aliasing>
+            </image>
+            <camera_info_topic>camera/camera_info</camera_info_topic>
+            <trigger_topic></trigger_topic>
+            <triggered>false</triggered>
+            <clip>
+              <near>0.050000000000000003</near>
+              <far>8</far>
+            </clip>
+            <save enabled='false'>
+              <path>__default__</path>
+            </save>
+            <visibility_mask>4294967295</visibility_mask>
+            <noise>
+              <type>none</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+            <distortion>
+              <k1>0</k1>
+              <k2>0</k2>
+              <k3>0</k3>
+              <p1>0</p1>
+              <p2>0</p2>
+              <center>0.5 0.5</center>
+            </distortion>
+            <lens>
+              <type>stereographic</type>
+              <scale_to_hfov>true</scale_to_hfov>
+              <cutoff_angle>1.5707963267948966</cutoff_angle>
+              <env_texture_size>256</env_texture_size>
+            </lens>
+            <optical_frame_id></optical_frame_id>
+          </camera>
+        </sensor>
+        <sensor name='ydlidar' type='gpu_lidar'>
+          <pose>-0.032750000000000001 0 0.16700000000000001 0 0 0</pose>
+          <topic>scan</topic>
+          <update_rate>10</update_rate>
+          <enable_metrics>false</enable_metrics>
+          <lidar>
+            <scan>
+              <horizontal>
+                <samples>360</samples>
+                <resolution>1</resolution>
+                <min_angle>-3.1400000000000001</min_angle>
+                <max_angle>3.1400000000000001</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <min_angle>0</min_angle>
+                <max_angle>0</max_angle>
+                <resolution>1</resolution>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.29999999999999999</min>
+              <max>12</max>
+              <resolution>0</resolution>
+            </range>
+            <noise>
+              <type>none</type>
+              <mean>0</mean>
+              <stddev>0</stddev>
+            </noise>
+            <visibility_mask>4294967295</visibility_mask>
+          </lidar>
+        </sensor>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='wheel_left_joint' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>wheel_left</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-inf</lower>
+            <upper>inf</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wheel_left'>
+        <pose>-0.000197000000000002 0.07779999999999998 0.032452999999999996 1.5787899973949351e-19 -1.0253854390999688e-07 1.3552519061727451e-20</pose>
+        <inertial>
+          <pose>-5.8173605848574122e-08 0.0089926667012138334 -2.8524983942262988e-07 0 0 0</pose>
+          <mass>0.043559370820259409</mass>
+          <inertia>
+            <ixx>1.9000000000000001e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.3000000000000003e-05</iyy>
+            <iyz>0</iyz>
+            <izz>1.9000000000000001e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='wheel_left_collision'>
+          <pose>0.00019699999999999999 -0.077799999999999994 -0.032453000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/convex_wheel_left.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>50000</kp>
+                <kd>10</kd>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='wheel_left_visual'>
+          <pose>0.00019699999999999999 -0.077799999999999994 -0.032453000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/wheel_left.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <joint name='wheel_right_joint' type='revolute'>
+        <pose>0 0 0 0 0 0</pose>
+        <parent>base_link</parent>
+        <child>wheel_right</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-inf</lower>
+            <upper>inf</upper>
+            <effort>inf</effort>
+            <velocity>inf</velocity>
+            <stiffness>100000000</stiffness>
+            <dissipation>1</dissipation>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+            <damping>0</damping>
+            <friction>0</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wheel_right'>
+        <pose>0.00010000000000000209 -0.07779999999999998 0.032452999999999996 1.8872953166448526e-20 -4.581265531808185e-08 -1.3552527588378863e-20</pose>
+        <inertial>
+          <pose>1.1651486266691521e-09 -0.0089921997951294963 -2.763726826629509e-07 0 0 0</pose>
+          <mass>0.043559370820259291</mass>
+          <inertia>
+            <ixx>1.9000000000000001e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>3.3000000000000003e-05</iyy>
+            <iyz>0</iyz>
+            <izz>1.9000000000000001e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='wheel_right_collision'>
+          <pose>-0.0001 0.077799999999999994 -0.032453000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/convex_wheel_right.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>50000</kp>
+                <kd>10</kd>
+                <min_depth>0.001</min_depth>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1</mu>
+                <mu2>1</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='wheel_right_visual'>
+          <pose>-0.0001 0.077799999999999994 -0.032453000000000003 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>file:///home/tars/ros2_ws/install/tortoisebot_description/share/tortoisebot_description/models/meshes/wheel_right.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <enable_wind>false</enable_wind>
+      </link>
+      <plugin name='gz::sim::systems::DiffDrive' filename='gz-sim-diff-drive-system'>
+        <left_joint>wheel_left_joint</left_joint>
+        <right_joint>wheel_right_joint</right_joint>
+        <wheel_separation>0.17186</wheel_separation>
+        <wheel_radius>0.033</wheel_radius>
+        <max_linear_acceleration>0.20</max_linear_acceleration>
+        <topic>cmd_vel</topic>
+        <frame_id>odom</frame_id>
+        <child_frame_id>base_link</child_frame_id>
+        <odom_topic>odom</odom_topic>
+        <odom_publisher_frequency>30</odom_publisher_frequency>
+        <tf_topic>/tf</tf_topic>
+      </plugin>
+      <frame name='camera_sensor_joint' attached_to='camera_holder'>
+        <pose>0.019 1.0000000000000001e-05 0.0028440000000000002 0 0 0</pose>
+      </frame>
+      <frame name='camera_link' attached_to='camera_sensor_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='camera_tilt_joint' attached_to='base_link'>
+        <pose>0.03125 0 0.13106300000000001 0 0 0</pose>
+      </frame>
+      <frame name='camera_holder' attached_to='camera_tilt_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='castor_joint' attached_to='base_link'>
+        <pose>-0.076700000000000004 0 0.0048999999999999998 0 0 0</pose>
+      </frame>
+      <frame name='castor_wheel' attached_to='castor_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='imu_joint' attached_to='base_link'>
+        <pose>0 0 0.11 0 0 0</pose>
+      </frame>
+      <frame name='imu_link' attached_to='imu_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <frame name='lidar_joint' attached_to='base_link'>
+        <pose>-0.032750000000000001 0 0.16700000000000001 0 0 0</pose>
+      </frame>
+      <frame name='lidar' attached_to='lidar_joint'>
+        <pose>0 0 0 0 0 0</pose>
+      </frame>
+      <pose>1.6629638434122999e-06 4.8984526772131312e-06 0.0001190398309089252 0.0013703219477075436 -0.0017498906588539792 7.5661310142624493e-05</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='room_wall_2x5m'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.10000000000000001 5 2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/room_wall_2x5m/1/files/material/script</uri>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/room_wall_2x5m/1/files/material/textures</uri>
+              <name>Custom/room_wall_2x5m</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.10000000000000001 5 2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <allow_auto_disable>true</allow_auto_disable>
+      <pose>3.0021046306236707 0.51356120539538497 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='room_wall_2x5m_0'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.10000000000000001 5 2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/room_wall_2x5m/1/files/material/script</uri>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/room_wall_2x5m/1/files/material/textures</uri>
+              <name>Custom/room_wall_2x5m</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.10000000000000001 5 2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <allow_auto_disable>true</allow_auto_disable>
+      <pose>0.50742614269256592 -1.961226224899292 0 0 0 -1.5849199372922735</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='room_wall_2x5m_1'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.10000000000000001 5 2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/room_wall_2x5m/1/files/material/script</uri>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/room_wall_2x5m/1/files/material/textures</uri>
+              <name>Custom/room_wall_2x5m</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.10000000000000001 5 2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <allow_auto_disable>true</allow_auto_disable>
+      <pose>0.48567593097686768 3.0232474803924561 0 0 0 -1.5941000150300249</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='tv_65in'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.050000000000000003 1.45 0.82999999999999996</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/tv_65in/1/files/material/script</uri>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/tv_65in/1/files/material/textures</uri>
+              <name>Custom/tv</name>
+            </script>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <allow_auto_disable>true</allow_auto_disable>
+      <pose>2.883137924324064 0.52975129719305913 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='room_wall_2x5m_2'>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.10000000000000001 5 2</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/room_wall_2x5m/1/files/material/script</uri>
+              <uri>https://fuel.gazebosim.org/1.0/makerspet/models/room_wall_2x5m/1/files/material/textures</uri>
+              <name>Custom/room_wall_2x5m</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.10000000000000001 5 2</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <static>true</static>
+      <allow_auto_disable>true</allow_auto_disable>
+      <pose>-1.9785492973417345 0.53221742781935566 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='person_walking'>
+      <link name='link'>
+        <inertial>
+          <pose>0 0 0.94999999999999996 0 0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>27.82</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>24.879999999999999</iyy>
+            <iyz>0</iyz>
+            <izz>4.5700000000000003</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.34999999999999998 0.75 0.02</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 -0.02 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/gazebomstrling/models/walking person/1/files/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 -0.02 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/gazebomstrling/models/walking person/1/files/meshes/walking.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>1.2797878457102103 1.412421202326092 -3.6819791786671385e-11 8.6374269499224597e-22 -3.0031091677889822e-21 8.2694674238173099e-23</pose>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+    <model name='WoodenChair'>
+      <static>true</static>
+      <link name='body'>
+        <pose>0 0 0 0 0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/will0993/models/woodenchair/1/files/meshes/WoodenChair.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>https://fuel.gazebosim.org/1.0/will0993/models/woodenchair/1/files/meshes/WoodenChair_Col.obj</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>-0.60016833108321821 1.5965244603890154 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.10000000000000001 -0.90000000000000002</direction>
+      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.01</linear>
+        <constant>0.90000000000000002</constant>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>
