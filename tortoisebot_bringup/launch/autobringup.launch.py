@@ -72,11 +72,21 @@ def generate_launch_description():
         name ='differential_drive_publisher',
     )
   camera_node = Node(
-      package='v4l2_camera',
-      condition=IfCondition(PythonExpression(['not ', use_sim_time])),
-      executable='v4l2_camera_node',
-      name ='camera1',
-      namespace='camera/',
+        package='v4l2_camera',
+        executable='v4l2_camera_node',
+        name='camera_publisher',
+        condition=IfCondition(PythonExpression(['not ', use_sim_time])),
+        parameters=[{
+            'image_size': [160, 120],  # Very small resolution
+            'camera_name': 'camera',
+            'camera_info_url': '',
+            'frame_id': 'camera_link',
+            'framerate': 10.0,  # Low framerate
+        }],
+        remappings=[
+            ('image_raw', '/camera/image_raw'),
+            ('camera_info', '/camera/camera_info'),
+        ]
     )
 
   robot_state_publisher_node = launch_ros.actions.Node(
