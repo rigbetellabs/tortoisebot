@@ -86,13 +86,13 @@ controller_server:
       min_vel_y: 0.0
       max_vel_x: 0.18
       max_vel_y: 0.0
-      max_vel_theta: 4.0
+      max_vel_theta: 5.0
       min_speed_xy: 0.0
       max_speed_xy: 0.18
-      min_speed_theta: 0.0
+      min_speed_theta: 0.1
       acc_lim_x: 2.5
       acc_lim_y: 0.0
-      acc_lim_theta: 3.2
+      acc_lim_theta: 4.2
       decel_lim_x: -2.5
       decel_lim_y: 0.0
       decel_lim_theta: -3.2
@@ -107,7 +107,7 @@ controller_server:
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: True
       stateful: True
-      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
+      critics: ["Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       BaseObstacle.scale: 0.02
       PathAlign.scale: 32.0
       GoalAlign.scale: 24.0

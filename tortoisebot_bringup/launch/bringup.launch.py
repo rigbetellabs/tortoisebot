@@ -15,20 +15,17 @@ def generate_launch_description():
   rviz_launch_dir=os.path.join(get_package_share_directory('tortoisebot_description'), 'launch')
   gazebo_launch_dir=os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'launch')
   ydlidar_launch_dir=os.path.join(get_package_share_directory('ydlidar'), 'launch')
-  default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot_simple.xacro')
-  # default_rviz_config_path = os.path.join(pkg_share, 'rviz/sensors.rviz')
+  default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot.xacro')
+  default_rviz_config_path = os.path.join(pkg_share, 'rviz/sensors.rviz')
   use_sim_time=LaunchConfiguration('use_sim_time')
-  default_rviz_config_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'rviz/tortoisebot_sensor_display.rviz')
-   
   
-  rviz_node = launch_ros.actions.Node(
+  rviz_launch_cmd=launch_ros.actions.Node(
         package='rviz2',
         executable='rviz2',
         name='rviz2',
         output='screen',
         arguments=['-d', LaunchConfiguration('rvizconfig')],
         parameters= [{'use_sim_time': use_sim_time}],
-
     )
 
   state_publisher_launch_cmd=IncludeLaunchDescription(
@@ -82,7 +79,7 @@ def generate_launch_description():
 
     launch.actions.DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
                                             description='Absolute path to rviz config file'),
-    rviz_node,
+    rviz_launch_cmd,
     state_publisher_launch_cmd,
     robot_state_publisher_node,
     joint_state_publisher_node,
