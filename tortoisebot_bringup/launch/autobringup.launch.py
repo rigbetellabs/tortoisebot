@@ -16,19 +16,19 @@ def generate_launch_description():
   rviz_launch_dir=os.path.join(get_package_share_directory('tortoisebot_description'), 'launch')
   gazebo_launch_dir=os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'launch')
   ydlidar_launch_dir=os.path.join(get_package_share_directory('ydlidar_ros2_driver'), 'launch')
-  camera_launch_dir=os.path.join(get_package_share_directory('v4l2_camera'), 'launch')
+  # camera_launch_dir=os.path.join(get_package_share_directory('v4l2_camera'), 'launch')
   cartographer_launch_dir=os.path.join(get_package_share_directory('tortoisebot_slam'), 'launch')
   prefix_address = get_package_share_directory('tortoisebot_navigation') 
   default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot_simple.xacro')
-  default_rviz_config_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'rviz/tortoisebot_sensor_display.rviz')
+  default_rviz_config_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'rviz/full.rviz')
     
   
   params_file_sim = os.path.join(prefix_address, 'config', 'nav2_params_simulation.yaml')
-  params_file_robot = os.path.join(prefix_address, 'config', 'nav2_params_robot.yaml')
+  params_file_robot = os.path.join(prefix_address, 'config', 'nav2_params_simulation.yaml')
   
   map_file=LaunchConfiguration('map')
   map_directory = os.path.join(get_package_share_directory(
-        'tortoisebot_bringup'), 'maps','room2.yaml')
+        'tortoisebot_bringup'), 'maps','room1.yaml')
   use_sim_time=LaunchConfiguration('use_sim_time')
   exploration=LaunchConfiguration('exploration')   
   
@@ -77,12 +77,12 @@ def generate_launch_description():
         executable='differential.py',
         name ='differential_drive_publisher',
     )
-  camera_drive_node = Node(
-        package='v4l2_camera',
-        condition=IfCondition(PythonExpression(['not ', use_sim_time])),
-        executable='v4l2_camera_node',
-        name ='camera_publisher',
-    )
+  # camera_drive_node = Node(
+  #       package='v4l2_camera',
+  #       condition=IfCondition(PythonExpression(['not ', use_sim_time])),
+  #       executable='v4l2_camera_node',
+  #       name ='camera_publisher',
+  #   )
   camera_node = Node(
       package='camera_ros',
       condition=IfCondition(PythonExpression(['not ', use_sim_time])),
@@ -140,7 +140,7 @@ def generate_launch_description():
     joint_state_publisher_node,
     ydlidar_launch_cmd,
     differential_drive_node,
-    camera_drive_node,
+    # camera_drive_node,
     gazebo_launch_cmd,
     navigation_launch_cmd, 
     cartographer_launch_cmd

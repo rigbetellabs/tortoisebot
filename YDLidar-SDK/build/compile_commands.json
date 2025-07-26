@@ -1,0 +1,194 @@
+[
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/base/timer.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/base/timer.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/base/timer.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/base/timer.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/common/ydlidar_def.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/common/ydlidar_def.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/common/ydlidar_def.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/common/ydlidar_def.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/network/ActiveSocket.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/network/ActiveSocket.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/network/ActiveSocket.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/network/ActiveSocket.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/network/PassiveSocket.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/network/PassiveSocket.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/network/PassiveSocket.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/network/PassiveSocket.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/network/SimpleSocket.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/network/SimpleSocket.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/network/SimpleSocket.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/network/SimpleSocket.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/serial/serial.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/serial/serial.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/serial/serial.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/serial/serial.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/cc  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/serial/impl/unix/lock.c.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/serial/impl/unix/lock.c",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/serial/impl/unix/lock.c",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/serial/impl/unix/lock.c.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/serial/impl/unix/list_ports_linux.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/serial/impl/unix/list_ports_linux.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/serial/impl/unix/list_ports_linux.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/serial/impl/unix/list_ports_linux.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/core/serial/impl/unix/unix_serial.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/serial/impl/unix/unix_serial.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core/serial/impl/unix/unix_serial.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/core/serial/impl/unix/unix_serial.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/CYdLidar.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/CYdLidar.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/CYdLidar.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/CYdLidar.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/DTSLidarDriver.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/DTSLidarDriver.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/DTSLidarDriver.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/DTSLidarDriver.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/ETLidarDriver.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/ETLidarDriver.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/ETLidarDriver.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/ETLidarDriver.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/GSLidarDriver.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/GSLidarDriver.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/GSLidarDriver.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/GSLidarDriver.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/SDMLidarDriver.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/SDMLidarDriver.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/SDMLidarDriver.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/SDMLidarDriver.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/YDlidarDriver.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/YDlidarDriver.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/YDlidarDriver.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/YDlidarDriver.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/ydlidar_sdk.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/ydlidar_sdk.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/ydlidar_sdk.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/ydlidar_sdk.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/filters/NoiseFilter.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/filters/NoiseFilter.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/filters/NoiseFilter.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/filters/NoiseFilter.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build  -std=c++11 -fPIC -o CMakeFiles/ydlidar_sdk.dir/src/filters/StrongLightFilter.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/filters/StrongLightFilter.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src/filters/StrongLightFilter.cpp",
+  "output": "CMakeFiles/ydlidar_sdk.dir/src/filters/StrongLightFilter.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/et_test.dir/et_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/et_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/et_test.cpp",
+  "output": "examples/CMakeFiles/et_test.dir/et_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/gs_ota.dir/gs_ota.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/gs_ota.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/gs_ota.cpp",
+  "output": "examples/CMakeFiles/gs_ota.dir/gs_ota.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/gs_test.dir/gs_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/gs_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/gs_test.cpp",
+  "output": "examples/CMakeFiles/gs_test.dir/gs_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/gs_test2.dir/gs_test2.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/gs_test2.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/gs_test2.cpp",
+  "output": "examples/CMakeFiles/gs_test2.dir/gs_test2.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/scl_test.dir/scl_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/scl_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/scl_test.cpp",
+  "output": "examples/CMakeFiles/scl_test.dir/scl_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/sdm18_test.dir/sdm18_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/sdm18_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/sdm18_test.cpp",
+  "output": "examples/CMakeFiles/sdm18_test.dir/sdm18_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/sdm_test.dir/sdm_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/sdm_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/sdm_test.cpp",
+  "output": "examples/CMakeFiles/sdm_test.dir/sdm_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/tea_test.dir/tea_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tea_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tea_test.cpp",
+  "output": "examples/CMakeFiles/tea_test.dir/tea_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/tmini_test.dir/tmini_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tmini_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tmini_test.cpp",
+  "output": "examples/CMakeFiles/tmini_test.dir/tmini_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/tof_test.dir/tof_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tof_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tof_test.cpp",
+  "output": "examples/CMakeFiles/tof_test.dir/tof_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/tri_and_gs_test.dir/tri_and_gs_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tri_and_gs_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tri_and_gs_test.cpp",
+  "output": "examples/CMakeFiles/tri_and_gs_test.dir/tri_and_gs_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/tri_restart.dir/tri_restart.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tri_restart.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tri_restart.cpp",
+  "output": "examples/CMakeFiles/tri_restart.dir/tri_restart.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/c++  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples  -std=c++11 -fPIC -std=c++11 -o CMakeFiles/tri_test.dir/tri_test.cpp.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tri_test.cpp",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/tri_test.cpp",
+  "output": "examples/CMakeFiles/tri_test.dir/tri_test.cpp.o"
+},
+{
+  "directory": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples",
+  "command": "/usr/bin/cc  -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/core -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/src -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/.. -I/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/build/examples -fPIC -std=c++11 -o CMakeFiles/lidar_c_api_test.dir/lidar_c_api_test.c.o -c /home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/lidar_c_api_test.c",
+  "file": "/home/tars/ros2_ws/src/tortoisebot-ros2-humble/YDLidar-SDK/examples/lidar_c_api_test.c",
+  "output": "examples/CMakeFiles/lidar_c_api_test.dir/lidar_c_api_test.c.o"
+}
+]
