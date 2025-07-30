@@ -118,6 +118,7 @@ def generate_launch_description():
         name='nav2_goal_canceller_node',
         condition=IfCondition(PythonExpression(['not ', use_sim_time, ' and ', vr])),
         output='screen',
+        respawn=True,
     )
   
   robot_state_publisher_node = launch_ros.actions.Node(
