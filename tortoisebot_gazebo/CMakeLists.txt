@@ -11,8 +11,9 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 install(
-  DIRECTORY gazebo launch worlds
+  DIRECTORY gazebo launch worlds scripts
   DESTINATION share/${PROJECT_NAME}
+  PATTERN scripts/*.py PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
 )
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

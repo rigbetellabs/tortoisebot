@@ -7,19 +7,19 @@ import RPi.GPIO as GPIO
 import time
 from math import pi
 
-leftEn = 13         #   Purple
-rightEn = 12        #   Red
+leftEn = 13         
+rightEn = 12        
 
-leftBackward = 5    #   Blue
-leftForward = 6     #   Green
-rightForward = 16   #   Yellow
-rightBackward = 20  #   Orange
+leftBackward = 5    
+leftForward = 6    
+rightForward = 16   
+rightBackward = 20  
 
-motor_rpm = 60              #   max rpm of motor on full voltage 
-wheel_diameter = 0.065      #   in meters
-wheel_separation = 0.17     #   in meters
-max_pwm_val = 100           #   100 for Raspberry Pi , 255 for Arduino
-min_pwm_val = 15           #   Minimum PWM value that is needed for the robot to move
+motor_rpm = 60              
+wheel_diameter = 0.065      
+wheel_separation = 0.17     
+max_pwm_val = 100           
+min_pwm_val = 15           
 
 wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
@@ -116,15 +116,15 @@ class Differential(Node):
         global wheel_radius
         global wheel_separation
         
-        linear_vel = data.linear.x                  # Linear Velocity of Robot
-        angular_vel = data.angular.z                # Angular Velocity of Robot
+        linear_vel = data.linear.x                  
+        angular_vel = data.angular.z                
 
 
         VrplusVl  = 2 * linear_vel
         VrminusVl = angular_vel * wheel_separation
         
-        right_vel = ( VrplusVl + VrminusVl ) / 2      # right wheel velocity along the ground
-        left_vel  = VrplusVl - right_vel              # left wheel velocity along the ground
+        right_vel = ( VrplusVl + VrminusVl ) / 2      
+        left_vel  = VrplusVl - right_vel              
         
         # print (str(left_vel)+"\t"+str(right_vel))
         

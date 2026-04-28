@@ -4,8 +4,8 @@
   <name>tortoisebot_imu</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="krishnagupta@gmail.com">Krishna Gupta</maintainer>
-  <maintainer email="shubhamnandi12@gmail.com">Shubham Nandi</maintainer>
+  <maintainer email="shubhamnandi@rigbetellabs.com">Shubham</maintainer>
+  <maintainer email="vinayaknayak@rigbetellabs.com">Vinayak</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

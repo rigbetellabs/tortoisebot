@@ -1,4 +1,4 @@
-# Tortoisebot ROS2 Humble Release
+# Tortoisebot ROS2 Humble Ignition Release
 
 # ![TortoiseBot Banner](https://github.com/rigbetellabs/tortoisebot_docs/raw/master/imgs/packaging/pack_front.png)
 
@@ -22,7 +22,7 @@
 # 1. Installation
 ## 1.1 Required Dependences: 
 ```
-sudo apt install ros-humble-joint-state-publisher ros-humble-robot-state-publisher ros-humble-cartographer ros-humble-cartographer-ros ros-humble-gazebo-plugins ros-humble-teleop-twist-keyboard  ros-humble-teleop-twist-joy ros-humble-xacro ros-humble-nav2* ros-humble-urdf 
+sudo apt install ros-humble-joint-state-publisher ros-humble-robot-state-publisher ros-humble-cartographer ros-humble-cartographer-ros ros-humble-ros-gz  ros-humble-teleop-twist-keyboard  ros-humble-teleop-twist-joy ros-humble-xacro ros-humble-nav2* ros-humble-urdf  ros-humble-robot-localization
 
 ```
 ```
@@ -41,7 +41,7 @@ colcon build
 # 2. Setup
 
 - Run bringup.launch.py to only spawn the robot
-- Run autobringup.launch.py to spawn the robot with navigation and slam/localization
+- Run autobringup.launch.py to spawn the robot with navigation and slam/localization in Ignition Gazebo
 - Launch the files with use_sim_time:=False when working on real robot
 
 ### 2.1 Launching the robot
@@ -58,8 +58,8 @@ ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True explora
 - navigation.launch.py
 #### Rviz
 - rviz.launch.py
-#### Gazebo
-- gazebo.launch.py
+#### Ignition Sim
+- ignition_sim.launch.py
 
 ### 2.3 Remote PC
 

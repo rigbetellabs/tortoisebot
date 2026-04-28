@@ -1,0 +1,279 @@
+<?xml version="1.0" ?>
+<!--
+  nav2_test_world.sdf
+  ====================
+  Clean rectangular room designed specifically for Nav2 testing.
+  - 8x8m interior space with 0.2m thick walls
+  - 4 distinct obstacles for scan matching features
+  - All walls are axis-aligned for easy map verification
+  - Robot spawns at (0,0) which is the room centre
+  - World name = "default" (matches joint_state bridge topic)
+-->
+<sdf version="1.9">
+  <world name="default">
+
+    <!-- ── Required Ignition Fortress system plugins ───────────────────── -->
+    <plugin filename="libignition-gazebo-physics-system.so"
+            name="ignition::gazebo::systems::Physics"/>
+    <plugin filename="libignition-gazebo-user-commands-system.so"
+            name="ignition::gazebo::systems::UserCommands"/>
+    <plugin filename="libignition-gazebo-scene-broadcaster-system.so"
+            name="ignition::gazebo::systems::SceneBroadcaster"/>
+    <plugin filename="libignition-gazebo-sensors-system.so"
+            name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <!-- ── Physics ────────────────────────────────────────────────────── -->
+    <physics name="5ms" type="ignored">
+      <max_step_size>0.005</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>200</real_time_update_rate>
+    </physics>
+
+    <!-- ── Scene ──────────────────────────────────────────────────────── -->
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.2 0.2 0.2 1</background>
+      <shadows>true</shadows>
+      <grid>false</grid>
+    </scene>
+
+    <!-- ── Lighting ───────────────────────────────────────────────────── -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+    <light name="ambient_fill" type="point">
+      <pose>0 0 4 0 0 0</pose>
+      <diffuse>0.4 0.4 0.45 1</diffuse>
+      <specular>0.0 0.0 0.0 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.05</linear>
+        <quadratic>0.002</quadratic>
+      </attenuation>
+      <cast_shadows>false</cast_shadows>
+    </light>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         FLOOR
+    ════════════════════════════════════════════════════════════════════ -->
+    <model name="floor">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane><normal>0 0 1</normal><size>100 100</size></plane>
+          </geometry>
+          <surface>
+            <friction><ode><mu>100</mu><mu2>50</mu2></ode></friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane><normal>0 0 1</normal><size>100 100</size></plane>
+          </geometry>
+          <material>
+            <ambient>0.4 0.38 0.34 1</ambient>
+            <diffuse>0.55 0.52 0.46 1</diffuse>
+            <specular>0.02 0.02 0.02 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         ROOM WALLS
+         Room interior: 8x8m
+         Wall thickness: 0.2m
+         Wall height: 2.5m
+         Outer boundary: 8.4 x 8.4m
+         Robot spawns at (0,0) = room centre
+
+         Wall layout (top view):
+           N wall: y = +4.1,  length along X = 8.4m
+           S wall: y = -4.1,  length along X = 8.4m
+           E wall: x = +4.1,  length along Y = 8.4m
+           W wall: x = -4.1,  length along Y = 8.4m
+    ════════════════════════════════════════════════════════════════════ -->
+
+    <!-- North wall -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 4.1 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>8.4 0.2 2.5</size></box></geometry>
+          <pose>0 0 1.25 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <pose>0 0 1.25 0 0 0</pose>
+          <geometry><box><size>8.4 0.2 2.5</size></box></geometry>
+          <material>
+            <ambient>0.72 0.62 0.5 1</ambient>
+            <diffuse>0.82 0.72 0.6 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- South wall -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -4.1 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>8.4 0.2 2.5</size></box></geometry>
+          <pose>0 0 1.25 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <pose>0 0 1.25 0 0 0</pose>
+          <geometry><box><size>8.4 0.2 2.5</size></box></geometry>
+          <material>
+            <ambient>0.72 0.62 0.5 1</ambient>
+            <diffuse>0.82 0.72 0.6 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East wall -->
+    <model name="wall_east">
+      <static>true</static>
+      <pose>4.1 0 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 8.4 2.5</size></box></geometry>
+          <pose>0 0 1.25 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <pose>0 0 1.25 0 0 0</pose>
+          <geometry><box><size>0.2 8.4 2.5</size></box></geometry>
+          <material>
+            <ambient>0.68 0.58 0.46 1</ambient>
+            <diffuse>0.78 0.68 0.56 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- West wall -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-4.1 0 0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 8.4 2.5</size></box></geometry>
+          <pose>0 0 1.25 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <pose>0 0 1.25 0 0 0</pose>
+          <geometry><box><size>0.2 8.4 2.5</size></box></geometry>
+          <material>
+            <ambient>0.68 0.58 0.46 1</ambient>
+            <diffuse>0.78 0.68 0.56 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         INTERIOR OBSTACLES
+    ════════════════════════════════════════════════════════════════════ -->
+
+    <!-- Box NE quadrant -->
+    <model name="box_ne">
+      <static>true</static>
+      <pose>2.5 2.0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.6 0.6 1.0</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.6 0.6 1.0</size></box></geometry>
+          <material>
+            <ambient>0.6 0.15 0.15 1</ambient>
+            <diffuse>0.7 0.2 0.2 1</diffuse>
+            <specular>0.1 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Box SW quadrant -->
+    <model name="box_sw">
+      <static>true</static>
+      <pose>-2.5 -2.0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.6 0.6 1.0</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.6 0.6 1.0</size></box></geometry>
+          <material>
+            <ambient>0.15 0.2 0.6 1</ambient>
+            <diffuse>0.2 0.3 0.7 1</diffuse>
+            <specular>0.05 0.05 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Cylinder NW quadrant -->
+    <model name="cylinder_nw">
+      <static>true</static>
+      <pose>-2.5 2.0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><cylinder><radius>0.3</radius><length>1.0</length></cylinder></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.3</radius><length>1.0</length></cylinder></geometry>
+          <material>
+            <ambient>0.15 0.5 0.15 1</ambient>
+            <diffuse>0.2 0.6 0.2 1</diffuse>
+            <specular>0.05 0.1 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Cylinder SE quadrant -->
+    <model name="cylinder_se">
+      <static>true</static>
+      <pose>2.5 -2.0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><cylinder><radius>0.3</radius><length>1.0</length></cylinder></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.3</radius><length>1.0</length></cylinder></geometry>
+          <material>
+            <ambient>0.5 0.4 0.1 1</ambient>
+            <diffuse>0.6 0.5 0.15 1</diffuse>
+            <specular>0.1 0.08 0.02 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
