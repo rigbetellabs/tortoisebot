@@ -1,95 +1,149 @@
+#!/usr/bin/env python3
+
 import os
-import launch
-from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.substitutions import LaunchConfiguration, PythonExpression,Command
-from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable,IncludeLaunchDescription
-from launch_ros.actions import Node
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import (
+    IncludeLaunchDescription,
+    DeclareLaunchArgument,
+    TimerAction,
+)
 from launch.conditions import IfCondition
-import launch_ros
-from launch_ros.descriptions import ParameterValue
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration, PythonExpression
+from ament_index_python.packages import get_package_share_directory
+
 
 def generate_launch_description():
-  pkg_share = launch_ros.substitutions.FindPackageShare(package='tortoisebot_description').find('tortoisebot_description')
-  rviz_launch_dir=os.path.join(get_package_share_directory('tortoisebot_description'), 'launch')
-  gazebo_launch_dir=os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'launch')
-  ydlidar_launch_dir=os.path.join(get_package_share_directory('ydlidar_ros2_driver'), 'launch')
-  default_model_path = os.path.join(pkg_share, 'models/urdf/tortoisebot_simple.xacro')
-  use_sim_time=LaunchConfiguration('use_sim_time')
-  default_rviz_config_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'rviz/tortoisebot_sensor_display.rviz')
-   
-  
-  rviz_node = launch_ros.actions.Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        output='screen',
-        arguments=['-d', LaunchConfiguration('rvizconfig')],
-        parameters= [{'use_sim_time': use_sim_time}],
 
+    desc_pkg    = get_package_share_directory('tortoisebot_description')
+    gazebo_pkg  = get_package_share_directory('tortoisebot_gazebo')
+    slam_pkg    = get_package_share_directory('tortoisebot_slam')
+    nav_pkg     = get_package_share_directory('tortoisebot_navigation')
+    bringup_pkg = get_package_share_directory('tortoisebot_bringup')
+
+    default_map = os.path.join(nav_pkg, 'maps', 'explored_map.yaml')
+    rviz_sim    = os.path.join(desc_pkg, 'rviz', 'simulation.rviz')
+
+    gui      = LaunchConfiguration('gui')
+    slam     = LaunchConfiguration('slam')
+    nav      = LaunchConfiguration('nav')
+
+    declare_gui = DeclareLaunchArgument(
+        'gui', default_value='True',
+        description='Launch Ignition Gazebo with GUI'
+    )
+    declare_slam = DeclareLaunchArgument(
+        'slam', default_value='False',
+        description='Enable Cartographer SLAM mapping'
+    )
+    declare_nav = DeclareLaunchArgument(
+        'nav', default_value='False',
+        description='Enable Nav2 navigation'
     )
 
-  state_publisher_launch_cmd=IncludeLaunchDescription(
+    simulation = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(rviz_launch_dir, 'state_publisher.launch.py')),
-            launch_arguments={'use_sim_time':use_sim_time}.items())
-
-  gazebo_launch_cmd=IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(gazebo_launch_dir, 'gazebo.launch.py')),
-            condition=IfCondition(use_sim_time),
-            launch_arguments={'use_sim_time':use_sim_time}.items())
-
-  ydlidar_launch_cmd=IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(ydlidar_launch_dir, 'ydlidar_launch.py')),
-            condition=IfCondition(PythonExpression(['not ', use_sim_time])),
-            launch_arguments={'use_sim_time':use_sim_time}.items())
-  
-  differential_drive_node = Node(
-        package='tortoisebot_firmware',
-        condition=IfCondition(PythonExpression(['not ', use_sim_time])),
-        executable='differential.py',
-        name ='differential_drive_publisher',
+            os.path.join(gazebo_pkg, 'launch', 'ignition_sim.launch.py')
+        ),
+        launch_arguments={'gui': gui}.items()
     )
-  camera_node = Node(
-      package='raspicam2',
-      condition=IfCondition(PythonExpression(['not ', use_sim_time])),
-      executable='raspicam2_node',
-      name ='pi_camera',
+
+    rviz_simonly = TimerAction(
+        period=2.0,
+        actions=[IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(desc_pkg, 'launch', 'rviz.launch.py')
+            ),
+            launch_arguments={'rvizconfig': rviz_sim}.items(),
+            condition=IfCondition(
+                PythonExpression([
+                    "'", slam, "' == 'False' and '", nav, "' == 'False'"
+                ])
+            )
+        )]
     )
-  robot_state_publisher_node = launch_ros.actions.Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        parameters=[{'use_sim_time': use_sim_time},{'robot_description': ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),value_type=str)}]
+
+    rviz_nav = TimerAction(
+        period=2.0,
+        actions=[IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(desc_pkg, 'launch', 'rviz.launch.py')
+            ),
+            launch_arguments={'rvizconfig': rviz_sim}.items(),
+            condition=IfCondition(nav)
+        )]
     )
-  joint_state_publisher_node = launch_ros.actions.Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        name='joint_state_publisher',
-        parameters= [{'use_sim_time': use_sim_time}],
+
+    cartographer = TimerAction(
+        period=4.0,
+        actions=[IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(slam_pkg, 'launch', 'cartographer.launch.py')
+            ),
+            launch_arguments={'use_sim_time': 'True'}.items(),
+            condition=IfCondition(
+                PythonExpression([
+                    "'", slam, "' == 'True' and '", nav, "' == 'False'"
+                ])
+            )
+        )]
     )
-  return LaunchDescription([
 
-    SetEnvironmentVariable('RCUTILS_LOGGING_BUFFERED_STREAM', '1'),
-    launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='False',
-                                            description='Flag to enable use_sim_time'),
+    nav_mapbased = TimerAction(
+        period=5.0,
+        actions=[IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(nav_pkg, 'launch', 'navigation_mapbased.launch.py')
+            ),
+            launch_arguments={'use_sim_time': 'True'}.items(),
+            condition=IfCondition(
+                PythonExpression([
+                    "'", nav, "' == 'True' and '", slam, "' == 'False'"
+                ])
+            )
+        )]
+    )
 
-    launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
-                                          description='Absolute path to robot urdf file'),
+    cartographer_with_nav = TimerAction(
+        period=5.0,
+        actions=[IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(slam_pkg, 'launch', 'cartographer.launch.py')
+            ),
+            launch_arguments={'use_sim_time': 'True'}.items(),
+            condition=IfCondition(
+                PythonExpression([
+                    "'", nav, "' == 'True' and '", slam, "' == 'True'"
+                ])
+            )
+        )]
+    )
 
-    launch.actions.DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
-                                            description='Absolute path to rviz config file'),
-    rviz_node,
-    state_publisher_launch_cmd,
-    robot_state_publisher_node,
-    joint_state_publisher_node,
-    ydlidar_launch_cmd,
-    differential_drive_node,
-    gazebo_launch_cmd,
-    camera_node
+    nav_slam = TimerAction(
+        period=8.0,
+        actions=[IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(nav_pkg, 'launch', 'navigation_slam.launch.py')
+            ),
+            launch_arguments={'use_sim_time': 'True'}.items(),
+            condition=IfCondition(
+                PythonExpression([
+                    "'", nav, "' == 'True' and '", slam, "' == 'True'"
+                ])
+            )
+        )]
+    )
 
-  ]
-)
+    return LaunchDescription([
+        declare_gui,
+        declare_slam,
+        declare_nav,
 
+        simulation,
+        rviz_simonly,
+        rviz_nav,
+        cartographer,
+        nav_mapbased,
+        cartographer_with_nav,
+        nav_slam,
+    ])

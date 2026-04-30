@@ -1,4 +1,4 @@
-# Tortoisebot ROS2 Humble Release
+# Tortoisebot ROS2 Humble Ignition Release
 
 # ![TortoiseBot Banner](https://github.com/rigbetellabs/tortoisebot_docs/raw/master/imgs/packaging/pack_front.png)
 
@@ -20,53 +20,92 @@
 <a href="https://www.youtube.com/channel/UCfIX89y8OvDIbEFZAAciHEA">![Youtube Subscribers](https://img.shields.io/youtube/channel/subscribers/UCfIX89y8OvDIbEFZAAciHEA?label=YT%20Subscribers&style=for-the-badge)</a>
 <a href="https://www.instagram.com/rigbetellabs/">![Instagram](https://img.shields.io/badge/Follow_on-Instagram-pink?style=for-the-badge&logo=appveyor?label=Instagram)</a>
 # 1. Installation
-## 1.1 Required Dependences: 
+## 1.1 Required Dependencies:
+```bash
+sudo apt install \
+  ros-humble-joint-state-publisher \
+  ros-humble-robot-state-publisher \
+  ros-humble-cartographer \
+  ros-humble-cartographer-ros \
+  ros-humble-teleop-twist-keyboard \
+  ros-humble-teleop-twist-joy \
+  ros-humble-xacro \
+  ros-humble-nav2-bringup \
+  ros-humble-navigation2 \
+  ros-humble-urdf \
+  ros-humble-robot-localization \
+  ros-humble-ros-gz-bridge \
+  ros-humble-ros-gz-sim \
+  ros-humble-ros-gz-interfaces
 ```
-sudo apt install ros-humble-joint-state-publisher ros-humble-robot-state-publisher ros-humble-cartographer ros-humble-cartographer-ros ros-humble-gazebo-plugins ros-humble-teleop-twist-keyboard  ros-humble-teleop-twist-joy ros-humble-xacro ros-humble-nav2* ros-humble-urdf 
 
-```
-```
-cd ~/your workscpace
-colcon build
-```
-## 1.2 Clone this repo 
-Make sure you clone the repo in your robot and your remote PC 
-```
+## 1.2 Clone this repo
+Make sure you clone the repo in your robot and your remote PC
+```bash
+mkdir -p ~/tb_ws/src && cd ~/tb_ws/src
 git clone -b ros2-humble https://github.com/rigbetellabs/tortoisebot.git
 ```
-```
-cd ~/your workscpace
+```bash
+cd ~/tb_ws
 colcon build
+source install/setup.bash
 ```
 # 2. Setup
 
-- Run bringup.launch.py to only spawn the robot
-- Run autobringup.launch.py to spawn the robot with navigation and slam/localization
-- Launch the files with use_sim_time:=False when working on real robot
+- Use `autobringup.launch.py` as the single entry point for all modes (simulation and real robot)
+- Set `use_sim_time:=True` for Ignition Gazebo simulation, `use_sim_time:=False` for real robot
+- Set `exploration:=True` for SLAM mapping, `exploration:=False` for navigation on a saved map
 
 ### 2.1 Launching the robot
 
-```
+**Simulation — SLAM (build a map):**
+```bash
 ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True exploration:=True
 ```
-- exploration:=False for passed a saved map to navigation
+
+**Simulation — Navigation on a saved map:**
+```bash
+ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True exploration:=False map_file:=/path/to/your_map.yaml
+```
+
+**Real Robot — SLAM (build a map):**
+```bash
+ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=False exploration:=True
+```
+
+**Real Robot — Navigation on a saved map:**
+```bash
+ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=False exploration:=False map_file:=/path/to/your_map.yaml
+```
+
+**Save a map after SLAM exploration:**
+```bash
+ros2 launch tortoisebot_navigation save_map.launch.py map_name:=/path/to/your_map
+```
 
 ### 2.2 Launch files for reference
+#### Main Bringup
+- `autobringup.launch.py` — all-in-one launch (sim + real, SLAM + nav)
+- `bringup.launch.py` — simulation only (no nav stack)
 #### SLAM
-- cartographer.launch.py
+- `cartographer.launch.py` — Cartographer SLAM node
 #### Navigation
-- navigation.launch.py
-#### Rviz
-- rviz.launch.py
-#### Gazebo
-- gazebo.launch.py
+- `navigation_slam.launch.py` — Nav2 stack for use during SLAM
+- `navigation_mapbased.launch.py` — Nav2 stack with AMCL on a saved map
+- `save_map.launch.py` — save the current Cartographer map to disk
+#### Visualisation
+- `rviz.launch.py`
+#### Ignition Sim
+- `ignition_sim.launch.py` — Ignition Gazebo simulation
+#### Gazebo Classic
+- `gazebo.launch.py` — Gazebo Classic simulation
 
 ### 2.3 Remote PC
 
-While performing colcon build on remote-pc please add the below to ignore `ydlidar_sdk, ydlidar_ros2_driver, v4l2_camera` since lidar will not be connected to remote-pc.
+When performing `colcon build` on a remote PC, ignore the hardware-specific packages since the LiDAR and camera will not be connected:
 
-```
-colcon build --packages-ignore ydlidar_sdk ydlidar_ros2_driver v4l2_camera
+```bash
+colcon build --packages-ignore ydlidar_sdk ydlidar_ros2_driver v4l2_camera tortoisebot_firmware tortoisebot_imu
 ```
 
 # 3. Demos

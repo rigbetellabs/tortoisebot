@@ -23,6 +23,16 @@ find_package(std_srvs REQUIRED)
 ############## YDLIDAR SDK START#####################################
 #find ydlidar_sdk package
 find_package(ydlidar_sdk REQUIRED)
+
+# Locate the actual static library since FindYDLIDAR_SDK.cmake leaves
+# YDLIDAR_SDK_LIBRARY_DIRS empty when built inside a colcon workspace.
+find_library(YDLIDAR_SDK_STATIC_LIB
+  NAMES ydlidar_sdk
+  PATHS ${CMAKE_PREFIX_PATH}
+  PATH_SUFFIXES lib
+  REQUIRED
+)
+message(STATUS "Found ydlidar_sdk library: ${YDLIDAR_SDK_STATIC_LIB}")
 ############## YDLIDAR SDK END#####################################
 
 #Include directories
@@ -31,7 +41,7 @@ include_directories(
   ${PROJECT_SOURCE_DIR}/src
   ${YDLIDAR_SDK_INCLUDE_DIRS})
 
-#link library directories
+#link library directories (kept for any transitive deps)
 link_directories(${YDLIDAR_SDK_LIBRARY_DIRS})
 
 #---------------------------------------------------------------------------------------
@@ -51,7 +61,9 @@ ament_target_dependencies(${PROJECT_NAME}_node
     )
 
 target_link_libraries(${PROJECT_NAME}_node
-    ${YDLIDAR_SDK_LIBRARIES})
+    ${YDLIDAR_SDK_STATIC_LIB}
+    pthread
+    rt)
 
 #---------------------------------------------------------------------------------------
 # generate excutable and add libraries

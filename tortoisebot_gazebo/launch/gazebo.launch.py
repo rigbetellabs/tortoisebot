@@ -7,7 +7,6 @@ import os
 
 
 def generate_launch_description():
-    # world_path= os.path.join(get_package_share_directory('ttb_description'), 'models/worlds/house_env.world'),
     world_path=os.path.join(get_package_share_directory('tortoisebot_gazebo'), 'worlds/room2.sdf'),
     
     use_sim_time = LaunchConfiguration('use_sim_time')

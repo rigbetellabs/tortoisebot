@@ -1,0 +1,167 @@
+<?xml version="1.0" ?>
+<robot name="tortoisebot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <!-- IMU system plugin
+  <gazebo>
+    <plugin
+        filename="libignition-gazebo-imu-system.so"
+        name="ignition::gazebo::systems::Imu"/>
+  </gazebo>
+  -->
+
+  <gazebo>
+    <plugin
+        filename="libignition-gazebo-joint-state-publisher-system.so"
+        name="ignition::gazebo::systems::JointStatePublisher">
+      <joint_name>wheel_left_joint</joint_name>
+      <joint_name>wheel_right_joint</joint_name>
+    </plugin>
+  </gazebo>
+
+  <!-- Diff Drive -->
+  <gazebo>
+    <plugin
+        filename="libignition-gazebo-diff-drive-system.so"
+        name="ignition::gazebo::systems::DiffDrive">
+
+      <left_joint>wheel_left_joint</left_joint>
+      <right_joint>wheel_right_joint</right_joint>
+
+      <wheel_separation>0.17186</wheel_separation>
+      <wheel_radius>0.0325</wheel_radius>
+
+      <topic>/cmd_vel</topic>
+      <odom_topic>/odom</odom_topic>
+
+      <max_linear_velocity>0.23</max_linear_velocity>
+      <min_linear_velocity>-0.23</min_linear_velocity>
+      <max_angular_velocity>1.5</max_angular_velocity>
+      <min_angular_velocity>-1.5</min_angular_velocity>
+
+      <max_linear_acceleration>0.20</max_linear_acceleration>
+      <min_linear_acceleration>-0.20</min_linear_acceleration>
+      <max_angular_acceleration>1.5</max_angular_acceleration>
+      <min_angular_acceleration>-1.5</min_angular_acceleration>
+
+      <odom_topic>/odom</odom_topic>
+      <tf_topic>/model/tortoisebot/tf</tf_topic>
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_link</child_frame_id>
+      <odom_publish_frequency>50</odom_publish_frequency>
+      <publish_tf>false</publish_tf>
+
+    </plugin>
+  </gazebo>
+
+
+  <!-- IMU sensor
+  <gazebo reference="imu_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>25</update_rate>
+      <visualize>false</visualize>
+      <topic>/imu</topic>
+      <imu>
+        <angular_velocity>
+          <x><noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev></noise></x>
+          <y><noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev></noise></y>
+          <z><noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev></noise></z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x><noise type="gaussian"><mean>0.0</mean><stddev>5e-3</stddev></noise></x>
+          <y><noise type="gaussian"><mean>0.0</mean><stddev>5e-3</stddev></noise></y>
+          <z><noise type="gaussian"><mean>0.0</mean><stddev>5e-3</stddev></noise></z>
+        </linear_acceleration>
+      </imu>
+      <ignition_frame_id>imu_link</ignition_frame_id>
+    </sensor>
+  </gazebo>
+  -->
+
+
+  <!-- Lidar -->
+
+  <gazebo reference="lidar">
+    <sensor name="ydlidar" type="gpu_lidar">
+      <always_on>true</always_on>
+      <update_rate>10.0</update_rate>
+      <visualize>true</visualize>
+      <topic>/scan</topic>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </lidar>
+      <ignition_frame_id>lidar</ignition_frame_id>
+    </sensor>
+  </gazebo>
+
+  <!-- Camera -->
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="raspberrypi_camera">
+      <always_on>1</always_on>
+      <update_rate>5.0</update_rate>
+      <camera name="raspberrypi_camera">
+        <horizontal_fov>1.085595</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.03</near>
+          <far>100</far>
+        </clip>
+      </camera>
+      <topic>/camera/image_raw</topic>
+      <ignition_frame_id>camera_link</ignition_frame_id>
+    </sensor>
+  </gazebo>
+
+  <!-- Friction Params -->
+
+  <gazebo reference="base_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+
+  <gazebo reference="wheel_left">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+
+  <gazebo reference="wheel_right">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+
+  <gazebo reference="castor_wheel">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+
+</robot>
