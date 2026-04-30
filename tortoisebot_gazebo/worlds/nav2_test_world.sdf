@@ -1,18 +1,9 @@
 <?xml version="1.0" ?>
-<!--
-  nav2_test_world.sdf
-  ====================
-  Clean rectangular room designed specifically for Nav2 testing.
-  - 8x8m interior space with 0.2m thick walls
-  - 4 distinct obstacles for scan matching features
-  - All walls are axis-aligned for easy map verification
-  - Robot spawns at (0,0) which is the room centre
-  - World name = "default" (matches joint_state bridge topic)
--->
+<!--nav2_test_world.sdf-->
 <sdf version="1.9">
   <world name="default">
 
-    <!-- ── Required Ignition Fortress system plugins ───────────────────── -->
+    <!-- Required Ignition Fortress system plugins -->
     <plugin filename="libignition-gazebo-physics-system.so"
             name="ignition::gazebo::systems::Physics"/>
     <plugin filename="libignition-gazebo-user-commands-system.so"
@@ -24,14 +15,14 @@
       <render_engine>ogre2</render_engine>
     </plugin>
 
-    <!-- ── Physics ────────────────────────────────────────────────────── -->
+    <!--Physics-->
     <physics name="5ms" type="ignored">
       <max_step_size>0.005</max_step_size>
       <real_time_factor>1.0</real_time_factor>
       <real_time_update_rate>200</real_time_update_rate>
     </physics>
 
-    <!-- ── Scene ──────────────────────────────────────────────────────── -->
+    <!--Scene -->
     <scene>
       <ambient>0.4 0.4 0.4 1</ambient>
       <background>0.2 0.2 0.2 1</background>
@@ -39,7 +30,7 @@
       <grid>false</grid>
     </scene>
 
-    <!-- ── Lighting ───────────────────────────────────────────────────── -->
+    <!--  Lighting -->
     <light name="sun" type="directional">
       <cast_shadows>true</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
@@ -67,9 +58,7 @@
       <cast_shadows>false</cast_shadows>
     </light>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         FLOOR
-    ════════════════════════════════════════════════════════════════════ -->
+    <!-- FLOOR -->
     <model name="floor">
       <static>true</static>
       <pose>0 0 0 0 0 0</pose>
@@ -96,20 +85,6 @@
       </link>
     </model>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         ROOM WALLS
-         Room interior: 8x8m
-         Wall thickness: 0.2m
-         Wall height: 2.5m
-         Outer boundary: 8.4 x 8.4m
-         Robot spawns at (0,0) = room centre
-
-         Wall layout (top view):
-           N wall: y = +4.1,  length along X = 8.4m
-           S wall: y = -4.1,  length along X = 8.4m
-           E wall: x = +4.1,  length along Y = 8.4m
-           W wall: x = -4.1,  length along Y = 8.4m
-    ════════════════════════════════════════════════════════════════════ -->
 
     <!-- North wall -->
     <model name="wall_north">
@@ -195,9 +170,6 @@
       </link>
     </model>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         INTERIOR OBSTACLES
-    ════════════════════════════════════════════════════════════════════ -->
 
     <!-- Box NE quadrant -->
     <model name="box_ne">

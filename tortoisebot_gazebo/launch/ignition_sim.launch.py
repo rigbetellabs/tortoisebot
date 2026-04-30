@@ -65,7 +65,7 @@ def generate_launch_description():
             }]
         ),
 
-        # ── Main ros_gz_bridge ────────────────────────────────────────────
+        #Main ros_gz_bridge
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
@@ -74,7 +74,6 @@ def generate_launch_description():
                 '/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist',
                 '/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry',
                 '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
-                # Bridge model-namespaced TF topic, remap to /tf
                 '/model/tortoisebot/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',
                 gz_scan_topic + '@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
                 '/camera/image_raw@sensor_msgs/msg/Image[ignition.msgs.Image',

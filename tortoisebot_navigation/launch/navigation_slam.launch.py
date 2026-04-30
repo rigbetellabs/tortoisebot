@@ -4,16 +4,21 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, TimerAction
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
 
 
 def generate_launch_description():
 
-    nav_pkg     = get_package_share_directory('tortoisebot_navigation')
-    params_file = os.path.join(nav_pkg, 'config', 'nav2_params_simulation.yaml')
+    nav_pkg = get_package_share_directory('tortoisebot_navigation')
 
     use_sim_time = LaunchConfiguration('use_sim_time')
+
+    params_file = PythonExpression([
+        "'", os.path.join(nav_pkg, 'config', 'nav2_params_simulation.yaml'), "' if '",
+        use_sim_time, "' == 'true' or '", use_sim_time, "' == 'True' else '",
+        os.path.join(nav_pkg, 'config', 'nav2_params_robot.yaml'), "'"
+    ])
 
     declare_sim_time = DeclareLaunchArgument(
         'use_sim_time',
@@ -21,7 +26,6 @@ def generate_launch_description():
         description='Use simulation clock'
     )
 
-    # ── planner_server ─────────────────────────────────────────────────────
     planner = Node(
         package='nav2_planner',
         executable='planner_server',
@@ -30,7 +34,6 @@ def generate_launch_description():
         parameters=[params_file, {'use_sim_time': use_sim_time}]
     )
 
-    # ── smoother_server ────────────────────────────────────────────────────
     smoother = Node(
         package='nav2_smoother',
         executable='smoother_server',
@@ -39,7 +42,6 @@ def generate_launch_description():
         parameters=[params_file, {'use_sim_time': use_sim_time}]
     )
 
-    # ── controller_server ──────────────────────────────────────────────────
     controller = Node(
         package='nav2_controller',
         executable='controller_server',
@@ -49,7 +51,6 @@ def generate_launch_description():
         remappings=[('cmd_vel', '/cmd_vel')]
     )
 
-    # ── behavior_server ────────────────────────────────────────────────────
     behavior = Node(
         package='nav2_behaviors',
         executable='behavior_server',
@@ -58,7 +59,6 @@ def generate_launch_description():
         parameters=[params_file, {'use_sim_time': use_sim_time}]
     )
 
-    # ── bt_navigator ───────────────────────────────────────────────────────
     bt_navigator = Node(
         package='nav2_bt_navigator',
         executable='bt_navigator',
@@ -67,7 +67,6 @@ def generate_launch_description():
         parameters=[params_file, {'use_sim_time': use_sim_time}]
     )
 
-    # ── waypoint_follower ──────────────────────────────────────────────────
     waypoint_follower = Node(
         package='nav2_waypoint_follower',
         executable='waypoint_follower',
@@ -76,7 +75,6 @@ def generate_launch_description():
         parameters=[params_file, {'use_sim_time': use_sim_time}]
     )
 
-    # ── velocity_smoother ──────────────────────────────────────────────────
     velocity_smoother = Node(
         package='nav2_velocity_smoother',
         executable='velocity_smoother',
@@ -89,7 +87,6 @@ def generate_launch_description():
         ]
     )
 
-    # ── lifecycle_manager — no map_server or amcl in SLAM mode ────────────
     lifecycle_manager = Node(
         package='nav2_lifecycle_manager',
         executable='lifecycle_manager',
