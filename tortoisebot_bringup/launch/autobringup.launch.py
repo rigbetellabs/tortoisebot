@@ -32,6 +32,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
     exploration  = LaunchConfiguration('exploration')
     map_file     = LaunchConfiguration('map_file')
+    camera_port  = LaunchConfiguration('camera_port')
 
     world_file = os.path.join(gazebo_pkg, 'worlds', 'nav2_test_world.sdf')
 
@@ -78,6 +79,19 @@ def generate_launch_description():
         condition=UnlessCondition(use_sim_time)
     )
 
+    camera = Node(
+        package='camera_ros',
+        executable='camera_node',
+        name='camera_node',
+        output='screen',
+        parameters=[
+            {'camera': camera_port},
+            {'format': 'RGB888'},
+            {'width': 800},
+            {'height': 600}
+        ],
+        condition=UnlessCondition(use_sim_time)
+    )
 
     ekf = Node(
         package='robot_localization',
@@ -167,6 +181,8 @@ def generate_launch_description():
                               description='True=SLAM mapping, False=Map-based Nav'),
         DeclareLaunchArgument('map_file',     default_value=default_map,
                               description='Path to saved map yaml (used when exploration=False)'),
+        DeclareLaunchArgument('camera_port',  default_value='0',
+                              description='Camera port (e.g. 0 for /dev/video0, or /base/soc/...)'),
 
 
         ignition_sim,
@@ -174,6 +190,7 @@ def generate_launch_description():
         lidar,
         # imu,
         motors,
+        camera,
         cartographer,
         navigation,
         navigation_slam,
