@@ -127,6 +127,7 @@ The ReadMe is divided into several sections as per different topics and is const
 3. [TortoiseBot Setup](https://github.com/rigbetellabs/tortoisebot/wiki/3.-TortoiseBot-Setup)
 4. [Server PC Setup](https://github.com/rigbetellabs/tortoisebot/wiki/4.-Server-PC-Setup)
 5. [Running Demos](https://github.com/rigbetellabs/tortoisebot/wiki/5.-Running-Demos)
+6. [Real World Setup Fixes](docs/real-world-setup-fixes.md)
 
 [Join](https://discord.gg/qDuCSMTjvN) our community for Free. Post your projects or ask questions if you need any help.
 
