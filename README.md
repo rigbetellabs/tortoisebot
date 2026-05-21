@@ -139,9 +139,13 @@ ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True explora
   <img src="media/navigation.gif" alt="SLAM Mapping Demo" width="800"/>
 </p>
 
+<p align="center">
+  <img src="media/goaltravel.gif" alt="Goal Travel during SLAM" width="800"/>
+</p>
+
 ### 3.3 Autonomous Navigation on a Saved Map
 
-Once a map has been built and saved, the robot can localize itself using **AMCL** and navigate autonomously to any goal point:
+Once a map has been built and saved, the robot localizes itself using **AMCL** (Adaptive Monte Carlo Localization) and navigates autonomously to any goal point:
 
 ```bash
 # Step 1 — Save the map after exploration
@@ -152,7 +156,7 @@ ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True explora
 ```
 
 <p align="center">
-  <img src="media/goaltravel.gif" alt="Goal Navigation Demo" width="800"/>
+  <img src="media/amclnav.gif" alt="AMCL Navigation on Saved Map" width="800"/>
 </p>
 
 ---
