@@ -194,6 +194,6 @@ def generate_launch_description():
         cartographer,
         navigation,
         navigation_slam,
-        #rviz,
-        #rviz_map,
+        rviz,
+        rviz_map,
     ])

@@ -15,6 +15,15 @@
       <render_engine>ogre2</render_engine>
     </plugin>
 
+    <!-- Default user camera position closer to the robot -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>1.0 -1.0 0.8 0 0.5 2.35</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+
     <!--Physics-->
     <physics name="5ms" type="ignored">
       <max_step_size>0.005</max_step_size>
