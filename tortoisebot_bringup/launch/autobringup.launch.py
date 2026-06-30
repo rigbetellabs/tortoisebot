@@ -8,9 +8,10 @@ from launch.actions import (
     TimerAction,
 )
 from launch.conditions import IfCondition, UnlessCondition
-from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.substitutions import LaunchConfiguration, PythonExpression, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
 from ament_index_python.packages import get_package_share_directory
 
 
@@ -20,17 +21,18 @@ def generate_launch_description():
     gazebo_pkg  = get_package_share_directory('tortoisebot_gazebo')
     slam_pkg    = get_package_share_directory('tortoisebot_slam')
     nav_pkg     = get_package_share_directory('tortoisebot_navigation')
-    lidar_pkg   = get_package_share_directory('ydlidar_ros2_driver')
+    lidar_pkg   = FindPackageShare('ydlidar_ros2_driver')
 
     default_map     = os.path.join(nav_pkg,   'maps',   'explored_map.yaml')
     sim_rviz_config = os.path.join(desc_pkg,  'rviz',   'simulation.rviz')
     nav_rviz_config = os.path.join(desc_pkg,  'rviz',   'nav2.rviz')
-    lidar_params    = os.path.join(lidar_pkg,  'params', 'ydlidar.yaml')
+    lidar_params    = PathJoinSubstitution([lidar_pkg, 'params', 'ydlidar.yaml'])
     real_urdf       = os.path.join(desc_pkg, 'models', 'urdf', 'tortoisebotreal.xacro')
     ekf_slam_params = os.path.join(slam_pkg, 'config', 'ekf.yaml')
 
     use_sim_time = LaunchConfiguration('use_sim_time')
     exploration  = LaunchConfiguration('exploration')
+    slam_only    = LaunchConfiguration('slam_only')
     map_file     = LaunchConfiguration('map_file')
     camera_port  = LaunchConfiguration('camera_port')
 
@@ -56,7 +58,7 @@ def generate_launch_description():
 
     lidar = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(lidar_pkg, 'launch', 'ydlidar_launch.py')),
+            PathJoinSubstitution([lidar_pkg, 'launch', 'ydlidar_launch.py'])),
         launch_arguments={'params_file': lidar_params}.items(),
         condition=UnlessCondition(use_sim_time)
     )
@@ -93,16 +95,17 @@ def generate_launch_description():
         condition=UnlessCondition(use_sim_time)
     )
 
-    ekf = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node',
-        output='screen',
-        parameters=[ekf_slam_params, {'use_sim_time': False}],
-        condition=IfCondition(PythonExpression([
-            "'true' if ('", use_sim_time, "' == 'false' or '", use_sim_time, "' == 'False') and ('", exploration, "' == 'false' or '", exploration, "' == 'False') else 'false'"
-        ]))
-    )
+    # EKF node — disabled (not used in any pipeline)
+    # ekf = Node(
+    #     package='robot_localization',
+    #     executable='ekf_node',
+    #     name='ekf_filter_node',
+    #     output='screen',
+    #     parameters=[ekf_slam_params, {'use_sim_time': False}],
+    #     condition=IfCondition(PythonExpression([
+    #         "'true' if ('", use_sim_time, "' == 'false' or '", use_sim_time, "' == 'False') and ('", exploration, "' == 'false' or '", exploration, "' == 'False') else 'false'"
+    #     ]))
+    # )
 
     cartographer = TimerAction(
         period=6.0,
@@ -138,7 +141,9 @@ def generate_launch_description():
         actions=[IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(nav_pkg, 'launch', 'navigation_slam.launch.py')),
-            condition=IfCondition(exploration),
+            condition=IfCondition(PythonExpression([
+                "'true' if ('", exploration, "' == 'true' or '", exploration, "' == 'True') and ('", slam_only, "' == 'false' or '", slam_only, "' == 'False') else 'false'"
+            ])),
             launch_arguments={
                 'use_sim_time': use_sim_time,
             }.items()
@@ -154,7 +159,24 @@ def generate_launch_description():
                 'rvizconfig': nav_rviz_config,
                 'use_sim_time': use_sim_time,
             }.items(),
-            condition=IfCondition(exploration)
+            condition=IfCondition(PythonExpression([
+                "'true' if ('", exploration, "' == 'true' or '", exploration, "' == 'True') and ('", slam_only, "' == 'false' or '", slam_only, "' == 'False') else 'false'"
+            ]))
+        )]
+    )
+
+    rviz_slam = TimerAction(
+        period=8.0,
+        actions=[IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(desc_pkg, 'launch', 'rviz.launch.py')),
+            launch_arguments={
+                'rvizconfig': nav_rviz_config,
+                'use_sim_time': use_sim_time,
+            }.items(),
+            condition=IfCondition(PythonExpression([
+                "'true' if ('", exploration, "' == 'true' or '", exploration, "' == 'True') and ('", slam_only, "' == 'true' or '", slam_only, "' == 'True') else 'false'"
+            ]))
         )]
     )
 
@@ -179,6 +201,8 @@ def generate_launch_description():
                               description='True=Ignition Sim, False=Real Robot'),
         DeclareLaunchArgument('exploration',  default_value='True',
                               description='True=SLAM mapping, False=Map-based Nav'),
+        DeclareLaunchArgument('slam_only',     default_value='False',
+                              description='True=SLAM-only mapping (Cartographer, no Nav2), False=Standard mapping (SLAM + Nav2)'),
         DeclareLaunchArgument('map_file',     default_value=default_map,
                               description='Path to saved map yaml (used when exploration=False)'),
         DeclareLaunchArgument('camera_port',  default_value='0',
@@ -195,5 +219,6 @@ def generate_launch_description():
         navigation,
         navigation_slam,
         rviz,
+        rviz_slam,
         rviz_map,
     ])
