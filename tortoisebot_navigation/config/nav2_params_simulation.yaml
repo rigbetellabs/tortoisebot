@@ -121,11 +121,11 @@ controller_server:
     FollowPath:
       plugin: "nav2_rotation_shim_controller::RotationShimController"
       primary_controller: "dwb_core::DWBLocalPlanner"
-      angular_dist_threshold: 0.35
-      forward_sampling_distance: 0.2
-      rotate_to_heading_angular_vel: 0.5
-      max_angular_accel: 1.5
-      simulate_ahead_time: 1.5
+      angular_dist_threshold: 0.785 
+      forward_sampling_distance: 0.5  
+      rotate_to_heading_angular_vel: 0.4
+      max_angular_accel: 1.2
+      simulate_ahead_time: 1.0      
       debug_trajectory_details: False
       min_vel_x: 0.0
       min_vel_y: 0.0
@@ -143,12 +143,12 @@ controller_server:
       decel_lim_y: 0.0
       decel_lim_theta: -1.5
 
-      vx_samples: 12
+      vx_samples: 20           
       vy_samples: 0
-      vtheta_samples: 16
-      sim_time: 1.5
-      linear_granularity: 0.10
-      angular_granularity: 0.05
+      vtheta_samples: 24       
+      sim_time: 1.0            
+      linear_granularity: 0.08
+      angular_granularity: 0.04
       transform_tolerance: 0.3
       xy_goal_tolerance: 0.10
       yaw_goal_tolerance: 0.10
@@ -157,8 +157,8 @@ controller_server:
       short_circuit_trajectory_evaluation: True
       stateful: True
       critics: ["BaseObstacle", "ObstacleFootprint", "GoalAlign", "PathAlign", "PathDist", "GoalDist", "RotateToGoal"]
-      BaseObstacle.scale: 0.02
-      ObstacleFootprint.scale: 0.01
+      BaseObstacle.scale: 0.10      
+      ObstacleFootprint.scale: 0.08 
       PathAlign.scale: 48.0
       GoalAlign.scale: 24.0
       PathAlign.forward_point_distance: 0.1
@@ -187,8 +187,8 @@ local_costmap:
       plugins: ["obstacle_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.22
+        cost_scaling_factor: 3.5     
+        inflation_radius: 0.45      
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
@@ -217,19 +217,33 @@ global_costmap:
       robot_base_frame: base_link
       transform_tolerance: 0.5
       robot_radius: 0.18
-      resolution: 0.05
+      resolution: 0.05          
       track_unknown_space: true
       rolling_window: false
-      plugins: ["static_layer", "inflation_layer"]
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: True
         enabled: True
-        allow_unknown: true
+        allow_unknown: false   
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: True
+        observation_sources: scan
+        scan:
+          topic: /scan
+          max_obstacle_height: 2.0
+          clearing: True
+          marking: True
+          data_type: "LaserScan"
+          raytrace_max_range: 6.0
+          raytrace_min_range: 0.30
+          obstacle_max_range: 5.5
+          obstacle_min_range: 0.30
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 4.0
-        inflation_radius: 0.35
+        cost_scaling_factor: 2.5  
+        inflation_radius: 0.55    
       always_send_full_costmap: True
 
 map_server:
@@ -253,10 +267,23 @@ planner_server:
     use_bond: False
     planner_plugins: ["GridBased"]
     GridBased:
-      plugin: "nav2_navfn_planner/NavfnPlanner"
-      tolerance: 0.5
-      use_astar: true
-      allow_unknown: true
+      plugin: "nav2_smac_planner/SmacPlanner2D"  
+      downsample_costmap: false
+      downsampling_factor: 1
+      tolerance: 0.25
+      allow_unknown: false         
+      max_iterations: 1000000
+      max_on_approach_iterations: 1000
+      max_planning_time: 2.0
+      cost_travel_multiplier: 2.0   
+      use_final_approach_orientation: false
+      smoother:                     
+        max_iterations: 1000
+        w_smooth: 0.3
+        w_data: 0.2
+        tolerance: 1.0e-10
+        do_refinement: true
+        refinement_num: 2
 
 smoother_server:
   ros__parameters:
@@ -266,8 +293,11 @@ smoother_server:
     simple_smoother:
       plugin: "nav2_smoother::SimpleSmoother"
       tolerance: 1.0e-10
-      max_its: 1000
+      max_its: 2000        
       do_refinement: True
+      refinement_num: 3    
+      w_smooth: 0.4        
+      w_data: 0.2          
 
 behavior_server:
   ros__parameters:

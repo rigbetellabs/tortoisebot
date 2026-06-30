@@ -33,7 +33,23 @@
 
 ## 1. Installation
 
-### 1.1 Required Dependencies
+### 1.1 Install Gazebo Ignition Fortress
+
+TortoiseBot uses **Ignition Fortress** as its simulation backend. Install it before any ROS packages:
+
+```bash
+sudo curl https://packages.osrfoundation.org/gazebo.gpg \
+  --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] \
+https://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" \
+  | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install ignition-fortress
+```
+
+### 1.2 Required ROS 2 Dependencies
 
 Install all required ROS 2 Humble packages:
 
@@ -70,26 +86,40 @@ git clone -b ros2-humble https://github.com/rigbetellabs/tortoisebot.git
 
 ### 2.2 Build the Workspace
 
+> [!IMPORTANT]
+> Always run `rosdep` first to resolve any remaining system dependencies automatically.
+
 ```bash
 cd ~/tb_ws
-colcon build
+rosdep install --from-paths src --ignore-src -r -y
+```
+
+**Simulation / Remote PC build** (excludes hardware-only packages):
+
+```bash
+colcon build --packages-ignore ydlidar_sdk ydlidar_ros2_driver v4l2_camera tortoisebot_firmware tortoisebot_imu
 source install/setup.bash
 ```
 
-> **Remote PC Note:** When building on a remote PC, exclude hardware-specific packages (LiDAR, camera, firmware) that are only required on the robot itself:
->
-> ```bash
-> colcon build --packages-ignore ydlidar_sdk ydlidar_ros2_driver v4l2_camera tortoisebot_firmware tortoisebot_imu
-> ```
+**Real Robot build** (run on the robot after the above, then source again):
+
+```bash
+colcon build --packages-select ydlidar_sdk ydlidar_ros2_driver v4l2_camera tortoisebot_firmware tortoisebot_imu
+source install/setup.bash
+```
 
 ### 2.3 Key Launch Arguments
 
 `autobringup.launch.py` is the single entry point for all operating modes:
 
-| Argument | `True` | `False` |
-|---|---|---|
-| `use_sim_time` | Ignition Gazebo simulation | Real robot hardware |
-| `exploration` | SLAM — build a new map | Navigation — use a saved map |
+| Argument | Default | `True` | `False` |
+|---|---|---|---|
+| `use_sim_time` | `True` | Ignition Gazebo simulation | Real robot hardware |
+| `exploration` | `True` | SLAM — build a new map | Navigation — use a saved map |
+| `slam_only` | `False` | SLAM-only — Cartographer, **no Nav2** (teleop + map saving) | Standard SLAM + Nav2 stack |
+
+> [!NOTE]
+> `slam_only:=True` only takes effect when `exploration:=True`. When `exploration:=False` (map-based nav), the `slam_only` argument is ignored.
 
 ### 2.4 Available Launch Files
 
@@ -116,16 +146,12 @@ The TortoiseBot simulation runs inside **Ignition Gazebo** with full ROS 2 Humbl
 Drive the robot manually using the keyboard teleop:
 
 ```bash
-# Terminal 1 — Launch Gazebo + RViz + SLAM
-ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True exploration:=True
+# Terminal 1 — Launch Gazebo + RViz + SLAM (no Nav2, teleop-only mode)
+ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=True exploration:=True slam_only:=True
 
 # Terminal 2 — Keyboard teleoperation
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
-
-<p align="center">
-  <img src="media/teleop.gif" alt="Teleoperation Demo" width="800"/>
-</p>
 
 ### 3.2 Autonomous Exploration & SLAM Mapping
 
@@ -228,7 +254,8 @@ ssh tortoisebot@<ROBOT_IP_ADDRESS>
 
 ```bash
 source /opt/ros/humble/setup.bash
-ros2 launch tortoisebot_bringup bringup.launch.py use_sim_time:=False
+# slam_only:=True starts SLAM-only (no Nav2) — lightweight mode for verifying sensors
+ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=False exploration:=True slam_only:=True
 ```
 
 <p align="center">
@@ -300,7 +327,7 @@ source /opt/ros/humble/setup.bash
 ros2 launch tortoisebot_bringup autobringup.launch.py \
   use_sim_time:=False \
   exploration:=False \
-  map:=~/maps/my_room_map.yaml
+  map_file:=~/maps/my_room_map.yaml
 ```
 
 **Step 3 — On your PC:** Visualize and send navigation goals:
