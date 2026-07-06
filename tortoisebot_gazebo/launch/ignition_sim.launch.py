@@ -45,11 +45,20 @@ def generate_launch_description():
                               description='Robot spawn Y position'),
 
         SetEnvironmentVariable(
+            name='GZ_SIM_RESOURCE_PATH',
+            value=[
+                os.path.join(desc_pkg, '..'), ':',
+                os.path.join(gazebo_pkg, '..'), ':',
+                os.path.join('/opt/ros/jazzy', 'share'),
+            ]
+        ),
+
+        SetEnvironmentVariable(
             name='IGN_GAZEBO_RESOURCE_PATH',
             value=[
                 os.path.join(desc_pkg, '..'), ':',
                 os.path.join(gazebo_pkg, '..'), ':',
-                os.path.join('/opt/ros/humble', 'share'),
+                os.path.join('/opt/ros/jazzy', 'share'),
             ]
         ),
 
@@ -71,13 +80,13 @@ def generate_launch_description():
             executable='parameter_bridge',
             name='ros_gz_bridge',
             arguments=[
-                '/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist',
-                '/odom@nav_msgs/msg/Odometry[ignition.msgs.Odometry',
-                '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
-                '/model/tortoisebot/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',
-                gz_scan_topic + '@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
-                '/camera/image_raw@sensor_msgs/msg/Image[ignition.msgs.Image',
-                '/camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
+                '/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
+                '/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry',
+                '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+                '/model/tortoisebot/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
+                gz_scan_topic + '@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
+                '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
+                '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
             ],
             remappings=[
                 ('/model/tortoisebot/tf', '/tf'),
@@ -98,7 +107,7 @@ def generate_launch_description():
             name='joint_state_bridge',
             arguments=[
                 '/world/default/model/tortoisebot/joint_state'
-                '@sensor_msgs/msg/JointState[ignition.msgs.Model'
+                '@sensor_msgs/msg/JointState[gz.msgs.Model'
             ],
             remappings=[(
                 '/world/default/model/tortoisebot/joint_state',
@@ -109,13 +118,13 @@ def generate_launch_description():
         ),
 
         ExecuteProcess(
-            cmd=['ign', 'gazebo', '-r', world],
+            cmd=['gz', 'sim', '-r', world],
             output='screen',
             condition=IfCondition(gui)
         ),
 
         ExecuteProcess(
-            cmd=['ign', 'gazebo', '-r', '-s', world],
+            cmd=['gz', 'sim', '-r', '-s', world],
             output='screen',
             condition=UnlessCondition(gui)
         ),

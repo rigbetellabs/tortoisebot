@@ -1,4 +1,4 @@
-# TortoiseBot — ROS 2 Humble
+# TortoiseBot — ROS 2 Jazzy
 
 <p align="center">
   <img src="https://github.com/rigbetellabs/tortoisebot_docs/raw/master/imgs/packaging/pack_front.png" alt="TortoiseBot Banner" width="800"/>
@@ -33,42 +33,40 @@
 
 ## 1. Installation
 
-### 1.1 Install Gazebo Ignition Fortress
+### 1.1 Install Gazebo Harmonic
 
-TortoiseBot uses **Ignition Fortress** as its simulation backend. Install it before any ROS packages:
+TortoiseBot uses **Gazebo Harmonic** as its simulation backend. Install it before any ROS packages:
 
 ```bash
-sudo curl https://packages.osrfoundation.org/gazebo.gpg \
-  --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
-
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] \
-https://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" \
-  | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
-
 sudo apt-get update
-sudo apt-get install ignition-fortress
+sudo apt-get install curl lsb-release gnupg
+
+sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] https://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+sudo apt-get update
+sudo apt-get install gz-harmonic
 ```
 
 ### 1.2 Required ROS 2 Dependencies
 
-Install all required ROS 2 Humble packages:
+Install all required ROS 2 Jazzy packages:
 
 ```bash
 sudo apt install \
-  ros-humble-joint-state-publisher \
-  ros-humble-robot-state-publisher \
-  ros-humble-cartographer \
-  ros-humble-cartographer-ros \
-  ros-humble-teleop-twist-keyboard \
-  ros-humble-teleop-twist-joy \
-  ros-humble-xacro \
-  ros-humble-nav2-bringup \
-  ros-humble-navigation2 \
-  ros-humble-urdf \
-  ros-humble-robot-localization \
-  ros-humble-ros-gz-bridge \
-  ros-humble-ros-gz-sim \
-  ros-humble-ros-gz-interfaces
+  ros-jazzy-joint-state-publisher \
+  ros-jazzy-robot-state-publisher \
+  ros-jazzy-cartographer \
+  ros-jazzy-cartographer-ros \
+  ros-jazzy-teleop-twist-keyboard \
+  ros-jazzy-teleop-twist-joy \
+  ros-jazzy-xacro \
+  ros-jazzy-nav2-bringup \
+  ros-jazzy-navigation2 \
+  ros-jazzy-urdf \
+  ros-jazzy-robot-localization \
+  ros-jazzy-ros-gz-bridge \
+  ros-jazzy-ros-gz-sim \
+  ros-jazzy-ros-gz-interfaces
 ```
 
 ---
@@ -81,7 +79,7 @@ Clone the repository on both your **robot** and your **remote PC**:
 
 ```bash
 mkdir -p ~/tb_ws/src && cd ~/tb_ws/src
-git clone -b ros2-humble https://github.com/rigbetellabs/tortoisebot.git
+git clone -b ros2-jazzy https://github.com/rigbetellabs/tortoisebot.git
 ```
 
 ### 2.2 Build the Workspace
@@ -114,7 +112,7 @@ source install/setup.bash
 
 | Argument | Default | `True` | `False` |
 |---|---|---|---|
-| `use_sim_time` | `True` | Ignition Gazebo simulation | Real robot hardware |
+| `use_sim_time` | `True` | Gazebo Harmonic simulation | Real robot hardware |
 | `exploration` | `True` | SLAM — build a new map | Navigation — use a saved map |
 | `slam_only` | `False` | SLAM-only — Cartographer, **no Nav2** (teleop + map saving) | Standard SLAM + Nav2 stack |
 
@@ -132,14 +130,14 @@ source install/setup.bash
 | **Navigation** | `navigation_mapbased.launch.py` | Nav2 with AMCL on a saved map |
 | **Navigation** | `save_map.launch.py` | Save current Cartographer map to disk |
 | **Visualization** | `rviz.launch.py` | RViz2 sensor & map visualization |
-| **Sim** | `ignition_sim.launch.py` | Ignition Gazebo simulation |
+| **Sim** | `ignition_sim.launch.py` | Gazebo Harmonic simulation wrapper |
 | **Sim** | `gazebo.launch.py` | Gazebo Classic simulation |
 
 ---
 
 ## 3. Simulation
 
-The TortoiseBot simulation runs inside **Ignition Gazebo** with full ROS 2 Humble integration. RViz2 launches automatically alongside Gazebo, providing a live side-by-side view of the robot's sensor data, SLAM map, and navigation stack.
+The TortoiseBot simulation runs inside **Gazebo Harmonic** with full ROS 2 Jazzy integration. RViz2 launches automatically alongside Gazebo, providing a live side-by-side view of the robot's sensor data, SLAM map, and navigation stack.
 
 ### 3.1 Teleoperation in Simulation
 
@@ -250,10 +248,10 @@ ssh tortoisebot@<ROBOT_IP_ADDRESS>
 
 ### 4.3 Sensor Data Visualization
 
-**Step 1 — On the Robot (SSH Terminal 1):** Source ROS 2 Humble and launch all sensors and actuators:
+**Step 1 — On the Robot (SSH Terminal 1):** Source ROS 2 Jazzy and launch all sensors and actuators:
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 # slam_only:=True starts SLAM-only (no Nav2) — lightweight mode for verifying sensors
 ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=False exploration:=True slam_only:=True
 ```
@@ -265,7 +263,7 @@ ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=False explor
 **Step 2 — On your PC (Terminal 1):** Source your workspace and start keyboard teleoperation:
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/tb_ws/install/setup.bash
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
@@ -273,7 +271,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 **Step 3 — On your PC (Terminal 2):** Launch RViz2 to visualize all sensor streams:
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/tb_ws/install/setup.bash
 ros2 launch tortoisebot_description rviz.launch.py
 ```
@@ -289,14 +287,14 @@ ros2 launch tortoisebot_description rviz.launch.py
 **Step 1 — On the Robot (SSH Terminal 1):** Launch the robot in exploration mode:
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 ros2 launch tortoisebot_bringup autobringup.launch.py use_sim_time:=False exploration:=True
 ```
 
 **Step 2 — On your PC:** Source and visualize the live map:
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/tb_ws/install/setup.bash
 ros2 launch tortoisebot_description rviz.launch.py
 ```
@@ -310,8 +308,8 @@ Teleoperate the robot to map the environment, or use the **Nav2 Goal** button in
 **Step 3 — Save the map (SSH Terminal 2 on Robot):**
 
 ```bash
-source /opt/ros/humble/setup.bash
-ros2 run nav2_map_server map_saver_cli -f ~/maps/my_room_map
+source /opt/ros/jazzy/setup.bash
+ros2 launch tortoisebot_navigation save_map.launch.py map_name:=~/maps/my_room_map
 ```
 
 ---
@@ -323,7 +321,7 @@ ros2 run nav2_map_server map_saver_cli -f ~/maps/my_room_map
 **Step 2 — On the Robot (SSH Terminal 1):** Launch navigation with the saved map:
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 ros2 launch tortoisebot_bringup autobringup.launch.py \
   use_sim_time:=False \
   exploration:=False \
@@ -333,7 +331,7 @@ ros2 launch tortoisebot_bringup autobringup.launch.py \
 **Step 3 — On your PC:** Visualize and send navigation goals:
 
 ```bash
-source /opt/ros/humble/setup.bash
+source /opt/ros/jazzy/setup.bash
 source ~/tb_ws/install/setup.bash
 ros2 launch tortoisebot_description rviz.launch.py
 ```

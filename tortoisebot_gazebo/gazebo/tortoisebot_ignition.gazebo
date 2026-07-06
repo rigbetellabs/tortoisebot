@@ -5,15 +5,15 @@
   <!-- IMU system plugin
   <gazebo>
     <plugin
-        filename="libignition-gazebo-imu-system.so"
-        name="ignition::gazebo::systems::Imu"/>
+        filename="libgz-sim-imu-system.so"
+        name="gz::sim::systems::Imu"/>
   </gazebo>
   -->
 
   <gazebo>
     <plugin
-        filename="libignition-gazebo-joint-state-publisher-system.so"
-        name="ignition::gazebo::systems::JointStatePublisher">
+        filename="libgz-sim-joint-state-publisher-system.so"
+        name="gz::sim::systems::JointStatePublisher">
       <joint_name>wheel_left_joint</joint_name>
       <joint_name>wheel_right_joint</joint_name>
     </plugin>
@@ -22,8 +22,8 @@
   <!-- Diff Drive -->
   <gazebo>
     <plugin
-        filename="libignition-gazebo-diff-drive-system.so"
-        name="ignition::gazebo::systems::DiffDrive">
+        filename="libgz-sim-diff-drive-system.so"
+        name="gz::sim::systems::DiffDrive">
 
       <left_joint>wheel_left_joint</left_joint>
       <right_joint>wheel_right_joint</right_joint>
@@ -74,7 +74,7 @@
           <z><noise type="gaussian"><mean>0.0</mean><stddev>5e-3</stddev></noise></z>
         </linear_acceleration>
       </imu>
-      <ignition_frame_id>imu_link</ignition_frame_id>
+      <gz_frame_id>imu_link</gz_frame_id>
     </sensor>
   </gazebo>
   -->
@@ -108,7 +108,7 @@
           <stddev>0.01</stddev>
         </noise>
       </lidar>
-      <ignition_frame_id>lidar</ignition_frame_id>
+      <gz_frame_id>lidar</gz_frame_id>
     </sensor>
   </gazebo>
 
@@ -130,7 +130,7 @@
         </clip>
       </camera>
       <topic>/camera/image_raw</topic>
-      <ignition_frame_id>camera_link</ignition_frame_id>
+      <gz_frame_id>camera_link</gz_frame_id>
     </sensor>
   </gazebo>
 

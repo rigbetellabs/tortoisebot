@@ -3,15 +3,15 @@
 <sdf version="1.9">
   <world name="default">
 
-    <!-- Required Ignition Fortress system plugins -->
-    <plugin filename="libignition-gazebo-physics-system.so"
-            name="ignition::gazebo::systems::Physics"/>
-    <plugin filename="libignition-gazebo-user-commands-system.so"
-            name="ignition::gazebo::systems::UserCommands"/>
-    <plugin filename="libignition-gazebo-scene-broadcaster-system.so"
-            name="ignition::gazebo::systems::SceneBroadcaster"/>
-    <plugin filename="libignition-gazebo-sensors-system.so"
-            name="ignition::gazebo::systems::Sensors">
+    <!-- Required Gazebo Harmonic system plugins -->
+    <plugin filename="libgz-sim-physics-system.so"
+            name="gz::sim::systems::Physics"/>
+    <plugin filename="libgz-sim-user-commands-system.so"
+            name="gz::sim::systems::UserCommands"/>
+    <plugin filename="libgz-sim-scene-broadcaster-system.so"
+            name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="libgz-sim-sensors-system.so"
+            name="gz::sim::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
 
