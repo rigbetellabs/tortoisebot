@@ -53,7 +53,8 @@ controller_server:
       min_vel_y: 0.0
       max_vel_x: 0.26
       max_vel_y: 0.0
-      max_vel_theta: 3.0
+      max_vel_theta: 1.5
+      min_vel_theta: -1.5
       min_speed_xy: 0.0
       max_speed_xy: 0.26
       min_speed_theta: 0.08
@@ -81,17 +82,19 @@ controller_server:
       GoalAlign.scale: 24.0
       PathAlign.forward_point_distance: 0.1
       GoalAlign.forward_point_distance: 0.1
-      PathDist.scale: 32.0
-      GoalDist.scale: 24.0
+
+      PathDist.scale: 64.0
+      GoalDist.scale: 64.0
       RotateToGoal.scale: 32.0
-      RotateToGoal.slowing_factor: 5.0
+      RotateToGoal.slowing_factor: 10.0
       RotateToGoal.lookahead_time: -1.0
 
 local_costmap:
   local_costmap:
     ros__parameters:
-      update_frequency: 5.0
-      publish_frequency: 2.0
+      use_sim_time: True
+      update_frequency: 10.0
+      publish_frequency: 10.0
       global_frame: odom
       robot_base_frame: base_link
       rolling_window: true
@@ -132,8 +135,9 @@ local_costmap:
 global_costmap:
   global_costmap:
     ros__parameters:
-      update_frequency: 1.0
-      publish_frequency: 1.0
+      use_sim_time: True
+      update_frequency: 5.0
+      publish_frequency: 5.0
       global_frame: map
       robot_base_frame: base_link
       robot_radius: 0.1

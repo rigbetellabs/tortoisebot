@@ -19,7 +19,7 @@ motor_rpm = 60              #   max rpm of motor on full voltage
 wheel_diameter = 0.065      #   in meters
 wheel_separation = 0.17     #   in meters
 max_pwm_val = 100           #   100 for Raspberry Pi , 255 for Arduino
-min_pwm_val = 15           #   Minimum PWM value that is needed for the robot to move
+min_pwm_val = 15            #   Minimum PWM value that is needed for the robot to move
 
 wheel_radius = wheel_diameter/2
 circumference_of_wheel = 2 * pi * wheel_radius
@@ -47,7 +47,6 @@ pwmR.start(0)
 def stop(self):
     global lPWM, rPWM, lDIR, rDIR
     
-    #print('stopping')
     pwmL.ChangeDutyCycle(0)
     GPIO.output(leftForward, GPIO.HIGH)
     GPIO.output(leftBackward, GPIO.HIGH)
@@ -110,7 +109,7 @@ class Differential(Node):
         self.rpwm_pub = self.create_publisher(Int32, 'rpwm', 10)
         self.ldir_pub = self.create_publisher(Bool, 'ldir', 10)
         self.rdir_pub = self.create_publisher(Bool, 'rdir', 10)
-    
+
     def callback(self, data):
         
         global wheel_radius
@@ -119,14 +118,11 @@ class Differential(Node):
         linear_vel = data.linear.x                  # Linear Velocity of Robot
         angular_vel = data.angular.z                # Angular Velocity of Robot
 
-
         VrplusVl  = 2 * linear_vel
         VrminusVl = angular_vel * wheel_separation
         
         right_vel = ( VrplusVl + VrminusVl ) / 2      # right wheel velocity along the ground
         left_vel  = VrplusVl - right_vel              # left wheel velocity along the ground
-        
-        # print (str(left_vel)+"\t"+str(right_vel))
         
         if (left_vel == 0.0 and right_vel == 0.0):
             stop(self)
@@ -134,12 +130,11 @@ class Differential(Node):
             wheel_vel_executer(self, left_vel, right_vel)
 
 def main(args=None):
-    
-  rclpy.init(args=args)
-  differential_drive = Differential()
-  rclpy.spin(differential_drive)
-  differential_drive.destroy_node()
-  rclpy.shutdown()
+    rclpy.init(args=args)
+    differential_drive = Differential()
+    rclpy.spin(differential_drive)
+    differential_drive.destroy_node()
+    rclpy.shutdown()
    
 if __name__ == '__main__':
     print('Tortoisebot Differential Drive Initialized with following Params-')

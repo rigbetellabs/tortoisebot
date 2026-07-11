@@ -4,8 +4,8 @@
   <name>tortoisebot_firmware</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="kartiksoni010@gmail.com">kartik</maintainer>
   <maintainer email="shubhamnandi@rigbetellabs.com">Shubham</maintainer>
+  <maintainer email="vinayaknayak@rigbetellabs.com">Vinayak</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

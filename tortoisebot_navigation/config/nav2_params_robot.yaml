@@ -147,8 +147,9 @@ controller_server:
 local_costmap:
   local_costmap:
     ros__parameters:
-      update_frequency: 5.0
-      publish_frequency: 2.0
+      update_frequency: 10.0
+      publish_frequency: 10.0
+      transform_tolerance: 1.0
       global_frame: odom
       robot_base_frame: base_link
       rolling_window: true
@@ -191,6 +192,7 @@ global_costmap:
     ros__parameters:
       update_frequency: 1.0
       publish_frequency: 1.0
+      transform_tolerance: 1.0
       global_frame: map
       robot_base_frame: base_link
       robot_radius: 0.22
@@ -208,7 +210,7 @@ global_costmap:
           marking: True
           data_type: "LaserScan"
           raytrace_max_range: 3.0
-          raytrace_min_range: 0.0
+          raytrace_min_range: 0.15
           obstacle_max_range: 2.5
           obstacle_min_range: 0.0
       static_layer:

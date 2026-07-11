@@ -9,10 +9,9 @@ from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
-    default_model_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'models/urdf/tortoisebot.xacro')
+    default_model_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'models/urdf/tortoisebot_simple.xacro')
     real_robot_model_path = os.path.join(get_package_share_directory('tortoisebot_description'), 'models/urdf/tortoisebotreal.xacro')
     
-    # Robot state publisher for simulation (when use_sim_time is True)
     robot_state_publisher_sim = launch_ros.actions.Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -23,7 +22,6 @@ def generate_launch_description():
         condition=IfCondition(use_sim_time)
     )
     
-    # Robot state publisher for real robot (when use_sim_time is False)
     robot_state_publisher_real = launch_ros.actions.Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',

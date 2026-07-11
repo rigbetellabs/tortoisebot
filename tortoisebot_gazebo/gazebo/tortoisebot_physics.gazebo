@@ -1,10 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="tortoisebot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-<!-- <xacro:property name="standard_friction" value="100.0" />
-<xacro:property name="wheel_friction" value="1000.0" />
-<xacro:property name="caster_friction" value="0.1" /> -->
-
 <!--  ##########  WHEEL FRICTION  ##########  -->
 
 <gazebo reference="wheel_left">
@@ -13,6 +9,7 @@
   <kp>50000.0</kp>
   <kd>10.0</kd>
   <minDepth>0.001</minDepth>
+  <fdir1>1 0 0</fdir1>
 </gazebo>
 
 <gazebo reference="wheel_right">
@@ -21,6 +18,7 @@
   <kp>50000.0</kp>
   <kd>10.0</kd>
   <minDepth>0.001</minDepth>
+  <fdir1>1 0 0</fdir1>
 </gazebo>
 
 <!--  ##########  CASTER FRICTION  ##########  -->
@@ -57,8 +55,8 @@
 <!--  ##########  STANDARD FRICTION  ##########  -->
 
 <gazebo reference="base_link">
-  <mu1>0.2</mu1>
-  <mu2>0.2</mu2>
+  <mu1>0.0</mu1>
+  <mu2>0.0</mu2>
   <gravity>true</gravity>
 </gazebo>
 
