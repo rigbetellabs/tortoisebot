@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: YDLIDAR_SDK
+Description: 
+Version: 1.2.6
+Cflags:   -I/usr/local/include/src -I/usr/local/include
+Libs: -L${libdir}  -lpthread -lrt -lydlidar_sdk
+
