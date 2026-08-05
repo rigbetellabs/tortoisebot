@@ -197,7 +197,7 @@ Before powering up the robot for the first time, configure Wi-Fi credentials dir
 
 1. Insert the SD card into your computer using a card reader.
 2. Navigate to the `writable` partition, then to `/etc/netplan/`.
-3. Open `50-cloud-init.yaml` in a text editor.
+3. Open `01-network-manager-all.yaml` in a text editor.
 4. Locate the `wifis` section and add your credentials:
 
 ```yaml
@@ -208,19 +208,18 @@ wlan0:
       password: "your_wifi_password"
   dhcp4: true
 ```
-
 <p align="center">
-  <img src="https://github.com/rigbetellabs/tortoisebot_docs/blob/ros2/imgs/tortoiseBot_demo/path_for_wifi_add.png?raw=true" alt="Netplan path" width="600"/>
+  <img src="media/netplancommand.png" alt="Netplan command" width="600"/>
 </p>
 
 <p align="center">
-  <img src="https://github.com/rigbetellabs/tortoisebot_docs/blob/ros2/imgs/tortoiseBot_demo/wifi_ssid_pass.png?raw=true" alt="SSID and password entry" width="600"/>
+  <img src="media/wifipassentry.png" alt="Wi-Fi password entry" width="600"/>
 </p>
 
 **Example configuration:**
 
 <p align="center">
-  <img src="https://github.com/rigbetellabs/tortoisebot_docs/blob/ros2/imgs/tortoiseBot_demo/wifi_rpi_config.png?raw=true" alt="Wi-Fi RPi config example" width="600"/>
+  <img src="media/wifipassexample.png" alt="Wi-Fi password example" width="600"/>
 </p>
 
 5. Save the file and exit the text editor.
