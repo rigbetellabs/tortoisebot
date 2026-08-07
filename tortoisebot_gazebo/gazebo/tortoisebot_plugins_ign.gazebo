@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<robot name="tortoisebot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+	<!-- Differential drive plugin for gazebo -->
+	<gazebo>
+	<plugin name="gz::sim::systems::DiffDrive" filename="gz-sim-diff-drive-system">
+
+
+		<!-- wheels -->
+		<left_joint>wheel_left_joint</left_joint>
+		<right_joint>wheel_right_joint</right_joint>
+
+		<!-- kinematics -->
+		<wheel_separation>0.17186</wheel_separation>
+		<wheel_radius>0.033</wheel_radius>
+		
+
+		<!-- limits -->
+		 <max_linear_acceleration>0.20</max_linear_acceleration>
+
+		<topic>cmd_vel</topic>
+
+
+		<!-- output -->
+<!-- 
+		<frame_id>odom</frame_id>
+		<child_frame_id>base_link</child_frame_id>
+		<odom_topic>odom</odom_topic>
+		<odom_publisher_frequency>30</odom_publisher_frequency>
+		
+		<tf_topic>/tf</tf_topic> -->
+
+	</plugin>
+	</gazebo>
+
+	<!--  ##########  LIDAR PLUGIN  ##########  -->
+
+	<gazebo reference="lidar">
+		<sensor name="ydlidar" type="gpu_lidar">
+            <!-- <pose> 0 0 0 0 0 0 </pose> -->
+            <visualize>false</visualize>
+            <update_rate>10</update_rate>
+            <lidar>
+                <scan>
+                    <horizontal>
+                        <samples>360</samples>
+                        <min_angle>-3.14</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.3</min>
+                    <max>12</max>
+                </range>
+            </lidar>
+            <topic>scan</topic>
+            <gz_frame_id>lidar</gz_frame_id>
+		</sensor>
+		</gazebo>
+
+	<!--  ##########  CAMERA PLUGIN  ##########  -->
+
+  <!-- camera -->
+<gazebo reference="camera_link">
+  <sensor type="camera" name="raspberrypi_camera">
+           
+	<visualize>true</visualize>
+	<update_rate>10</update_rate>
+	<camera>
+		<camera_info_topic>camera/camera_info</camera_info_topic>
+		<horizontal_fov>1.089</horizontal_fov>
+		<image>
+			<format>R8G8B8</format>
+			<width>640</width>
+			<height>480</height>
+		</image>
+		<clip>
+			<near>0.05</near>
+			<far>8.0</far>
+		</clip>
+	</camera>
+	<topic>camera/image_raw</topic>
+	<gz_frame_id>camera_link</gz_frame_id>
+  </sensor>
+</gazebo>
+
+
+</robot>
